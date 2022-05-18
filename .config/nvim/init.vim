@@ -24,6 +24,11 @@ set signcolumn=yes          " Add Git/Linting column
 set cmdheight=2             " More space for displaying messages
 set updatetime=100          " Set updatetime period in ms, default 4000 is noticable
 set termguicolors           " Terminal colors, its not 1970
+set nohlsearch              " Dont highlight search hits
+set paste                   " Enables pasting in windows
+
+" TODO: where this?
+:syntax enable
 
 "------------------------------Plugins------------------------------
 " Using vim-plug: https://github.com/junegunn/vim-plug
@@ -122,3 +127,9 @@ Plug 'nvim-telescope/telescope.nvim'
 "
 " End plugin list
 call plug#end()
+
+
+"------------------------------Remaps------------------------------
+"
+" Remap the useless S to replace word under cursor with content of 0 register
+nnoremap S dis"0P
