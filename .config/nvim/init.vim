@@ -45,7 +45,7 @@ set nohlsearch              " Dont highlight search hits
 " 
 " Install vim-plug if its not on this system yet
 if this_os == "Linux"
-	if empty(glob('.local/share/nvim/site'))
+	if empty(glob('~/.local/share/nvim/site'))
         silent ! sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
             \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
