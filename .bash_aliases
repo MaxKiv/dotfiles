@@ -10,7 +10,7 @@ alias nv='nvim'
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 initcmp () {
     dotfiles add $HOME/.config/nvim/init.vim 
-    dotfiles commit -m $1
+    dotfiles commit -m "$1"
     dotfiles push;
     }
 bsrccmp () {
