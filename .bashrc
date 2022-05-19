@@ -116,3 +116,5 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# z fuzzy cd
+. ~/tools/z/z.sh
