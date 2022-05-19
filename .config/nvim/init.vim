@@ -37,7 +37,6 @@ set cmdheight=2             " More space for displaying messages
 set updatetime=100          " Set updatetime period in ms, default 4000 is noticable
 set termguicolors           " Terminal colors, its not 1970
 set nohlsearch              " Dont highlight search hits
-set paste                   " Enables pasting in windows
 
 " TODO: where this?
 :syntax enable
