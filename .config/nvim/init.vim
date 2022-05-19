@@ -44,10 +44,10 @@ set nohlsearch              " Dont highlight search hits
 " Using vim-plug: https://github.com/junegunn/vim-plug
 " 
 " Install vim-plug if its not on this system yet
-
 if this_os == "Linux"
-	if empty(glob('~/.vim/autoload/plug.vim'))
-		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	if empty(glob('~/nvim/site'))
+        silent ! sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
+            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 	endif
 elseif this_os == "Windows"
@@ -123,3 +123,12 @@ call plug#end()
 "
 " Remap the useless S to replace word under cursor with content of 0 register
 nnoremap S dis"0P
+
+
+
+
+
+"autocmd VimEnter *
+  "\  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  "\|   PlugInstall --sync | q
+  "\| endif
