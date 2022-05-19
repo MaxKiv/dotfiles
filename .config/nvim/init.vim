@@ -1,3 +1,13 @@
+" My .vimrc / init.vim 
+" 
+" Detect OS
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
 " :options for all possible options
 " :h [cmd] for man page of specific cmd
 "
@@ -34,6 +44,26 @@ set paste                   " Enables pasting in windows
 " Using vim-plug: https://github.com/junegunn/vim-plug
 " 
 " Install vim-plug if its not on this system yet
+
+if has("gui_running")
+    elseif g:os == "Linux"
+		if empty(glob('~/.vim/autoload/plug.vim'))
+			silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+			autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+		endif
+    elseif g:os == "Windows"
+		if empty(glob('$LOCALAPPDATA\nvim\autoload\plug.vim'))
+		  silent ! powershell -Command "
+		  \   New-Item -Path ~\AppData\Local\nvim -Name autoload -Type Directory -Force;
+		  \   Invoke-WebRequest
+		  \   -Uri 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+		  \   -OutFile ~\AppData\Local\nvim\autoload\plug.vim
+		  \ "
+		  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+		endif
+    endif
+endif
+
 if empty(glob('~/.vim/autoload/plug.vim'))
 
         silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
