@@ -65,11 +65,17 @@ endif
 " Start plugin list
 call plug#begin('~/.vim/plugged')
 
+" ColorScheme pick your poison i pick gruvbox
+Plug 'morhetz/gruvbox'
+
 " Telescope - Gaze deeply into unknown regions using the power of the moon
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-"
+" Je boi Tpope met de surround
+Plug 'tpope/vim-surround'
+
+
 "
 " The default plugin directory will be as follows:
 "
@@ -118,6 +124,7 @@ Plug 'nvim-telescope/telescope.nvim'
 "
 " End plugin list
 call plug#end()
+colorscheme gruvbox
 
 "------------------------------Remaps------------------------------
 "
