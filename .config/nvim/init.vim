@@ -75,7 +75,10 @@ Plug 'nvim-telescope/telescope.nvim'
 " Je boi Tpope met de surround
 Plug 'tpope/vim-surround'
 
+" fzf fuzzy finder with update hook
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
+" 
 "
 " The default plugin directory will be as follows:
 "
