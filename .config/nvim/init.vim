@@ -37,6 +37,12 @@ set updatetime=100          " Set updatetime period in ms, default 4000 is notic
 set termguicolors           " Terminal colors, its not 1970
 set nohlsearch              " Dont highlight search hits
 
+if this_os == "Linux"
+    set clipboard=unnamedplus   " Yank to clipboard
+elseif this_os == "Windows"
+    set clipboard=unnamed       " Yank to clipboard
+endif
+
 " TODO: where this?
 :syntax enable
 
@@ -74,6 +80,9 @@ Plug 'nvim-telescope/telescope.nvim'
 
 " Je boi Tpope met de surround
 Plug 'tpope/vim-surround'
+
+" Je boi Tpope met de comment plugin
+Plug 'tpope/vim-commentary'
 
 " fzf fuzzy finder with update hook
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
