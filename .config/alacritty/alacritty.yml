@@ -1,0 +1,4 @@
+# Config for the Alacritty terminal emulator, see https://github.com/alacritty/alacritty/blob/master/alacritty.yml for more details
+
+# Remap default C-Space to send ASCII NUL, required to use C-Space as tmux prefix key
+- { key: Space, mods: Control, chars: "\x00" }
