@@ -5,21 +5,21 @@ key_bindings:
 - { key: Space, mods: Control, chars: "\x00" }
 
 # Change font
-  font: 
-    normal:
-        family: Nimbus Mono
-        style: Regular
+# font: 
+#     normal:
+#         family: Nimbus Mono
+#         style: Regular
 
-    bold: 
-        family: monospace
-        style: Bold
+#     bold: 
+#         family: monospace
+#         style: Bold
         
-    italic: 
-        family: monospace
-        style: Italic
+#     italic: 
+#         family: monospace
+#         style: Italic
 
-    bold_italic: 
-        family: monospace
-        style: Bold Italic
+#     bold_italic: 
+#         family: monospace
+#         style: Bold Italic
 
-    size: 11
+#     size: 11
