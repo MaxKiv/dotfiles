@@ -1,6 +1,12 @@
 This repo contains all my dotfiles in 1 place.
 
-## To install
+## Fast install
+
+	curl -Lks https://bit.ly/dotfiles_maxkiv | /bin/bash
+	
+	sb
+
+## Other install options
 
 	git clone --bare https://github.com/MaxKiv/dotfiles.git $HOME/.dotfiles
 
