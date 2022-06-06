@@ -20,3 +20,4 @@ add to install script:
 * nvim
 * tmux + tpm (git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
 * fzf
+* powerline fonts (https://github.com/powerline/fonts)
