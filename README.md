@@ -18,5 +18,5 @@ This repo contains all my dotfiles in 1 place.
 add to install script:
 
 * nvim
-* tmux
+* tmux + tpm (git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
 * fzf
