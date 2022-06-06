@@ -14,3 +14,9 @@ This repo contains all my dotfiles in 1 place.
 
 	dotfiles checkout
 
+## TODO
+add to install script:
+
+* nvim
+* tmux
+* fzf
