@@ -8,9 +8,9 @@ This repo contains all my dotfiles in 1 place.
 
 ## Other install options
 
-	git clone --bare https://github.com/MaxKiv/dotfiles.git $HOME/.dotfiles
+	git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
 
-	alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
+	alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
 
 	dotfiles checkout
 
