@@ -21,3 +21,9 @@ add to install script:
 * tmux + tpm (git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)
 * fzf
 * powerline fonts (https://github.com/powerline/fonts)
+
+## On windows LUL
+
+	cd "C:\"
+	git clone git@github.com:MaxKiv/dotfiles.git 
+	mklinnk "C:\dotfiles\.config\alacritty\alacritty.yml" "%APPDATA%\Roaming\alacritty\alacritty.yml"
