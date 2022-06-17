@@ -3,6 +3,9 @@
 # Sourcing .bashrc
 alias sb='source ~/.bashrc'
 
+# glow markdown viewer
+alias glow='./home/max/git/glow'
+
 # Vim
 alias nv='nvim'
 alias vim='nvim'

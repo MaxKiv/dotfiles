@@ -215,3 +215,4 @@ fkill() {
     fi  
 }
 
+. "$HOME/.cargo/env"
