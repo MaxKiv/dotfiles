@@ -50,7 +50,7 @@ nnoremap <leader>vr :e ~/.ideavimrc<CR>
 nnoremap <leader>vs :action IdeaVim.ReloadVimRc.reload<CR>
 
 " Terminal
-nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+"nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 
 " Searching & Navigation
