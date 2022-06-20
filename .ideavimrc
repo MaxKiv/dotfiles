@@ -14,7 +14,6 @@ set expandtab               " Indent with the appropriate number of spaces
 set autoindent              " Copy previous indentation level
 set smartindent             " Do it smartly tho
 set hidden                  " Save buffers 
-set noerrorbells            " Yea
 set nowrap                  " No wrapping
 set smartcase               " Simple search, case-sensitive when capital letter present
 set undodir=~/.vim/undodir  " Location of the undo data
@@ -26,6 +25,8 @@ set cmdheight=2             " More space for displaying messages
 set updatetime=100          " Set updatetime period in ms, default 4000 is noticable
 set termguicolors           " Terminal colors, its not 1970
 set nohlsearch              " Dont highlight search hits
+set visualbell              " Hackaround for IdeaVim
+set noerrorbells            " Nobody likes this 'feature'
 
 " ---------------------------------------------------------------
 " ---------- Remaps ---------------------------------------------
