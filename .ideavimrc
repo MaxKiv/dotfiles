@@ -39,6 +39,7 @@ nnoremap <SPACE> <Nop>
 " ---------------------------------------------------------------
 "  emulate tpopes surround plugin
 set surround
+set commetary
 
 " Using OS clipboard
 set clipboard+=unnamed
@@ -65,7 +66,7 @@ nnoremap <leader>h :action CallHierarchy<CR>
 nnoremap <leader>b :action ShowNavBar<CR>
 nnoremap <c-s> :action FileStructurePopup<CR>
 nnoremap <c-o> :action GotoSymbol<CR>
-nnoremap gc :action GotoClass<CR>
+nnoremap <leader>c :action GotoClass<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gd :action GotToDeclaration<CR>
 nnoremap gp :action GotToSuperMethod<CR>
