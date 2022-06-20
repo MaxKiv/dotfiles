@@ -39,7 +39,7 @@ nnoremap <SPACE> <Nop>
 " ---------------------------------------------------------------
 "  emulate tpopes surround plugin
 set surround
-set commetary
+set commentary
 
 " Using OS clipboard
 set clipboard+=unnamed
