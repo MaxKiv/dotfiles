@@ -64,7 +64,7 @@ nnoremap <leader>b :action ShowNavBar<CR>
 nnoremap <c-s> :action FileStructurePopup<CR>
 "nnoremap <c-o> :action GotoSymbol<CR>
 nnoremap <leader>c :action GotoClass<CR>
-nnoremap gi :action GotoImplementation<CR>
+nnoremap <leader>i :action GotoImplementation<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gp :action GotoSuperMethod<CR>
 nnoremap gt :action GotoTest<CR>
