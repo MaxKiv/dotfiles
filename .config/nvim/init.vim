@@ -48,6 +48,9 @@ endif
 " TODO: where this?
 :syntax enable
 
+nnoremap <SPACE> <Nop>
+:let mapleader = " "
+
 " ---------------------------------------------------------------
 " ---------- Plugins --------------------------------------------
 " ---------------------------------------------------------------
@@ -135,7 +138,7 @@ colorscheme gruvbox
 " ---------------------------------------------------------------
 
 " Remap the useless S to replace word under cursor with content of 0 register
-nnoremap S dis"0P
+" nnoremap S dis"0P
 
 "autocmd VimEnter *
   "\  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
