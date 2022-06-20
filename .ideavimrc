@@ -53,9 +53,6 @@ nnoremap <leader>vs :action IdeaVim.ReloadVimRc.reload<CR>
 nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 
-
-
-
 " Searching & Navigation
 nnoremap <c-/> :action FindInPath<CR>
 nnoremap <c-a> :action GotoAction<CR>
