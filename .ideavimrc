@@ -1,0 +1,73 @@
+" My .IdeaVimrc
+" Adapted from https://towardsdatascience.com/the-essential-ideavim-remaps-291d4cd3971b
+
+" ---------------------------------------------------------------
+" ---------- Options --------------------------------------------
+" ---------------------------------------------------------------
+set exrc                    " Attempts to source .vimrc in local dir first
+set relativenumber          " Use relative numbers
+set nu                      " Current line still shows global line number
+set tabstop=2               " Set Tab width to 2
+set softtabstop=2           " Use soft Tabs
+set shiftwidth=2            " Set soft Tab width to 2
+set expandtab               " Indent with the appropriate number of spaces
+set autoindent              " Copy previous indentation level
+set smartindent             " Do it smartly tho
+set hidden                  " Save buffers 
+set noerrorbells            " Yea
+set nowrap                  " No wrapping
+set smartcase               " Simple search, case-sensitive when capital letter present
+set undodir=~/.vim/undodir  " Location of the undo data
+set undofile                " Something to do with previous
+set incsearch               " Show search hits while typing
+set scrolloff=999            " Stop moving camera vertically when near edges of screen
+set signcolumn=yes          " Add Git/Linting column
+set cmdheight=2             " More space for displaying messages
+set updatetime=100          " Set updatetime period in ms, default 4000 is noticable
+set termguicolors           " Terminal colors, its not 1970
+set nohlsearch              " Dont highlight search hits
+
+" ---------------------------------------------------------------
+" ---------- Remaps ---------------------------------------------
+" ---------------------------------------------------------------
+nnoremap <SPACE> <Nop>
+:let mapleader = " "
+
+" ---------------------------------------------------------------
+" ---------- IdeaVim Specific  ----------------------------------
+" ---------------------------------------------------------------
+"  emulate tpopes surround plugin
+set surround
+
+" Using OS clipboard
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+" Edit and Source IdeaVimrc
+nnoremap <leader>vr :e ~/.ideavimrc<CR>
+nnoremap <leader>vs :action IdeaVim.ReloadVimRc.reload<CR>
+
+" Terminal
+nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+
+
+
+
+" Searching & Navigation
+nnoremap <c-/> :action FindInPath<CR>
+nnoremap <c-a> :action GotoAction<CR>
+nnoremap <c-f> :action GotoFile<CR>
+nnoremap <leader>u :action FindUsages<CR>
+nnoremap <leader>s :action GotoRelated<CR>
+nnoremap <leader>h :action CallHierarchy<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+nnoremap <c-s> :action FileStructurePopup<CR>
+nnoremap <c-o> :action GotoSymbol<CR>
+nnoremap gc :action GotoClass<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotToDeclaration<CR>
+nnoremap gp :action GotToSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
