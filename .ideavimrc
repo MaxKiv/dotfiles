@@ -31,12 +31,15 @@ set noerrorbells            " Nobody likes this 'feature'
 " ---------------------------------------------------------------
 " ---------- Remaps ---------------------------------------------
 " ---------------------------------------------------------------
+"  Leader
 nnoremap <SPACE> <Nop>
 :let mapleader = " "
 
 " ---------------------------------------------------------------
 " ---------- IdeaVim Specific  ----------------------------------
 " ---------------------------------------------------------------
+"  Jump list doesnt really work nicely in IdeaVim, let Idea handle jump backs
+nmap <C-o> :action Back<CR>
 "  emulate tpopes surround plugin
 set surround
 set commentary
