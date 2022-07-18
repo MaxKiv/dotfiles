@@ -72,4 +72,5 @@ nnoremap gd :action GotoDeclaration<CR>
 nnoremap gp :action GotoSuperMethod<CR>
 nnoremap gt :action GotoTest<CR>
 nnoremap gb :action Back<CR>
+nmap <C-o> :action Back<CR>
 nnoremap gf :action Forward<CR>
