@@ -45,9 +45,6 @@ elseif this_os == "Windows"
     set clipboard=unnamed       " Yank to clipboard
 endif
 
-" TODO: where this?
-:syntax enable
-
 nnoremap <SPACE> <Nop>
 :let mapleader = " "
 
@@ -80,17 +77,29 @@ call plug#begin('~/.vim/plugged')
 
 " ColorScheme pick your poison i pick gruvbox
 Plug 'morhetz/gruvbox'
+
 " Telescope - Gaze deeply into unknown regions using the power of the moon
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+" 
 " Je boi Tpope met de surround
 Plug 'tpope/vim-surround'
+
 " Je boi Tpope met de comment plugin
 Plug 'tpope/vim-commentary'
+
 " Je boi Tpope met de git wrapper
 Plug 'tpope/vim-fugitive'
+
 " fzf fuzzy finder with update hook
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter' " auto cd to project root dir
+
+" lsp setup attempt
+Plug 'neovim/nvim-lspconfig'
+
+
 " Nerdtree filesystem browser
 " Plug 'scrooloose/nerdtree'
 " The default plugin directory will be as follows:
@@ -123,6 +132,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " End plugin list
 call plug#end()
+:syntax enable
 colorscheme gruvbox
 
 " ---------------------------------------------------------------
