@@ -118,8 +118,8 @@ fi
 
 # FUZZY FINDER STUFF
 export FZF_DEFAULT_COMMAND="find -L"
-# z fuzzy cd
-#. ~/tools/z/z.sh
+source /usr/share/doc/fzf/examples/key-bindings.bash    # FZF keybindings in bash
+source /usr/share/doc/fzf/examples/completion.bash      # FZF autocompletion in bash
 
 # Run command/application and choose paths/files with fzf.                      
 # Always return control of the terminal to user (e.g. when opening GUIs).       
