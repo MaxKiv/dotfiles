@@ -25,3 +25,7 @@ bsrccmp () {
     dotfiles commit -m "$1"
     dotfiles push;
     }
+
+# tmux () {
+#   tmux new-session -A -s "$1";
+# }
