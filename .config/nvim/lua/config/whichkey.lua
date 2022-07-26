@@ -42,6 +42,14 @@ function M.setup()
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
     },
+
+    f = {
+      name = "Telescope",
+      f = { "<cmd>Telescope find_files<CR>", "Find files" },
+      g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
+      b = { "<cmd>Telescope buffers<CR>", "Buffers" },
+      h = { "<cmd>Telescope help_tags<CR>", "Help tags" },
+    },
   }
 
   whichkey.setup(conf)
