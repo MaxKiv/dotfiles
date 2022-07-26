@@ -26,6 +26,9 @@ function M.setup()
     b = {
       name = "Buffer",
       c = { "<Cmd>bd!<Cr>", "Close current buffer" },
+      n = { "<Cmd>:bnext<Cr>", "Next buffer" },
+      p = { "<Cmd>:bprevious<Cr>", "Previous buffer" },
+      b = { "<Cmd>ls<Cr>", "List current buffers" },
       D = { "<Cmd>%db|e#|bd#<Cr>", "Delete all buffers" },
     },
 
@@ -49,6 +52,11 @@ function M.setup()
       g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
       h = { "<cmd>Telescope help_tags<CR>", "Help tags" },
+      m = { "<cmd>Telescope marks<CR>", "Marks" },
+      r = { "<cmd>Telescope registers<CR>", "Registers" },
+      j = { "<cmd>Telescope jumplist<CR>", "Jumplist" },
+      s = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Current Buffer" },
+      t = { "<cmd>Telescope treesitter<CR>", "Treesitter Symbols" },
     },
   }
 
