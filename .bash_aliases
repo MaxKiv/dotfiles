@@ -14,6 +14,7 @@ alias vim='nvim'
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 dotfiles config --local status.showUntrackedFiles no
 
+alias cf='cd $HOME/.config/nvim/'
 initcmp () {
     dotfiles add $HOME/.config/nvim/init.vim 
     dotfiles commit -m "$1"

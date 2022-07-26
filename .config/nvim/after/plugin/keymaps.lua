@@ -17,9 +17,20 @@ keymap("v", "p", '"_dP', default_opts)
 keymap("n", "<S-h>", ":bprevious<CR>", default_opts)
 keymap("n", "<S-l>", ":bnext<CR>", default_opts)
 
+-- Move to next blank line without messing with jumplist
+keymap("n", "<A-j>", "g'}", default_opts)
+keymap("n", "<A-k>", "g'{", default_opts)
+
 local function nkeymap(lh, rh)
   keymap("n", lh, rh, default_opts)
 end
+
+-- Telescope
+-- nkeymap('<leaderff', "<cmd>lua require('telescope.builtin').find_files()<cr>")
+-- nkeymap('<leaderfg', "<cmd>lua require('telescope.builtin').live_grep()<cr>")
+-- nkeymap('<leaderfb', "<cmd>lua require('telescope.builtin').buffers()<cr>")
+-- nkeymap('<leaderfh', "<cmd>lua require('telescope.builtin').help_tags()<cr>")
+
 -- LSP maps
 nkeymap('gd', ':lua vim.lsp.buf.definition()<cr>')
 nkeymap('gD', ':lua vim.lsp.buf.declaration()<cr>')

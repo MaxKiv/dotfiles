@@ -5,11 +5,12 @@ local verbose = true
 local luafiles = {
   -- settings = false,
   -- keymaps = false,
-  --plugins = false,
+  plugins = false,
 }
 for luafile, _ in pairs(luafiles) do
   local err
-  luafiles[luafile], err = pcall(require, tostring(luafile))
+  -- luafiles[luafile], err = pcall(require, tostring(luafile))
+  luafiles[luafile], err = pcall(require(tostring(luafile)).setup, "")
   if verbose then
     if not luafiles[luafile] then
       print(luafile .. " not sourced correctly: " .. err)
@@ -19,4 +20,3 @@ for luafile, _ in pairs(luafiles) do
   end
 end
 
-require("plugins").setup()
