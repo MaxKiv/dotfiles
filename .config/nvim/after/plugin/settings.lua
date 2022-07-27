@@ -43,6 +43,9 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.smartindent = true
 
+-- Please no swap files
+opt.swapfile = false
+
 -- Use system clipboard
 if not operating_system == "Unix" then
 	opt.clipboard = "unnamed"

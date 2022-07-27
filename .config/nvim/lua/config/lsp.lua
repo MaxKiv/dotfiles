@@ -1,26 +1,26 @@
-local M = {}
+local M  = {}
 
 function M.setup()
-  require('nvim_lsp_installer').setup({})
 
-  local lsp_defaults = {
-    flags = {
-      debounce_text_changes = 150,
-    },
-    capabilities = require('cmp_nvim_lsp').update_capabilities(
-      vim.lsp.protocol.make_client_capabilities()
-    ),
-    on_attach = function(client, bufnr)
-      vim.api.nvim_exec_autocmd('User', {pattern = 'LspAttached'})
-    end
+  local on_attach = function(client,bufnr)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- TODO set buffer local keymaps here 
+    -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  end
+
+  local lsp_flags = {
+    -- This is the default in Nvim 0.7+
+    debounce_text_changes = 150,
   }
 
-  local lspconfig = require('lspconfig')
-  lspconfig.util.default_config = vim.tbl_deep_extend(
-  'force',
-  lspconfig.util.default_config,
-  lsp_defaults
-  )
+  for _, lsp in pairs(LSP_SERVERS) do
+    require('lspconfig')[lsp].setup({
+      on_attach = on_attach,
+      flags = lsp_flags,
+    })
+  end
 
 end
 

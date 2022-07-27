@@ -20,8 +20,19 @@ function M.setup()
   }
 
   local mappings = {
+
     ["w"] = { "<cmd>update!<CR>", "Save" },
     ["q"] = { "<cmd>q!<CR>", "Quit" },
+    ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Find Declarations (LSP)" },
+    ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Find Definition (LSP)" },
+    ["gi"] = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Find Implementation (LSP)" },
+    ["gr"] = { "<cmd>lua vim.lsp.buf.references()<CR>", "Find References (LSP)" },
+    ["gs"] = { "<cmd>lua vim.lsp.buf.workspace_symbols()<CR>", "Find Workspace Symbols (LSP)" },
+    ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover Symbol (LSP)" },
+    ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help (LSP)" },
+    ["gt"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "Type Definition (LSP)" },
+    ["[d"] = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "Goto previous diagnostic" },
+    ["]d"] = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "Goto next diagnostic" },
 
     b = {
       name = "Buffer",
@@ -46,8 +57,9 @@ function M.setup()
       s = { "<cmd>Neogit<CR>", "Status" },
     },
 
-    f = {
+    t = {
       name = "Telescope",
+      l = { "<cmd>Telescope<CR>", "Telescopic Johnson" },
       f = { "<cmd>Telescope find_files<CR>", "Find files" },
       g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
@@ -57,6 +69,16 @@ function M.setup()
       j = { "<cmd>Telescope jumplist<CR>", "Jumplist" },
       s = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Current Buffer" },
       t = { "<cmd>Telescope treesitter<CR>", "Treesitter Symbols" },
+    },
+
+    l = {
+      name = "LSP",
+      d = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add Workspace Dir" },
+      x = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Workspace Dir" },
+      l = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "List Workspace Dirs" },
+      r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
+      a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
+      e = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All Diagnostics"},
     },
   }
 

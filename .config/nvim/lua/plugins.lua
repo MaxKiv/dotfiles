@@ -1,3 +1,5 @@
+LSP_SERVERS = { "sumneko_lua", "rust_analyzer@nightly", "clangd" }
+
 local M = {}
 
 function M.setup()
@@ -43,6 +45,15 @@ function M.setup()
       config = function()
         vim.cmd "colorscheme gruvbox"
       end,
+    }
+
+    -- Telescopic Johnson
+    use { "nvim-telescope/telescope.nvim",
+      cmd = "Telescope",
+      requires = { {"nvim-lua/plenary.nvim"} },
+      -- config = function()
+      --   require("config.telescope").setup()
+      -- end,
     }
 
     -- Better surround
@@ -114,35 +125,73 @@ function M.setup()
         require("config.treesitter").setup()
       end,
     }
+    use {"nvim-treesitter/nvim-treesitter-textobjects" }
+
+    -- -- Language Server Protocol LSP stuff
+    -- -- Autocompletion engine
+    -- use {
+    --   "hrsh7th/nvim-cmp",
+    --   config = function()
+    --     require("config.cmp").setup()
+    --   end,
+    -- }
+    -- -- Autocomplete sources
+    -- use { "hrsh7th/cmp-nvim-lsp",
+    --       after = "nvim-cmp" }
+    -- use { "hrsh7th/cmp-buffer",
+    --       after = "nvim-cmp" }
+    -- use {"hrsh7th/cmp-path",
+    --       after = "nvim-cmp" }
+    -- use {"hrsh7th/cmp-cmdline",
+    --       after = "nvim-cmp" }
 
     -- LSP
-    use { "neovim/nvim-lspconfig", }
+    -- LSP installer
     use {
-      "williamboman/nvim-lsp-installer",
+      "williamboman/mason.nvim",
       config = function()
-        require("config.lsp-installer").setup()
+        require("mason").setup()
       end,
     }
 
-    -- Autocomplete
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
+    -- LSP config
     use {
-      "hrsh7th/nvim-cmp",
+      "williamboman/mason-lspconfig.nvim",
       config = function()
-        require("config.cmp").setup()
+        require("mason-lspconfig").setup({
+          ensure_installed = { "sumneko_lua", "rust_analyzer@nightly", "clangd" },
+          automatic_intallation = true,
+        })
       end,
     }
+    use {
+        "neovim/nvim-lspconfig",
+        config = function()
+          require("config.lsp").setup()
+        end,
+    }
 
-    -- Snippets
-    use 'L3MON4D3/LuaSnip'
-    use 'rafamadriz/friendly-snippets'
+    -- use { "williamboman/nvim-lsp-installer" }
+    -- require("nvim-lsp-installer").setup()
+
+    -- use { "neovim/nvim-lspconfig" }
+    -- require("lspconfig")
+
+    -- use { "neovim/nvim-lspconfig",
+    --   -- after = "cmp-nvim-lsp",
+    --   config = function()
+    --     require("config.lsp-config").setup()
+    --   end,
+    -- }
+
+    -- -- Snippets
+    -- use "L3MON4D3/LuaSnip"
+    -- use "rafamadriz/friendly-snippets"
+
 
     -- Bootstrap Neovim
     if packer_bootstrap then
-      print "Restart Neovim required after installation!"
+      pgint "Restart Neovim required after installation!"
       require("packer").sync()
     end
   end
