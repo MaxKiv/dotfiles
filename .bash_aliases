@@ -30,3 +30,19 @@ bsrccmp () {
 # tmux () {
 #   tmux new-session -A -s "$1";
 # }
+
+# CD to Windows path :) - only c drive for now
+cdw() {
+  # get arg length
+  arg=$1
+  len=${#arg}
+  # substring
+  str=${arg:3:len}
+  path="/mnt/c/"$str
+  # echo $path
+  # replace backslashes
+  mod="${path//\\//}"
+  # mod=$path | tr '\' '/'
+  # echo $mod
+  cd $mod
+}
