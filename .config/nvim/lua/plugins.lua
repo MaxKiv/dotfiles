@@ -1,4 +1,4 @@
-LSP_SERVERS = { "sumneko_lua", "rust_analyzer@nightly", "clangd" }
+LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd" }
 
 local M = {}
 
@@ -38,6 +38,14 @@ function M.setup()
   local function plugins(use)
     -- Packer plugin manager
     use { "wbthomason/packer.nvim" }
+
+    -- -- Colorscheme
+    -- use {
+    --   "Yazeed1s/minimal.nvim",
+    --   config = function()
+    --     vim.cmd "colorscheme minimal"
+    --   end,
+    -- }
 
     -- Colorscheme
     use {

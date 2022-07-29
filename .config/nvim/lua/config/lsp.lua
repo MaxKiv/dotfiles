@@ -17,6 +17,7 @@ function M.setup()
 
   for _, lsp in pairs(LSP_SERVERS) do
     require('lspconfig')[lsp].setup({
+      log = 'verbose',
       on_attach = on_attach,
       flags = lsp_flags,
     })

@@ -46,3 +46,8 @@ cdw() {
   # echo $mod
   cd $mod
 }
+
+# Select dir by modified date with fzf
+ca() {
+  cd $(ls -t | fzf)
+}
