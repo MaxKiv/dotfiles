@@ -74,7 +74,7 @@ nnoremap gt :action GotoTest<CR>
 nnoremap gb :action Back<CR>
 nmap <C-o> :action Back<CR>
 nnoremap gf :action Forward<CR>
-
+nnoremap gr :action RenameElement<CR>
 
 " Move to next blank line without messing with jumplist
 nnoremap <A-j> g'}
