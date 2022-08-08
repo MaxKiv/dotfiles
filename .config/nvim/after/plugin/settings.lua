@@ -46,6 +46,9 @@ opt.smartindent = true
 -- Please no swap files
 opt.swapfile = false
 
+-- Please no auto comment
+vim.api.nvim_exec([[autocmd BufNewFile,BufReadPost * setlocal formatoptions-=o]], false)
+
 -- Use system clipboard
 if not operating_system == "Unix" then
 	opt.clipboard = "unnamed"

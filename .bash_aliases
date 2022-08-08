@@ -51,3 +51,7 @@ cdw() {
 ca() {
   cd $(ls -t | fzf)
 }
+
+mkcd() {
+  mkdir "$1" && cd "$_"
+}

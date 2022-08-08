@@ -1,4 +1,5 @@
-LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd" }
+-- LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd", "bash-language-server", "cmake-language-server"   }
+LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd", "bashls", "cmake"   }
 
 local M = {}
 

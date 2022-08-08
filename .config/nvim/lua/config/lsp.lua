@@ -16,12 +16,25 @@ function M.setup()
   }
 
   for _, lsp in pairs(LSP_SERVERS) do
-    require('lspconfig')[lsp].setup({
-      log = 'verbose',
-      on_attach = on_attach,
-      flags = lsp_flags,
-    })
+    if(lsp ~= "clangd") then 
+      require('lspconfig')[lsp].setup({
+        -- cmd = {lsp, "--log=verbose"},
+        log = 'verbose',
+        on_attach = on_attach,
+        flags = lsp_flags,
+      })
+    else
+      require('lspconfig').clangd.setup({
+        cmd = {
+          'clangd',
+          '--log=verbose',
+        }
+      })
+    end
   end
+
+  -- full lsp logs
+  vim.lsp.set_log_level("trace")
 
 end
 
