@@ -59,6 +59,11 @@ function M.setup()
       u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
 
+    c = {
+      name = "Config",
+      r = { "<cmd>source $MYVIMRC<CR>", "Reload" },
+    },
+
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
@@ -68,9 +73,10 @@ function M.setup()
       name = "Telescope",
       l = { "<cmd>Telescope<CR>", "Telescopic Johnson" }, -- Fuzzy find pickers, then fuzzy find using the picker omg
       f = { "<cmd>Telescope find_files<CR>", "Find files" },
-      g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
-      c = { "<cmd>Telescope find_files cdw=~/.config/nvim/ <CR>", "Configuration" },
-      a = { "<cmd>Telescope find_files cdw=~/ <CR>", "Home directory" }, -- all :)
+      -- g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
+      g = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
+      c = { "<cmd>Telescope find_files cwd=~/.config/nvim/<CR>", "Configuration" },
+      a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" }, -- all :)
       r = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
       h = { "<cmd>Telescope help_tags<CR>", "Help tags" },
@@ -90,7 +96,9 @@ function M.setup()
       x = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Workspace Dir" },
       l = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "List Workspace Dirs" },
       r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
+      -- a = { "<cmd>lua require'telescope.builtin'.lsp_code_actions{}<CR>", "Code Actions" },
       a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
+      -- e = { "<cmd>Telescope lsp_document_diagnostics<CR>", "Show All Diagnostics"},
       e = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All Diagnostics"},
     },
   }

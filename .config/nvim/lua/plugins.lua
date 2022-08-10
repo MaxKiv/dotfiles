@@ -56,13 +56,43 @@ function M.setup()
       end,
     }
 
-    -- Telescopic Johnson
-    use { "nvim-telescope/telescope.nvim",
-      cmd = "Telescope",
-      requires = { {"nvim-lua/plenary.nvim"} },
-      -- config = function()
-      --   require("config.telescope").setup()
-      -- end,
+    -- -- Telescopic Johnson
+    -- use { "nvim-telescope/telescope.nvim",
+    --   cmd = "Telescope",
+    --   requires = { {"nvim-lua/plenary.nvim"} },
+    --   opt = false,
+    --   -- config = function()
+    --   --   require("config.telescope").setup()
+    --   -- end,
+    -- }
+
+    use {
+      "nvim-telescope/telescope.nvim",
+      requires = {
+        {"nvim-lua/plenary.nvim"},
+        { "nvim-telescope/telescope-live-grep-args.nvim" },
+        { "nvim-telescope/telescope-ui-select.nvim" },
+      },
+      config = function()
+        require("telescope").setup({
+          extensions = {
+            ["ui-select"] = {
+              require("telescope.themes").get_dropdown {}
+            }
+          }
+        })
+        require("telescope").load_extension("live_grep_args")
+        require("telescope").load_extension("ui-select")
+        -- require("config.telescope").setup()
+      end
+    }
+
+    -- change working directory automatically for each buffer
+    use {
+      'notjedi/nvim-rooter.lua',
+      config = function()
+        require("config.rooter").setup()
+      end
     }
 
     -- Better surround
