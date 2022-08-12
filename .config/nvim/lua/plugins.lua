@@ -72,17 +72,25 @@ function M.setup()
         {"nvim-lua/plenary.nvim"},
         { "nvim-telescope/telescope-live-grep-args.nvim" },
         { "nvim-telescope/telescope-ui-select.nvim" },
+        { "nvim-telescope/telescope-fzf-native.nvim" , run = 'make' },
       },
       config = function()
         require("telescope").setup({
           extensions = {
             ["ui-select"] = {
               require("telescope.themes").get_dropdown {}
-            }
+            },
+            fzf = {
+              fuzzy = true,
+              override_generic_sorter = true,
+              override_file_sorter = true,
+              case_mode = "smart_case", --  "smart_case", "ignore_case" or "respect_case"
+            },
           }
         })
         require("telescope").load_extension("live_grep_args")
         require("telescope").load_extension("ui-select")
+        require("telescope").load_extension("fzf")
         -- require("config.telescope").setup()
       end
     }

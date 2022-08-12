@@ -27,24 +27,9 @@ bsrccmp () {
     dotfiles push;
     }
 
-# tmux () {
-#   tmux new-session -A -s "$1";
-# }
-
-# CD to Windows path :) - only c drive for now
-cdw() {
-  # get arg length
-  arg=$1
-  len=${#arg}
-  # substring
-  str=${arg:3:len}
-  path="/mnt/c/"$str
-  # echo $path
-  # replace backslashes
-  mod="${path//\\//}"
-  # mod=$path | tr '\' '/'
-  # echo $mod
-  cd $mod
+# mkdir and cd :)
+mkcd() {
+  mkdir "$1" && cd "$_"
 }
 
 # Select dir by modified date with fzf
@@ -52,6 +37,18 @@ ca() {
   cd $(ls -t | fzf)
 }
 
-mkcd() {
-  mkdir "$1" && cd "$_"
+### WSL ###
+# CD to Windows path :) - only c drive for now
+cdw() {
+  arg=$1
+  len=${#arg}
+  str=${arg:3:len}
+  path="/mnt/c/"$str
+  mod="${path//\\//}"
+  cd $mod
+}
+
+# run admin command prompt in wsl XD 
+wsudo() {
+  powershell.exe -Command "Start-Process 'cmd.exe' -Verb runAs"
 }
