@@ -75,7 +75,7 @@ function M.setup()
       f = { "<cmd>Telescope find_files<CR>", "Find files" },
       -- g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
       g = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
-      c = { "<cmd>Telescope find_files cwd=~/.config/nvim/<CR>", "Configuration" },
+      c = { "<cmd>Telescope find_files cwd=~/.config/<CR>", "Configuration" },
       a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" }, -- all :)
       r = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
