@@ -1,4 +1,5 @@
-LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd" }
+-- LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd", "bash-language-server", "cmake-language-server"   }
+LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd", "bashls", "cmake"   }
 
 local M = {}
 
@@ -55,13 +56,51 @@ function M.setup()
       end,
     }
 
-    -- Telescopic Johnson
-    use { "nvim-telescope/telescope.nvim",
-      cmd = "Telescope",
-      requires = { {"nvim-lua/plenary.nvim"} },
-      -- config = function()
-      --   require("config.telescope").setup()
-      -- end,
+    -- -- Telescopic Johnson
+    -- use { "nvim-telescope/telescope.nvim",
+    --   cmd = "Telescope",
+    --   requires = { {"nvim-lua/plenary.nvim"} },
+    --   opt = false,
+    --   -- config = function()
+    --   --   require("config.telescope").setup()
+    --   -- end,
+    -- }
+
+    use {
+      "nvim-telescope/telescope.nvim",
+      requires = {
+        {"nvim-lua/plenary.nvim"},
+        { "nvim-telescope/telescope-live-grep-args.nvim" },
+        { "nvim-telescope/telescope-ui-select.nvim" },
+        { "nvim-telescope/telescope-fzf-native.nvim" , run = 'make' },
+      },
+      config = function()
+        require("telescope").setup({
+          extensions = {
+            ["ui-select"] = {
+              require("telescope.themes").get_dropdown {}
+            },
+            fzf = {
+              fuzzy = true,
+              override_generic_sorter = true,
+              override_file_sorter = true,
+              case_mode = "smart_case", --  "smart_case", "ignore_case" or "respect_case"
+            },
+          }
+        })
+        require("telescope").load_extension("live_grep_args")
+        require("telescope").load_extension("ui-select")
+        require("telescope").load_extension("fzf")
+        -- require("config.telescope").setup()
+      end
+    }
+
+    -- change working directory automatically for each buffer
+    use {
+      'notjedi/nvim-rooter.lua',
+      config = function()
+        require("config.rooter").setup()
+      end
     }
 
     -- Better surround

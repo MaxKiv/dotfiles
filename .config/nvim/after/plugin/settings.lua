@@ -1,6 +1,6 @@
 -- Find OS
 local operating_system
-if(package.config:sub(1,1) == "/") then 
+if(package.config:sub(1,1) == "/") then
 	operating_system = "Unix"
 else
 	operating_system = "Shit"
@@ -23,6 +23,7 @@ g.cmdheigth = 2
 opt.updatetime = 100
 opt.termguicolors = true
 opt.timeoutlen = 500
+opt.colorcolumn = 80
 
 -- Searching
 opt.smartcase = true
@@ -45,6 +46,9 @@ opt.smartindent = true
 
 -- Please no swap files
 opt.swapfile = false
+
+-- Please no auto comment
+vim.api.nvim_exec([[autocmd BufNewFile,BufReadPost * setlocal formatoptions-=o]], false)
 
 -- Use system clipboard
 if not operating_system == "Unix" then

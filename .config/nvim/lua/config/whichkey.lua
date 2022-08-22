@@ -30,7 +30,7 @@ function M.setup()
   local mappings_no_leader = {
     ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Find Declarations" },
     ["gd"] = { "<cmd>Telescope lsp_definitions <CR>", "Find Definitions" },
-    ["gi"] = { "<cmd>Telescope lsp_implementations <CR>", "Find Implementation" },
+    -- ["gi"] = { "<cmd>Telescope lsp_implementations <CR>", "Find Implementation" },
     ["gr"] = { "<cmd>Telescope lsp_references <CR>", "Find References" },
     ["gt"] = { "<cmd>Telescope lsp_type_definitions <CR>", "Type Definition" },
     ["gs"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols <CR>", "List Workspace Symbols" },
@@ -59,6 +59,28 @@ function M.setup()
       u = { "<cmd>PackerUpdate<cr>", "Update" },
     },
 
+    c = {
+      name = "Config",
+      r = { "<cmd>source $MYVIMRC<CR>", "Reload" },
+      f = { "<cmd>Telescope find_files cwd=~/.config/<CR>", "Configuration" },
+    },
+
+    e = {
+      name = "Explorer XD",
+      r = { "<cmd>!explorer.exe .<CR>", "Project root" },
+      -- f = {},
+    },
+
+    -- s = {
+    --   name = "SVN",
+    --   i = { "<cmd>!svn<CR>", "File Log" },
+    -- },
+
+    r = {
+      name = "Run",
+      l = { "<cmd>!luajit %<CR>", "luajit" },
+    },
+
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
@@ -68,11 +90,12 @@ function M.setup()
       name = "Telescope",
       l = { "<cmd>Telescope<CR>", "Telescopic Johnson" }, -- Fuzzy find pickers, then fuzzy find using the picker omg
       f = { "<cmd>Telescope find_files<CR>", "Find files" },
-      g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
-      c = { "<cmd>Telescope find_files cdw=~/.config/nvim/ <CR>", "Configuration" },
-      a = { "<cmd>Telescope find_files cdw=~/ <CR>", "Home directory" }, -- all :)
+      -- g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
+      g = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
+      a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" }, -- all :)
       r = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
+      c = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Current Buffer" },
       h = { "<cmd>Telescope help_tags<CR>", "Help tags" },
       m = { "<cmd>Telescope marks<CR>", "Marks" },
       p = { "<cmd>Telescope registers<CR>", "Registers" },
@@ -90,7 +113,9 @@ function M.setup()
       x = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Workspace Dir" },
       l = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "List Workspace Dirs" },
       r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
+      -- a = { "<cmd>lua require'telescope.builtin'.lsp_code_actions{}<CR>", "Code Actions" },
       a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
+      -- e = { "<cmd>Telescope lsp_document_diagnostics<CR>", "Show All Diagnostics"},
       e = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All Diagnostics"},
     },
   }
@@ -100,5 +125,24 @@ function M.setup()
   whichkey.register(mappings_no_leader, opts_no_leader)
 end
 
-return M
+-- Similar to <cmd>! but with timeout
+local function bang(cmd)
+  local pipeHandle = io.popen(tostring(cmd))
+  local result = pipeHandle:read("*a")
+  pipeHandle:close()
+  return tostring(result)
+end
 
+-- Extracts path of the given file
+local function getFilePath(file)
+    local r = string.reverse(file)
+    return string.reverse(string.sub(r,string.find(r,"/"), #r))
+end
+
+-- Run 
+function runExpInParentDir()
+  local command = "start explorer.exe "
+  os.execute(command .. string.gsub(bang("wslpath -w " .. getFilePath(vim.api.nvim_buf_get_name(0))), [[\]], [[\\]]))
+end
+
+return M
