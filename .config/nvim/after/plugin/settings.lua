@@ -23,7 +23,7 @@ g.cmdheigth = 2
 opt.updatetime = 100
 opt.termguicolors = true
 opt.timeoutlen = 500
-opt.colorcolumn = 80
+vim.wo.colorcolumn = 80
 
 -- Searching
 opt.smartcase = true
