@@ -8,6 +8,10 @@ function M.setup()
       border = "shadow", -- none, single, double, shadow
       position = "bottom", -- bottom, top
     },
+    triggers_blacklist = {
+      i = { "j", "k", "<c-r>" },
+      v = { "j", "k" },
+    },
   }
 
   local opts = {
