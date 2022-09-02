@@ -57,15 +57,6 @@ function M.setup()
     }
 
     -- -- Telescopic Johnson
-    -- use { "nvim-telescope/telescope.nvim",
-    --   cmd = "Telescope",
-    --   requires = { {"nvim-lua/plenary.nvim"} },
-    --   opt = false,
-    --   -- config = function()
-    --   --   require("config.telescope").setup()
-    --   -- end,
-    -- }
-
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
