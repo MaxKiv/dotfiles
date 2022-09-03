@@ -1,6 +1,11 @@
 -- LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd", "bash-language-server", "cmake-language-server"   }
 LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd", "bashls", "cmake"   }
 
+-- TODO
+-- Refactoring nvim plugin fix
+-- Debug DAB plugin
+-- LSP cmp stuff
+
 local M = {}
 
 function M.setup()
@@ -48,7 +53,8 @@ function M.setup()
     --   end,
     -- }
 
-    -- Colorscheme
+    ---- Colorscheme
+    -- Gruvbox
     use {
       "morhetz/gruvbox",
       config = function()
@@ -56,7 +62,16 @@ function M.setup()
       end,
     }
 
-    -- -- Telescopic Johnson
+    -- -- Solarized light
+    -- use {
+    --   "shaunsingh/solarized.nvim",
+    --   config = function()
+    --     require('solarized').set()
+    --   end,
+    -- }
+
+
+    -- Telescopic Johnson
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
@@ -82,6 +97,7 @@ function M.setup()
         require("telescope").load_extension("live_grep_args")
         require("telescope").load_extension("ui-select")
         require("telescope").load_extension("fzf")
+        require("telescope").load_extension("refactoring")
         -- require("config.telescope").setup()
       end
     }
@@ -103,11 +119,11 @@ function M.setup()
         })
       end
     })
-
-    -- -- Surround
-    use { "tpope/vim-commentary", }
     -- old Surround
     --use { "tpope/vim-surround", }
+
+    -- Comments
+    use { "tpope/vim-commentary", }
 
     -- Lualine statusbar
     use {
@@ -135,6 +151,17 @@ function M.setup()
         require("config.neogit").setup()
       end,
     }
+
+    -- -- Ascii image viewer :)
+    -- use {
+    --   'samodostal/image.nvim',
+    --   requires = {
+    --     'nvim-lua/plenary.nvim'
+    --   },
+    --   config = function()
+    --     require('image').setup()
+    --   end
+    -- }
 
     -- Whichkey
     use {
@@ -201,35 +228,35 @@ function M.setup()
           automatic_intallation = true,
         })
       end,
+      after = "mason.nvim",
     }
     use {
-        "neovim/nvim-lspconfig",
-        config = function()
-          require("config.lsp").setup()
-        end,
+      "neovim/nvim-lspconfig",
+      config = function()
+        require("config.lsp").setup()
+      end,
+      after = "mason-lspconfig.nvim",
     }
-
-    -- use { "williamboman/nvim-lsp-installer" }
-    -- require("nvim-lsp-installer").setup()
-
-    -- use { "neovim/nvim-lspconfig" }
-    -- require("lspconfig")
-
-    -- use { "neovim/nvim-lspconfig",
-    --   -- after = "cmp-nvim-lsp",
-    --   config = function()
-    --     require("config.lsp-config").setup()
-    --   end,
-    -- }
 
     -- -- Snippets
     -- use "L3MON4D3/LuaSnip"
     -- use "rafamadriz/friendly-snippets"
 
+    -- Refactoring 
+    use {
+      "ThePrimeagen/refactoring.nvim",
+      requires = {
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-treesitter/nvim-treesitter"}
+      },
+      config = function()
+        require("config.refactor").setup()
+      end,
+    }
 
     -- Bootstrap Neovim
     if packer_bootstrap then
-      pgint "Restart Neovim required after installation!"
+      print "Restart Neovim required after installation!"
       require("packer").sync()
     end
   end

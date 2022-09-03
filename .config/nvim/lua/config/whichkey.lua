@@ -44,7 +44,16 @@ function M.setup()
     ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Goto next diagnostic" },
   }
 
-  local mappings = {
+  -- Visual mode
+  local vnore = {
+    r = {
+      name = "Refactor Menu",
+      r = { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>"},
+    }
+  }
+
+  -- Normal mode
+  local nnore = {
     b = {
       name = "Buffer",
       c = { "<Cmd>bd!<Cr>", "Close current buffer" },
@@ -70,8 +79,9 @@ function M.setup()
     },
 
     e = {
-      name = "Explorer XD",
+      name = "Exec",
       r = { "<cmd>!explorer.exe .<CR>", "Project root" },
+      l = { "<cmd>!luajit %<CR>", "luajit" },
       -- f = {},
     },
 
@@ -79,11 +89,6 @@ function M.setup()
     --   name = "SVN",
     --   i = { "<cmd>!svn<CR>", "File Log" },
     -- },
-
-    r = {
-      name = "Run",
-      l = { "<cmd>!luajit %<CR>", "luajit" },
-    },
 
     g = {
       name = "Git",
@@ -96,6 +101,7 @@ function M.setup()
       f = { "<cmd>Telescope find_files<CR>", "Find files" },
       -- g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
       g = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
+      w = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args{default_text = vim.fn.expand("<cword>")}()<CR>]], "Grep Word" },
       a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" }, -- all :)
       r = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
@@ -121,11 +127,16 @@ function M.setup()
       a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
       -- e = { "<cmd>Telescope lsp_document_diagnostics<CR>", "Show All Diagnostics"},
       e = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All Diagnostics"},
+      s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols"},
+      ff = { "<cmd>lua vim.lsp.buf.format({async = true })<CR>", "Format file"},
+      fr = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Formate range"},
+      h = { "<cmd>ClangdSwitchSourceHeader<CR>", "Source/Header" }, -- clangd switch to Header...
     },
   }
 
   whichkey.setup(conf)
-  whichkey.register(mappings, opts)
+  whichkey.register(nnore, opts)
+  whichkey.register(vnore, opts)
   whichkey.register(mappings_no_leader, opts_no_leader)
 end
 
