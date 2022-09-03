@@ -37,6 +37,11 @@ ca() {
   cd $(ls -t | fzf)
 }
 
+# mkdir and cd combined bless
+mkcd() {
+  mkdir "$1" && cd "$_"
+}
+
 ### WSL ###
 # CD to Windows path :) - only c drive for now
 cdw() {
