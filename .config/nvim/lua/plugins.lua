@@ -110,6 +110,9 @@ function M.setup()
       end
     }
 
+    -- Diff tool
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
     -- Better surround
     use({
       "kylechui/nvim-surround",

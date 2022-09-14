@@ -90,6 +90,11 @@ function M.setup()
     --   i = { "<cmd>!svn<CR>", "File Log" },
     -- },
 
+    f = {
+      name = "Format",
+      w = { [[<cmd>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><CR>]], "Remove trailing whitespaces" },
+    },
+
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
@@ -101,7 +106,7 @@ function M.setup()
       f = { "<cmd>Telescope find_files<CR>", "Find files" },
       -- g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
       g = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
-      w = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args{default_text = vim.fn.expand("<cword>")}()<CR>]], "Grep Word" },
+      w = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>]], "Grep Word" },
       a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" }, -- all :)
       r = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
@@ -154,7 +159,7 @@ local function getFilePath(file)
     return string.reverse(string.sub(r,string.find(r,"/"), #r))
 end
 
--- Run 
+-- Run
 function runExpInParentDir()
   local command = "start explorer.exe "
   os.execute(command .. string.gsub(bang("wslpath -w " .. getFilePath(vim.api.nvim_buf_get_name(0))), [[\]], [[\\]]))
