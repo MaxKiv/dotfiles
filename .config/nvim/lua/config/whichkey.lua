@@ -32,6 +32,7 @@ function M.setup()
   }
 
   local mappings_no_leader = {
+    -- LSP
     ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Find Declarations" },
     ["gd"] = { "<cmd>Telescope lsp_definitions <CR>", "Find Definitions" },
     -- ["gi"] = { "<cmd>Telescope lsp_implementations <CR>", "Find Implementation" },
@@ -42,6 +43,12 @@ function M.setup()
     ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
     ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Goto previous diagnostic" },
     ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Goto next diagnostic" },
+
+    -- Harpoon
+    ["<C-a>"] = {[[<cmd>lua require("harpoon.ui").nav_file(1)]], "goto file 1"},
+    ["<C-s>"] = {[[<cmd>lua require("harpoon.ui").nav_file(2)]], "goto file 2"},
+    ["<C-d>"] = {[[<cmd>lua require("harpoon.ui").nav_file(3)]], "goto file 3"},
+    ["<C-f>"] = {[[<cmd>lua require("harpoon.ui").nav_file(4)]], "goto file 4"},
   }
 
   -- Visual mode
@@ -98,6 +105,12 @@ function M.setup()
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
+    },
+
+    h = {
+      name = "Harpoon",
+      m = { [[<cmd>lua require("harpoon.mark").add_file()]], "Mark" },
+      v = { [[<cmd>lua require("harpoon.ui").toggle_quick_menu()]], "Mark" },
     },
 
     t = {
