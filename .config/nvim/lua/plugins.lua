@@ -1,5 +1,5 @@
 -- LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd", "bash-language-server", "cmake-language-server"   }
-LSP_SERVERS = { "sumneko_lua", "rust_analyzer", "clangd", "bashls", "cmake"   }
+LSP_SERVERS = { "hls", "sumneko_lua", "rust_analyzer", "clangd", "bashls", "cmake"   }
 
 -- TODO
 -- Refactoring nvim plugin fix

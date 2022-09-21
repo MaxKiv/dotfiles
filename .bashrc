@@ -216,3 +216,5 @@ fkill() {
 }
 
 . "$HOME/.cargo/env"
+
+[ -f "/home/max/.ghcup/env" ] && source "/home/max/.ghcup/env" # ghcup-env
