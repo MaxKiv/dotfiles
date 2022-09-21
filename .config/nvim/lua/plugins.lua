@@ -78,6 +78,7 @@ function M.setup()
         {"nvim-lua/plenary.nvim"},
         { "nvim-telescope/telescope-live-grep-args.nvim" },
         { "nvim-telescope/telescope-ui-select.nvim" },
+        { "ThePrimeagen/harpoon" },
         { "nvim-telescope/telescope-fzf-native.nvim" , run = 'make' },
       },
       config = function()
@@ -98,6 +99,7 @@ function M.setup()
         require("telescope").load_extension("ui-select")
         require("telescope").load_extension("fzf")
         require("telescope").load_extension("refactoring")
+        require("telescope").load_extension("harpoon")
         -- require("config.telescope").setup()
       end
     }
@@ -109,6 +111,9 @@ function M.setup()
         require("config.rooter").setup()
       end
     }
+
+    -- Diff tool
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- Better surround
     use({
@@ -124,6 +129,11 @@ function M.setup()
 
     -- Comments
     use { "tpope/vim-commentary", }
+
+    -- Spearfishing
+    use { "ThePrimeagen/harpoon",
+      requires = {"nvim-lua/plenary.nvim"},
+    }
 
     -- Lualine statusbar
     use {

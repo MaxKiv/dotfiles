@@ -32,6 +32,7 @@ function M.setup()
   }
 
   local mappings_no_leader = {
+    -- LSP
     ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Find Declarations" },
     ["gd"] = { "<cmd>Telescope lsp_definitions <CR>", "Find Definitions" },
     -- ["gi"] = { "<cmd>Telescope lsp_implementations <CR>", "Find Implementation" },
@@ -42,6 +43,12 @@ function M.setup()
     ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
     ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Goto previous diagnostic" },
     ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Goto next diagnostic" },
+
+    -- Harpoon
+    ["<C-a>"] = {[[<cmd>lua require("harpoon.ui").nav_file(1)]], "goto file 1"},
+    ["<C-s>"] = {[[<cmd>lua require("harpoon.ui").nav_file(2)]], "goto file 2"},
+    ["<C-d>"] = {[[<cmd>lua require("harpoon.ui").nav_file(3)]], "goto file 3"},
+    ["<C-f>"] = {[[<cmd>lua require("harpoon.ui").nav_file(4)]], "goto file 4"},
   }
 
   -- Visual mode
@@ -90,9 +97,20 @@ function M.setup()
     --   i = { "<cmd>!svn<CR>", "File Log" },
     -- },
 
+    f = {
+      name = "Format",
+      w = { [[<cmd>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><CR>]], "Remove trailing whitespaces" },
+    },
+
     g = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
+    },
+
+    h = {
+      name = "Harpoon",
+      m = { [[<cmd>lua require("harpoon.mark").add_file()]], "Mark" },
+      v = { [[<cmd>lua require("harpoon.ui").toggle_quick_menu()]], "Mark" },
     },
 
     t = {
@@ -101,7 +119,7 @@ function M.setup()
       f = { "<cmd>Telescope find_files<CR>", "Find files" },
       -- g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
       g = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
-      w = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args{default_text = vim.fn.expand("<cword>")}()<CR>]], "Grep Word" },
+      w = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>]], "Grep Word" },
       a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" }, -- all :)
       r = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
@@ -154,7 +172,7 @@ local function getFilePath(file)
     return string.reverse(string.sub(r,string.find(r,"/"), #r))
 end
 
--- Run 
+-- Run
 function runExpInParentDir()
   local command = "start explorer.exe "
   os.execute(command .. string.gsub(bang("wslpath -w " .. getFilePath(vim.api.nvim_buf_get_name(0))), [[\]], [[\\]]))
