@@ -40,22 +40,22 @@ function M.setup()
     ["gt"] = { "<cmd>Telescope lsp_type_definitions <CR>", "Type Definition" },
     ["gs"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols <CR>", "List Workspace Symbols" },
     ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover Symbol " },
-    ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
+    -- ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
     ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Goto previous diagnostic" },
     ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Goto next diagnostic" },
 
     -- Harpoon
-    ["<C-a>"] = {[[<cmd>lua require("harpoon.ui").nav_file(1)]], "goto file 1"},
-    ["<C-s>"] = {[[<cmd>lua require("harpoon.ui").nav_file(2)]], "goto file 2"},
-    ["<C-d>"] = {[[<cmd>lua require("harpoon.ui").nav_file(3)]], "goto file 3"},
-    ["<C-f>"] = {[[<cmd>lua require("harpoon.ui").nav_file(4)]], "goto file 4"},
+    ["<C-j>"] = { [[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]], "goto file 1" },
+    ["<C-k>"] = { [[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]], "goto file 2" },
+    ["<C-l>"] = { [[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]], "goto file 3" },
+    ["<C-;>"] = { [[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]], "goto file 4" },
   }
 
   -- Visual mode
   local vnore = {
     r = {
       name = "Refactor Menu",
-      r = { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>"},
+      r = { "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>" },
     }
   }
 
@@ -88,7 +88,8 @@ function M.setup()
     e = {
       name = "Exec",
       r = { "<cmd>!explorer.exe .<CR>", "Project root" },
-      l = { "<cmd>!luajit %<CR>", "luajit" },
+      --TODO make this the neovim lua interpreter, as that should always be there
+      l = { "<cmd>!luajit %<CR>", "current file luajit" },
       -- f = {},
     },
 
@@ -109,8 +110,8 @@ function M.setup()
 
     h = {
       name = "Harpoon",
-      m = { [[<cmd>lua require("harpoon.mark").add_file()]], "Mark" },
-      v = { [[<cmd>lua require("harpoon.ui").toggle_quick_menu()]], "Mark" },
+      m = { [[<cmd>lua require("harpoon.mark").add_file()<Cr>]], "Mark" },
+      f = { [[<cmd>lua require("harpoon.ui").toggle_quick_menu()<Cr>]], "Menu" },
     },
 
     t = {
@@ -119,7 +120,8 @@ function M.setup()
       f = { "<cmd>Telescope find_files<CR>", "Find files" },
       -- g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
       g = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
-      w = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>]], "Grep Word" },
+      w = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>]],
+        "Grep Word" },
       a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" }, -- all :)
       r = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
@@ -144,10 +146,10 @@ function M.setup()
       -- a = { "<cmd>lua require'telescope.builtin'.lsp_code_actions{}<CR>", "Code Actions" },
       a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
       -- e = { "<cmd>Telescope lsp_document_diagnostics<CR>", "Show All Diagnostics"},
-      e = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All Diagnostics"},
-      s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols"},
-      ff = { "<cmd>lua vim.lsp.buf.format({async = true })<CR>", "Format file"},
-      fr = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Formate range"},
+      e = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All Diagnostics" },
+      s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols" },
+      ff = { "<cmd>lua vim.lsp.buf.format({async = true })<CR>", "Format file" },
+      fr = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Formate range" },
       h = { "<cmd>ClangdSwitchSourceHeader<CR>", "Source/Header" }, -- clangd switch to Header...
     },
   }
@@ -168,8 +170,8 @@ end
 
 -- Extracts path of the given file
 local function getFilePath(file)
-    local r = string.reverse(file)
-    return string.reverse(string.sub(r,string.find(r,"/"), #r))
+  local r = string.reverse(file)
+  return string.reverse(string.sub(r, string.find(r, "/"), #r))
 end
 
 -- Run
