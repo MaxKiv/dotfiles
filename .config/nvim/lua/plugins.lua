@@ -234,7 +234,7 @@ function M.setup()
       "williamboman/mason-lspconfig.nvim",
       config = function()
         require("mason-lspconfig").setup({
-          ensure_installed = { "sumneko_lua", "rust_analyzer@nightly", "clangd" },
+          ensure_installed = { "sumneko_lua", "rust_analyzer", "clangd" },
           automatic_intallation = true,
         })
       end,
