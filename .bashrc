@@ -87,6 +87,9 @@ fi
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# make cmake always gen compile_commands.json for clangd
+export MAKE_EXPORT_COMPILE_COMMANDS=1
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -115,11 +118,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# FUZZY FINDER STUFF
-export FZF_DEFAULT_COMMAND="find -L"
-source /usr/share/doc/fzf/examples/key-bindings.bash    # FZF keybindings in bash
-source /usr/share/doc/fzf/examples/completion.bash      # FZF autocompletion in bash
 
 # Run command/application and choose paths/files with fzf.                      
 # Always return control of the terminal to user (e.g. when opening GUIs).       
@@ -215,6 +213,13 @@ fkill() {
     fi  
 }
 
-. "$HOME/.cargo/env"
+# fzf
+export FZF_DEFAULT_COMMAND="find -L"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+# Rust
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+
+# Haskell
 [ -f "/home/max/.ghcup/env" ] && source "/home/max/.ghcup/env" # ghcup-env
+

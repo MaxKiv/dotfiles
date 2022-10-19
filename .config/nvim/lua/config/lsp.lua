@@ -21,7 +21,12 @@ function M.setup()
         cmd = {
           'clangd',
           '--log=verbose',
+          '--background-index',
+          '--clang-tidy',
+          '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf',
+
         }
+        -- filetypes = {"c", "cpp"}
       })
     elseif (lsp == "sumneko_lua") then
       require("lspconfig").sumneko_lua.setup({

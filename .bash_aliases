@@ -3,9 +3,6 @@
 # Sourcing .bashrc
 alias sb='source ~/.bashrc'
 
-# glow markdown viewer
-alias glow='./home/max/git/glow'
-
 # Vim
 alias nv='nvim'
 alias vim='nvim'
@@ -13,6 +10,11 @@ alias vim='nvim'
 # .Dotfiles management
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 dotfiles config --local status.showUntrackedFiles no
+
+# ESP
+alias getidf=". $HOME/git/esp-idf/export.sh"
+alias bidf="idf.py build"
+alias scr="screen /dev/ttyUSB0 115200,cs8"
 
 alias cf='cd $HOME/.config/nvim/'
 initcmp () {
