@@ -11,9 +11,10 @@ alias vim='nvim'
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 dotfiles config --local status.showUntrackedFiles no
 
-# ESP
-alias getidf=". $HOME/git/esp-idf/export.sh"
+# ESP development
+alias gidf=". $HOME/git/esp-idf/export.sh"
 alias bidf="idf.py build"
+alias cidf="idf.py fullclean"
 alias scr="screen /dev/ttyUSB0 115200,cs8"
 
 alias cf='cd $HOME/.config/nvim/'

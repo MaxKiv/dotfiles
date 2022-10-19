@@ -215,7 +215,8 @@ fkill() {
 
 # fzf
 export FZF_DEFAULT_COMMAND="find -L"
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source /usr/share/doc/fzf/examples/key-bindings.bash
+source /usr/share/doc/fzf/examples/completion.bash
 
 # Rust
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
