@@ -106,11 +106,21 @@ function M.setup()
 
     -- change working directory automatically for each buffer
     use {
-      'notjedi/nvim-rooter.lua',
+      "notjedi/nvim-rooter.lua",
       config = function()
-        require("config.rooter").setup()
-      end
+        require("config.glow").setup()
+      end,
     }
+
+    -- Markdown preview
+    use({
+      "ellisonleao/glow.nvim",
+      config = function()
+        require("nvim-surround").setup({
+          -- Configuration here, or leave empty to use defaults
+        })
+      end
+    })
 
     -- Diff tool
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
@@ -246,6 +256,23 @@ function M.setup()
         require("config.lsp").setup()
       end,
       after = "mason-lspconfig.nvim",
+    }
+
+    use {
+      "onsails/lspkind-nvim", -- better looking cmp window, setup in cmp.lua
+    }
+    use("hrsh7th/vim-vsnip")
+    use("hrsh7th/cmp-vsnip")
+    use("hrsh7th/cmp-nvim-lsp")
+    use("hrsh7th/cmp-buffer")
+    use("hrsh7th/cmp-cmdline")
+    use("hrsh7th/cmp-path")
+    use {
+      "hrsh7th/nvim-cmp",
+      config = function() 
+        require("config.cmp").setup()
+      end,
+      -- after = "onsails/lspkind-nvim",
     }
 
     -- -- Snippets

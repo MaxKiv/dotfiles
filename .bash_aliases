@@ -45,6 +45,34 @@ mkcd() {
   mkdir "$1" && cd "$_"
 }
 
+### Notes ###
+export NOTE_DIR="$HOME/git/Information"
+note() {
+  if [ $# -eq 0 ]
+  then
+    echo "-----------------"
+    echo "Create a new note"
+    echo "-----------------"
+    echo "Usage:"
+    echo "note <note name>"
+  else
+    file=${1%.*}
+    touch $NOTE_DIR/$file.md
+    $EDITOR $NOTE_DIR/$file.md
+  fi
+}
+
+find_note() {
+  local file
+
+  file="$(find $NOTE_DIR -iname '*.md' -exec basename -s .md {} \; | fzf --bind 'J:preview-down,K:preview-up' --height 100% --preview 'if file -i {}|grep -q binary; then file -b {}; else glow -s dark $HOME/Documents/notes/{}.md; fi')"
+
+  if [[ -n $file ]]
+  then
+     $EDITOR $NOTE_DIR/"$file".md
+  fi
+}
+
 ### WSL ###
 # CD to Windows path :) - only c drive for now
 cdw() {

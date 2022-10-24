@@ -44,8 +44,16 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.smartindent = true
 
--- Please no swap files
+-- No large files
+opt.colorcolumn = "80"
+
+-- Please yes
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+
+-- Please no
 opt.swapfile = false
+opt.backup = false
 
 -- Please no auto comment
 vim.api.nvim_exec([[autocmd BufNewFile,BufReadPost * setlocal formatoptions-=o]], false)

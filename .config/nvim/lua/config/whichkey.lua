@@ -5,7 +5,7 @@ function M.setup()
 
   local conf = {
     window = {
-      border = "shadow", -- none, single, double, shadow
+      border = "none", -- none, single, double, shadow
       position = "bottom", -- bottom, top
     },
     triggers_blacklist = {
@@ -30,12 +30,25 @@ function M.setup()
     noremap = true, -- use 'noremap' when creating keymaps
     nowait = true, -- use 'nowait' when creating keymaps
   }
+  local vopts = {
+    mode = "v", -- Normal mode
+    prefix = "<leader>",
+    buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use 'silent' when creating keymaps
+    noremap = true, -- use 'noremap' when creating keymaps
+    nowait = true, -- use 'nowait' when creating keymaps
+  }
+
+  -- local vopts = opts
+  -- vopts.mode = "v"
+  -- local opts_no_leader = opts
+  -- opts_no_leader.leader = ""
 
   local mappings_no_leader = {
     -- LSP
     ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Find Declarations" },
     ["gd"] = { "<cmd>Telescope lsp_definitions <CR>", "Find Definitions" },
-    -- ["gi"] = { "<cmd>Telescope lsp_implementations <CR>", "Find Implementation" },
+    ["gp"] = { "<cmd>Telescope lsp_implementations <CR>", "Find Implementation" },
     ["gr"] = { "<cmd>Telescope lsp_references <CR>", "Find References" },
     ["gt"] = { "<cmd>Telescope lsp_type_definitions <CR>", "Type Definition" },
     ["gs"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols <CR>", "List Workspace Symbols" },
@@ -117,7 +130,8 @@ function M.setup()
     t = {
       name = "Telescope",
       l = { "<cmd>Telescope<CR>", "Telescopic Johnson" }, -- Fuzzy find pickers, then fuzzy find using the picker omg
-      f = { "<cmd>Telescope find_files<CR>", "Find files" },
+      --f = { "<cmd>Telescope find_files<CR>", "Find files" },
+      f = { [[<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>]], "Find files" },
       -- g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
       g = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
       w = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>]],
@@ -156,8 +170,9 @@ function M.setup()
 
   whichkey.setup(conf)
   whichkey.register(nnore, opts)
-  whichkey.register(vnore, opts)
+  whichkey.register(vnore, vopts)
   whichkey.register(mappings_no_leader, opts_no_leader)
+
 end
 
 -- Similar to <cmd>! but with timeout
