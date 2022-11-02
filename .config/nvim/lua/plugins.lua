@@ -3,8 +3,6 @@ LSP_SERVERS = { "hls", "sumneko_lua", "rust_analyzer", "clangd", "bashls", "cmak
 
 -- TODO
 -- Refactoring nvim plugin fix
--- Debug DAB plugin
--- LSP cmp stuff
 
 local M = {}
 
@@ -71,7 +69,7 @@ function M.setup()
     -- }
 
 
-    -- Telescopic Johnson
+    -- Telescopic Johnson the bringer of joy
     use {
       "nvim-telescope/telescope.nvim",
       requires = {
@@ -100,6 +98,7 @@ function M.setup()
         require("telescope").load_extension("fzf")
         require("telescope").load_extension("refactoring")
         require("telescope").load_extension("harpoon")
+        -- require('telescope').load_extension('dap')
         -- require("config.telescope").setup()
       end
     }
@@ -271,6 +270,7 @@ function M.setup()
       after = "mason-lspconfig.nvim",
     }
 
+    -- Completion
     use {
       "onsails/lspkind-nvim", -- better looking cmp window, setup in cmp.lua
     }
@@ -282,15 +282,11 @@ function M.setup()
     use("hrsh7th/cmp-path")
     use {
       "hrsh7th/nvim-cmp",
-      config = function() 
+      config = function()
         require("config.cmp").setup()
       end,
       -- after = "onsails/lspkind-nvim",
     }
-
-    -- -- Snippets
-    -- use "L3MON4D3/LuaSnip"
-    -- use "rafamadriz/friendly-snippets"
 
     -- Refactoring 
     use {
@@ -301,6 +297,14 @@ function M.setup()
       },
       config = function()
         require("config.refactor").setup()
+      end,
+    }
+
+    -- Debugging
+    use {
+      "mfussenegger/nvim-dap",
+      config = function()
+        require("config.dap").setup()
       end,
     }
 
