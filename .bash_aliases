@@ -3,6 +3,8 @@
 # Sourcing .bashrc
 alias sb='source ~/.bashrc'
 
+alias fj='fg'
+
 # Vim
 alias nv='nvim'
 alias vim='nvim'
@@ -64,9 +66,7 @@ note() {
 
 find_note() {
   local file
-
   file="$(find $NOTE_DIR -iname '*.md' -exec basename -s .md {} \; | fzf --bind 'J:preview-down,K:preview-up' --height 100% --preview 'if file -i {}|grep -q binary; then file -b {}; else glow -s dark $HOME/Documents/notes/{}.md; fi')"
-
   if [[ -n $file ]]
   then
      $EDITOR $NOTE_DIR/"$file".md

@@ -22,13 +22,13 @@ function M.setup()
     if(lsp == "clangd") then
       require('lspconfig').clangd.setup({
         cmd = {
-          -- 'clangd',
-          '/home/max/Downloads/esp-clang/bin/clangd', -- for ESP
-          '--log=verbose',
+          'clangd',
+          -- '/home/max/Downloads/esp-clang/bin/clangd', -- for ESP
           '--background-index',
           '--clang-tidy',
           '--enable-config',
-          '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-*',
+          -- '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-*',
+          -- '--query-driver=',
         },
         capabilities = capabilities,
       })

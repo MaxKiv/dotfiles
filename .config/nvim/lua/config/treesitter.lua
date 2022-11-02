@@ -6,7 +6,7 @@ function M.setup()
     ensure_installed = "all",
 
     -- Install languages synchronously (only applied to `ensure_installed`)
-    sync_install = false,
+    sync_install = true,
 
     -- Automatically install missing parsers when entering buffer
     auto_install = true,
@@ -57,50 +57,61 @@ function M.setup()
           -- ["ix"] = "@statement.inner",
         },
       },
+
+      swap = {
+        enable = true,
+        swap_next = {
+          ["cxn"] = "@parameter.inner",
+        },
+        swap_previous = {
+          ["cxp"] = "@parameter.inner",
+        },
+      },
+
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          ["]a"] = "@parameter.outer",
+          ["]m"] = "@function.outer",
+          ["]]"] = "@class.outer",
+        },
+        goto_next_end = {
+          ["]M"] = "@function.outer",
+          ["]["] = "@class.outer",
+        },
+        goto_previous_start = {
+          ["[p"] = "@parameter.outer",
+          ["[m"] = "@function.outer",
+          ["[["] = "@class.outer",
+        },
+        goto_previous_end = {
+          ["[M"] = "@function.outer",
+          ["[]"] = "@class.outer",
+        },
+      },
     },
 
-    swap = {
+    playground = {
       enable = true,
-      swap_next = {
-        ["<leader>a"] = "@parameter.inner",
+      disable = {},
+      updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+      persist_queries = false, -- Whether the query persists across vim sessions
+      keybindings = {
+        toggle_query_editor = 'o',
+        toggle_hl_groups = 'i',
+        toggle_injected_languages = 't',
+        toggle_anonymous_nodes = 'a',
+        toggle_language_display = 'I',
+        focus_language = 'f',
+        unfocus_language = 'F',
+        update = 'R',
+        goto_node = '<cr>',
+        show_help = '?',
       },
-      swap_previous = {
-        ["<leader>A"] = "@parameter.inner",
-      },
-    },
-
-    move = {
-      enable = true,
-      set_jumps = true, -- whether to set jumps in the jumplist
-      goto_next_start = {
-        ["]m"] = "@function.outer",
-        ["]]"] = "@class.outer",
-      },
-      goto_next_end = {
-        ["]M"] = "@function.outer",
-        ["]["] = "@class.outer",
-      },
-      goto_previous_start = {
-        ["[m"] = "@function.outer",
-        ["[["] = "@class.outer",
-      },
-      goto_previous_end = {
-        ["[M"] = "@function.outer",
-        ["[]"] = "@class.outer",
-      },
-    },
+    }
 
   }
-
-  function test(arg3, arg, arg2) 
-    -- comment
-    for key, value in pairs(table) do 
-      --another
-      if(test) then
-        youwin()
-      end
-    end
-  end
 
   -- -- Options
   -- vim.opt.foldmethod = "expr"
