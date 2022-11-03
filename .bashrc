@@ -4,8 +4,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+  *i*) ;;
+  *) return;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -32,12 +32,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+  xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -46,42 +46,42 @@ esac
 force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
+  xterm*|rxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
-*)
+  *)
     ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -105,7 +105,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -132,91 +132,113 @@ fi
 # f vlc [OPTION]... (hit enter, choose files)
 
 f() {
-    # Store the program
-    program="$1"
-    # Remove first argument off the list
-    shift
-    # Store option flags with separating spaces, or just set as single space
-    options="$@"
-    if [ -z "${options}" ]; then
-        options=" "
-    else
-        options=" $options "
-    fi
-    # Store the arguments from fzf
-    arguments=($(fzf --multi))
-    # If no arguments passed (e.g. if Esc pressed), return to terminal
-    if [ -z "${arguments}" ]; then
-        return 1
-    fi
-    # We want the command to show up in our bash history, so write the shell's
-    # active history to ~/.bash_history. Then we'll also add the command from
-    # fzf, then we'll load it all back into the shell's active history
-    history -w
-    # ADD A REPEATABLE COMMAND TO THE BASH HISTORY ############################
-    # Store the arguments in a temporary file for sanitising before being
-    # entered into bash history
-    : > /tmp/fzf_tmp
-    for file in "${arguments[@]}"; do
-        echo "$file" >> /tmp/fzf_tmp
-    done
-    # Put all input arguments on one line and sanitise the command by putting
-    # single quotes around each argument, also first put an extra single quote
-    # next to any pre-existing single quotes in the raw argument
-    sed -i "s/'/''/g; s/.*/'&'/g; s/\n//g" /tmp/fzf_tmp
-    # If the program is on the GUI list, add a '&' to the command history
-    if [[ "$program" =~ ^(nautilus|zathura|evince|vlc|eog|kolourpaint)$ ]]; then
-        sed -i '${s/$/ \&/}' /tmp/fzf_tmp
-    fi
-    # Grab the sanitised arguments
-    arguments="$(cat /tmp/fzf_tmp)"
-    # Add the command with the sanitised arguments to our .bash_history
-    echo $program$options$arguments >> ~/.bash_history
-    # Reload the ~/.bash_history into the shell's active history
-    history -r
-    # EXECUTE THE LAST COMMAND IN ~/.bash_history #############################
-    fc -s -1
-    # Clean up temporary variables
-    rm /tmp/fzf_tmp
+  # Store the program
+  program="$1"
+  # Remove first argument off the list
+  shift
+  # Store option flags with separating spaces, or just set as single space
+  options="$@"
+  if [ -z "${options}" ]; then
+    options=" "
+  else
+    options=" $options "
+  fi
+  # Store the arguments from fzf
+  arguments=($(fzf --multi))
+  # If no arguments passed (e.g. if Esc pressed), return to terminal
+  if [ -z "${arguments}" ]; then
+    return 1
+  fi
+  # We want the command to show up in our bash history, so write the shell's
+  # active history to ~/.bash_history. Then we'll also add the command from
+  # fzf, then we'll load it all back into the shell's active history
+  history -w
+  # ADD A REPEATABLE COMMAND TO THE BASH HISTORY ############################
+  # Store the arguments in a temporary file for sanitising before being
+  # entered into bash history
+  : > /tmp/fzf_tmp
+  for file in "${arguments[@]}"; do
+    echo "$file" >> /tmp/fzf_tmp
+  done
+  # Put all input arguments on one line and sanitise the command by putting
+  # single quotes around each argument, also first put an extra single quote
+  # next to any pre-existing single quotes in the raw argument
+  sed -i "s/'/''/g; s/.*/'&'/g; s/\n//g" /tmp/fzf_tmp
+  # If the program is on the GUI list, add a '&' to the command history
+  if [[ "$program" =~ ^(nautilus|zathura|evince|vlc|eog|kolourpaint)$ ]]; then
+    sed -i '${s/$/ \&/}' /tmp/fzf_tmp
+  fi
+  # Grab the sanitised arguments
+  arguments="$(cat /tmp/fzf_tmp)"
+  # Add the command with the sanitised arguments to our .bash_history
+  echo $program$options$arguments >> ~/.bash_history
+  # Reload the ~/.bash_history into the shell's active history
+  history -r
+  # EXECUTE THE LAST COMMAND IN ~/.bash_history #############################
+  fc -s -1
+  # Clean up temporary variables
+  rm /tmp/fzf_tmp
 }
 
 # open a file selected by fzf in vim
 vf() {
-    vim $(fzf)
+  vim $(fzf)
 }
 
 # fd - cd to selected directory
 fd() {
-    local dir
-    dir=$(find ${1:-.} -path '*/\.*' -prune \
-        -o -type d -print 2> /dev/null | fzf +m) &&
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+    -o -type d -print 2> /dev/null | fzf +m) &&
     cd "$dir"
-}
+  }
 
 # fda - including hidden directories
 fda() {
-    local dir
-    dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
 
 # fkill - kill processes - list only the ones you can kill. Modified the earlier script.
 fkill() {
-    local pid 
-    if [ "$UID" != "0" ]; then
-        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
-    else
-        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-    fi  
-    if [ "x$pid" != "x" ]
-    then
-        echo $pid | xargs kill -${1:-9}
-    fi  
+  local pid 
+  if [ "$UID" != "0" ]; then
+    pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+  else
+    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+  fi  
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi  
 }
 
 # fzf
 export FZF_DEFAULT_COMMAND="find -L"
 source /usr/share/doc/fzf/examples/key-bindings.bash
 source /usr/share/doc/fzf/examples/completion.bash
+
+# global pushd/popd
+function gpushd() {
+  filename="$HOME/.gstack.dirs"
+  newdir=$(readlink -f "$1")
+  if [ "$newdir" != "" ]; then
+    echo $newdir >> $filename
+  else
+    newdir=$(readlink -f ".")
+    echo $newdir >> $filename
+  fi
+}
+
+function gpopd() {
+  filename="$HOME/.gstack.dirs"
+  dir=$(tail -n 1 $filename)
+  sed -i '$ d' $filename
+
+  if [ "$dir" != "" ]; then
+    cd "$dir"
+  fi
+}
 
 # Rust
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
