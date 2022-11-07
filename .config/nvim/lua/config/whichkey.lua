@@ -75,14 +75,6 @@ function M.setup()
 
   -- Normal mode
   local nnore = {
-    b = {
-      name = "Buffer",
-      c = { "<Cmd>bd!<Cr>", "Close current buffer" },
-      n = { "<Cmd>:bnext<Cr>", "Next buffer" },
-      p = { "<Cmd>:bprevious<Cr>", "Previous buffer" },
-      b = { "<Cmd>ls<Cr>", "List current buffers" },
-      D = { "<Cmd>%db|e#|bd#<Cr>", "Delete all buffers" },
-    },
 
     z = {
       name = "Packer",
@@ -139,7 +131,6 @@ function M.setup()
       a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" }, -- all :)
       r = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
-      c = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Current Buffer" },
       h = { "<cmd>Telescope help_tags<CR>", "Help tags" },
       m = { "<cmd>Telescope marks<CR>", "Marks" },
       p = { "<cmd>Telescope registers<CR>", "Registers" },
@@ -147,6 +138,8 @@ function M.setup()
       s = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Current Buffer" }, -- Search
       t = { "<cmd>Telescope treesitter<CR>", "Treesitter Symbols" },
       k = { "<cmd>Telescope resume<CR>", "Resume previous state" }, -- Kontinue... ok this is getting hard
+      n = { "<cmd>Telescope find_files cwd=~/.todo<CR>", "Home directory" }, -- my todos
+      c = { "<cmd>Telescope find_files cwd=~/git/Information<CR>", "Home directory" }, -- my notes
     },
 
     l = {

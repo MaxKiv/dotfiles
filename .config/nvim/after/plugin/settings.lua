@@ -54,6 +54,7 @@ vim.opt.undofile = true
 -- Please no
 opt.swapfile = false
 opt.backup = false
+opt.modelines = 0
 
 -- Please no auto comment
 vim.api.nvim_exec([[autocmd BufNewFile,BufReadPost * setlocal formatoptions-=o]], false)

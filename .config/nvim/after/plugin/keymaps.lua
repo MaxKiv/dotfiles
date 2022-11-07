@@ -3,8 +3,8 @@ local default_opts = { noremap = true, silent = true }
 local expr_opts = { noremap = true, expr = true, silent = true}
 
 -- Escape to normal using jk
-keymap("i", "jk", "<ESC>", default_opts)
-keymap("t", "jk", "<C-\\><C-n>", default_opts)
+-- keymap("i", "jk", "<ESC>", default_opts)
+-- keymap("t", "jk", "<C-\\><C-n>", default_opts)
 
 -- Reselect last selection after indenting in visual mode
 keymap("v", "<", "<gv", default_opts)
