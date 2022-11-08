@@ -16,7 +16,7 @@ This repo contains all my dotfiles in 1 place.
 ### Windows
 
 	git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
-	alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+	alias dotfiles='/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 	dotfiles checkout
 
 ## TODO
