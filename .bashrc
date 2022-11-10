@@ -152,5 +152,4 @@ function gpopd() {
 # Haskell
 [ -f "/home/max/.ghcup/env" ] && source "/home/max/.ghcup/env" # ghcup-env
 
-
-[ -f ~/git/fzf.bash ] && source ~/git/fzf.bash 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
