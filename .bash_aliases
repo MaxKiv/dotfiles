@@ -135,3 +135,7 @@ cdw() {
 wsudo() {
   powershell.exe -Command "Start-Process 'cmd.exe' -Verb runAs"
 }
+
+exp() {
+  explorer.exe .
+}

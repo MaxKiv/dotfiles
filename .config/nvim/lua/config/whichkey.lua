@@ -104,6 +104,7 @@ function M.setup()
     f = {
       name = "Format",
       w = { [[<cmd>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><CR>]], "Remove trailing whitespaces" },
+      e = { [[<cmd>:g/^\s*$/d<CR>]], "Remove empty lines" },
     },
 
     m = { "<cmd>Glow<CR>", "View Markdown" },

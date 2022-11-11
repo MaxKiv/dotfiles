@@ -24,7 +24,7 @@ function M.setup()
           color = { fg = "ffaf00ff" },
         },
       },
-      lualine_x = { "filetype" },
+      lualine_x = { "filetype", "fileformat" },
       lualine_y = { "progress" },
       lualine_z = { "location" },
     },
