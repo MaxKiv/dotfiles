@@ -90,6 +90,31 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 # make cmake always gen compile_commands.json for clangd
 export MAKE_EXPORT_COMPILE_COMMANDS=1
 
+# setup ssh agent
+env=~/.ssh/agent.env
+
+agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+
+agent_start () {
+    (umask 077; ssh-agent >| "$env")
+    . "$env" >| /dev/null ; }
+
+agent_load_env
+
+# agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2=agent not running
+agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+
+if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+    agent_start
+    ssh-add $HOME/.ssh/MaxKiv
+    ssh-add $HOME/.ssh/Max-Kivits
+elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+    ssh-add $HOME/.ssh/MaxKiv
+    ssh-add $HOME/.ssh/Max-Kivits
+fi
+
+unset env
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
@@ -217,28 +242,6 @@ fkill() {
 export FZF_DEFAULT_COMMAND="find -L"
 source /usr/share/doc/fzf/examples/key-bindings.bash
 source /usr/share/doc/fzf/examples/completion.bash
-
-# global pushd/popd
-function gpushd() {
-  filename="$HOME/.gstack.dirs"
-  newdir=$(readlink -f "$1")
-  if [ "$newdir" != "" ]; then
-    echo $newdir >> $filename
-  else
-    newdir=$(readlink -f ".")
-    echo $newdir >> $filename
-  fi
-}
-
-function gpopd() {
-  filename="$HOME/.gstack.dirs"
-  dir=$(tail -n 1 $filename)
-  sed -i '$ d' $filename
-
-  if [ "$dir" != "" ]; then
-    cd "$dir"
-  fi
-}
 
 # Rust
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"

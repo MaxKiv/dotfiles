@@ -47,6 +47,26 @@ mkcd() {
   mkdir "$1" && cd "$_"
 }
 
+# global pushd/popd
+function gpushd() {
+  filename="$HOME/.gstack.dirs"
+  newdir=$(readlink -f "$1")
+  if [ "$newdir" != "" ]; then
+    echo $newdir >> $filename
+  else
+    newdir=$(readlink -f ".")
+    echo $newdir >> $filename
+  fi
+}
+function gpopd() {
+  filename="$HOME/.gstack.dirs"
+  dir=$(tail -n 1 $filename)
+  sed -i '$ d' $filename
+  if [ "$dir" != "" ]; then
+    cd "$dir"
+  fi
+}
+
 ### Notes ###
 export NOTE_DIR="$HOME/git/Information"
 note() {
