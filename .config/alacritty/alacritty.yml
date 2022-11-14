@@ -7,7 +7,7 @@ key_bindings:
 # Change font
 font: 
     normal:
-        family: Hasklug NF
+        family: Hasklug NFM
         style: Regular
 
     bold: 
