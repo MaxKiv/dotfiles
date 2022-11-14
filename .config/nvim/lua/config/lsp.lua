@@ -2,6 +2,9 @@ local M  = {}
 
 function M.setup()
 
+  local omnisharp_bin = "/usr/local/bin/omnisharp-roslyn/OmniSharp"
+  local omnisharp_pid = vim.fn.getpid()
+
   local on_attach = function(client,bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -46,7 +49,8 @@ function M.setup()
     elseif (lsp == "omnisharp") then
       require("lspconfig").omnisharp.setup({
         -- cmd = { "mono", "/home/max/.local/share/nvim/mason/packages/omnisharp-mono/omnisharp/Microsoft.CodeAnalysis.ExternalAccess.OmniSharp.dll"},
-        cmd = { "dotnet", "/home/max/.local/share/nvim/mason/packages/omnisharp-mono/omnisharp/OmniSharp.Roslyn.dll"},
+        -- cmd = { "dotnet", "/home/max/.local/share/nvim/mason/packages/omnisharp-mono/omnisharp/OmniSharp.Roslyn.dll", "--self-contained"},
+        cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(omnisharp_pid) },
         settings = {
           Lua = {
             diagnostics = {
