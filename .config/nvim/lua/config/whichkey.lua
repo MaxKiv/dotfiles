@@ -76,19 +76,10 @@ function M.setup()
   -- Normal mode
   local nnore = {
 
-    z = {
-      name = "Packer",
-      c = { "<cmd>PackerCompile<cr>", "Compile" },
-      i = { "<cmd>PackerInstall<cr>", "Install" },
-      s = { "<cmd>PackerSync<cr>", "Sync" },
-      S = { "<cmd>PackerStatus<cr>", "Status" },
-      u = { "<cmd>PackerUpdate<cr>", "Update" },
-    },
-
     c = {
       name = "Config",
       r = { "<cmd>source $MYVIMRC<CR>", "Reload" },
-      f = { "<cmd>Telescope find_files cwd=~/.config/<CR>", "Configuration" },
+      c = { "<cmd>Telescope find_files cwd=~/.config/<CR>", "Configuration" },
     },
 
     d = { "<cmd>lua require('neogen').generate()<CR>", "Generate Docs" },
@@ -98,17 +89,17 @@ function M.setup()
       r = { "<cmd>!explorer.exe .<CR>", "Project root" },
       --TODO make this the neovim lua interpreter, as that should always be there
       l = { "<cmd>!luajit %<CR>", "current file luajit" },
-      -- f = {},
     },
 
-    f = {
+    a = {
       name = "Format",
       w = { [[<cmd>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><CR>]], "Remove trailing whitespaces" },
+      e = { [[<cmd>:g/^\s*$/d<CR>]], "Remove empty lines" },
     },
 
     m = { "<cmd>Glow<CR>", "View Markdown" },
 
-    g = {
+    s = {
       name = "Git",
       s = { "<cmd>Neogit<CR>", "Status" },
     },
@@ -119,27 +110,32 @@ function M.setup()
       f = { [[<cmd>lua require("harpoon.ui").toggle_quick_menu()<Cr>]], "Menu" },
     },
 
-    t = {
-      name = "Telescope",
-      l = { "<cmd>Telescope<CR>", "Telescopic Johnson" }, -- Fuzzy find pickers, then fuzzy find using the picker omg
-      --f = { "<cmd>Telescope find_files<CR>", "Find files" },
-      f = { [[<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>]], "Find files" },
-      -- g = { "<cmd>Telescope live_grep<CR>", "Live grep" },
-      g = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
-      w = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>]],
-        "Grep Word" },
-      a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" }, -- all :)
-      r = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
+    f = {
+      name = "Find",
+      u = { "<cmd>Telescope<CR>", "Telescopic Johnson" },
+      j = { [[<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>]], "Find files" },
+      e = { "<cmd>Telescope file_browser<CR>", "File browser" },
+      [";"] = { "<cmd>Telescope git_files<CR>", "Git Tracked" },
+      a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" },
+      l = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
+      r = { "<cmd>Telescope repo list<CR>", "Repos" },
       b = { "<cmd>Telescope buffers<CR>", "Buffers" },
-      h = { "<cmd>Telescope help_tags<CR>", "Help tags" },
+      d = { "<cmd>Telescope help_tags<CR>", "Help tags" },
       m = { "<cmd>Telescope marks<CR>", "Marks" },
       p = { "<cmd>Telescope registers<CR>", "Registers" },
-      j = { "<cmd>Telescope jumplist<CR>", "Jumplist" },
-      s = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Current Buffer" }, -- Search
-      t = { "<cmd>Telescope treesitter<CR>", "Treesitter Symbols" },
-      k = { "<cmd>Telescope resume<CR>", "Resume previous state" }, -- Kontinue... ok this is getting hard
-      n = { "<cmd>Telescope find_files cwd=~/.todo<CR>", "Home directory" }, -- my todos
-      c = { "<cmd>Telescope find_files cwd=~/git/Information<CR>", "Home directory" }, -- my notes
+      o = { "<cmd>Telescope jumplist<CR>", "Jumplist" },
+      k = { "<cmd>Telescope resume<CR>", "Resume previous state" },
+      t = { "<cmd>Telescope find_files cwd=~/.todo<CR>", "Todos" },
+      i = { "<cmd>Telescope find_files cwd=~/git/Information<CR>", "Home directory" },
+    },
+
+    j = {
+      name = "Grep",
+      f = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
+      d = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>]], "Grep Word" },
+      s = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Current Buffer" },
+      a = { "<cmd>Telescope treesitter<CR>", "Treesitter Symbols" },
+      k = { "<cmd>Telescope resume<CR>", "Resume previous state" },
     },
 
     l = {
@@ -171,6 +167,7 @@ end
 -- Similar to <cmd>! but with timeout
 local function bang(cmd)
   local pipeHandle = io.popen(tostring(cmd))
+  if not pipeHandle then return end
   local result = pipeHandle:read("*a")
   pipeHandle:close()
   return tostring(result)

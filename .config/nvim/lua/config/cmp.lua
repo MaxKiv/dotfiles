@@ -73,6 +73,7 @@ function M.setup()
     }
   })
 
+
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
@@ -82,6 +83,16 @@ function M.setup()
       { name = 'cmdline' }
     })
   })
+
+  -- Avoid ex bang listing windows path in WSL
+  cmp.setup.cmdline(':!', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'path' }
+    },
+      { name = 'cmdline', keyword_pattern=[=[[^[:blank:]\!]*]=], keyword_length =4 }
+    })
+
 end
 
 return M
