@@ -39,11 +39,6 @@ function M.setup()
     nowait = true, -- use 'nowait' when creating keymaps
   }
 
-  -- local vopts = opts
-  -- vopts.mode = "v"
-  -- local opts_no_leader = opts
-  -- opts_no_leader.leader = ""
-
   local mappings_no_leader = {
     -- LSP
     ["gD"] = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Find Declarations" },
@@ -53,7 +48,6 @@ function M.setup()
     ["gt"] = { "<cmd>Telescope lsp_type_definitions <CR>", "Type Definition" },
     ["gs"] = { "<cmd>Telescope lsp_dynamic_workspace_symbols <CR>", "List Workspace Symbols" },
     ["K"] = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover Symbol " },
-    -- ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
     ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "Goto previous diagnostic" },
     ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "Goto next diagnostic" },
 
@@ -88,8 +82,11 @@ function M.setup()
       name = "Exec",
       r = { "<cmd>!explorer.exe .<CR>", "Project root" },
       --TODO make this the neovim lua interpreter, as that should always be there
-      l = { "<cmd>!luajit %<CR>", "current file luajit" },
+      -- l = { "<cmd>!luajit %<CR>", "current file luajit" },
+      l = { "<cmd>lua %<CR>", "current file luajit" },
     },
+
+    p = { "<cmd>lua NvimFileLocation.copy_file_location('absolute', true, false)<cr>", "copy full file path" },
 
     a = {
       name = "Format",

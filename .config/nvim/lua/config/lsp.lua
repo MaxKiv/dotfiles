@@ -1,15 +1,15 @@
-local M  = {}
+local M = {}
 
 function M.setup()
 
   local omnisharp_bin = "/usr/local/bin/omnisharp-roslyn/OmniSharp"
   local omnisharp_pid = vim.fn.getpid()
 
-  local on_attach = function(client,bufnr)
+  local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    -- TODO set buffer local keymaps here 
+    -- TODO set buffer local keymaps here
     -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   end
 
@@ -22,7 +22,7 @@ function M.setup()
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   for _, lsp in pairs(LSP_SERVERS) do
-    if(lsp == "clangd") then
+    if (lsp == "clangd") then
       require('lspconfig').clangd.setup({
         cmd = {
           'clangd',
@@ -40,24 +40,33 @@ function M.setup()
         settings = {
           Lua = {
             diagnostics = {
-              globals = { "vim", "LSP_SERVERS" , "to_string" },
+              globals = { "vim", "LSP_SERVERS", "to_string" },
             }
           }
         },
         capabilities = capabilities,
       })
     elseif (lsp == "omnisharp") then
+      local csharp_lsp_cmd;
+      if vim.loop.os_uname().sysname == "Windows_NT" then
+        csharp_lsp_cmd = { "dotnet", [[C:\Users\max\AppData\Local\nvim-data\mason\packages\omnisharp\OmniSharp.dll]] };
+      else
+        csharp_lsp_cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(omnisharp_pid) };
+      end
       require("lspconfig").omnisharp.setup({
         -- cmd = { "mono", "/home/max/.local/share/nvim/mason/packages/omnisharp-mono/omnisharp/Microsoft.CodeAnalysis.ExternalAccess.OmniSharp.dll"},
         -- cmd = { "dotnet", "/home/max/.local/share/nvim/mason/packages/omnisharp-mono/omnisharp/OmniSharp.Roslyn.dll", "--self-contained"},
-        cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(omnisharp_pid) },
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim", "LSP_SERVERS" , "to_string" },
-            }
-          }
-        },
+        cmd = csharp_lsp_cmd,
+        enable_roselyn_analyzers = true,
+        organize_imports_on_format = true,
+        root_pattern = { "*.sln" },
+        capabilities = capabilities,
+      })
+    elseif (lsp == "lemminx") then
+      require("lspconfig").lemminx.setup({
+        file_types = { "xml", "xsd", "xsl", "xslt", "svg", "xaml" },
+        on_attach = on_attach,
+        flags = lsp_flags,
         capabilities = capabilities,
       })
     else

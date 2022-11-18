@@ -48,8 +48,10 @@ opt.smartindent = true
 opt.colorcolumn = "80"
 
 -- Please yes
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+if vim.loop.os_uname().sysname ~= "Windows_NT" then
+  vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+  vim.opt.undofile = true
+end
 
 -- Please no
 opt.swapfile = false

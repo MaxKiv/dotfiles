@@ -1,5 +1,5 @@
 -- LSP_SERVERS = { "hls", "sumneko_lua", "rust_analyzer", "clangd", "bashls", "cmake", "omnisharp_mono" }
-LSP_SERVERS = { "hls", "sumneko_lua", "rust_analyzer", "clangd", "cmake", "omnisharp" }
+LSP_SERVERS = { "hls", "sumneko_lua", "rust_analyzer", "clangd", "cmake", "omnisharp", "lemminx" }
 
 -- TODO
 -- Refactoring nvim plugin fix
@@ -68,7 +68,6 @@ function M.setup()
     --   end,
     -- }
 
-
     -- Telescopic Johnson the bringer of joy
     use {
       "nvim-telescope/telescope.nvim",
@@ -127,6 +126,9 @@ function M.setup()
 
     -- Diff tool
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+
+    -- Get full file path
+    use("diegoulloao/nvim-file-location")
 
     -- Better surround
     use({
