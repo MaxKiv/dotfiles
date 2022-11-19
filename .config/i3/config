@@ -164,17 +164,18 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec "exit i3"
+bindsym $mod+Shift+e exec "i3-msg exit"
+
 # printscreen utility
 bindsym Print exec "flameshot gui"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-        bindsym $right       resize shrink width 10 px or 10 ppt
+        bindsym $left       resize shrink width 10 px or 10 ppt
         bindsym $down       resize grow height 10 px or 10 ppt
         bindsym $up         resize shrink height 10 px or 10 ppt
-        bindsym $lef      resize grow width 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left        resize shrink width 10 px or 10 ppt
@@ -190,11 +191,20 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# class                  border  backgr. text    indicator child_border
+client.focused           #ff6105 #285577 #ffffff #2e9ef4   #ff6105
+#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+#client.urgent           #2f343a #900000 #ffffff #900000   #900000
+#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
 # i3 gaps
+client.background       #ffffff
 for_window [class="^.*"] border pixel 2
 gaps inner 10
 gaps outer 0
 
+# resize gaps
 bindsym $mod+z gaps inner current plus 5
 bindsym $mod+shift+z gaps inner current minus 5
 
@@ -202,4 +212,15 @@ bindsym $mod+shift+z gaps inner current minus 5
 # finds out, if available)
 bar {
         status_command i3status
+        colors {
+            background #000000
+            statusline #ffffff
+            separator #666666
+
+            focused_workspace  #ffffff #ff6105 #ffffff
+            active_workspace   #333333 #5f676a #ffffff
+            inactive_workspace #333333 #222222 #888888
+            urgent_workspace   #2f343a #900000 #ffffff
+            binding_mode       #2f343a #900000 #ffffff
+    }
 }
