@@ -5,8 +5,8 @@ alias sb='source ~/.bashrc'
 
 # Essential
 alias fj='fg'
-alias shutdown='shutdown -now'
-alias reboot='reboot -now'
+alias shutdown='shutdown now'
+alias reboot='reboot now'
 
 # Vim
 alias nv='nvim'
