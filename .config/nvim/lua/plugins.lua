@@ -46,10 +46,9 @@ function M.setup()
     ---- Colorscheme
     -- Gruvbox
     use {
-      "morhetz/gruvbox",
+      "ellisonleao/gruvbox.nvim",
       config = function()
-        vim.cmd "let g:gruvbox_contrast_dark = 'hard'"
-        vim.cmd "colorscheme gruvbox"
+        require("config.gruvbox").setup()
       end,
     }
 
@@ -66,12 +65,12 @@ function M.setup()
       "nvim-telescope/telescope.nvim",
       requires = {
         { "nvim-lua/plenary.nvim" },
-        { "cljoly/telescope-repo.nvim",},
+        { "cljoly/telescope-repo.nvim", },
         -- { "nvim-telescope/telescope-file-browser.nvim" },
         { "nvim-telescope/telescope-live-grep-args.nvim" },
         { "nvim-telescope/telescope-ui-select.nvim" },
         { "ThePrimeagen/harpoon" },
-        { "nvim-telescope/telescope-fzf-native.nvim" , run = 'make' },
+        { "nvim-telescope/telescope-fzf-native.nvim", run = 'make' },
       },
       config = function()
         require("telescope").setup({
@@ -140,7 +139,7 @@ function M.setup()
 
     -- Spearfishing
     use { "ThePrimeagen/harpoon",
-      requires = {"nvim-lua/plenary.nvim"},
+      requires = { "nvim-lua/plenary.nvim" },
     }
 
     -- Lualine statusbar
@@ -208,8 +207,8 @@ function M.setup()
         require("config.treesitter").setup()
       end,
     }
-    use {"nvim-treesitter/nvim-treesitter-textobjects" }
-    use {"nvim-treesitter/playground" }
+    use { "nvim-treesitter/nvim-treesitter-textobjects" }
+    use { "nvim-treesitter/playground" }
 
 
     -- Docs generation
@@ -268,12 +267,12 @@ function M.setup()
       --after = "onsails/lspkind-nvim",
     }
 
-    -- Refactoring 
+    -- Refactoring
     use {
       "ThePrimeagen/refactoring.nvim",
       requires = {
-        {"nvim-lua/plenary.nvim"},
-        {"nvim-treesitter/nvim-treesitter"}
+        { "nvim-lua/plenary.nvim" },
+        { "nvim-treesitter/nvim-treesitter" }
       },
       config = function()
         require("config.refactor").setup()
