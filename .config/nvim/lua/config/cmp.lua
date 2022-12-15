@@ -32,7 +32,9 @@ function M.setup()
     },
     formatting = {
       format = lspkind.cmp_format {
-        mode = "symbol_text",
+        mode = "Symbol",
+        maxwidth = 50,
+        ellipsis_char = '...',
         menu = {
           nvim_lsp = "[LSP]",
           treesitter = "[Tree]",

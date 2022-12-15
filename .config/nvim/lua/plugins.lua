@@ -43,14 +43,6 @@ function M.setup()
     -- Packer plugin manager
     use { "wbthomason/packer.nvim" }
 
-    -- -- Colorscheme
-    -- use {
-    --   "Yazeed1s/minimal.nvim",
-    --   config = function()
-    --     vim.cmd "colorscheme minimal"
-    --   end,
-    -- }
-
     ---- Colorscheme
     -- Gruvbox
     use {
@@ -231,25 +223,6 @@ function M.setup()
       -- tag = "*"
     }
 
-    -- -- Language Server Protocol LSP stuff
-    -- -- Autocompletion engine
-    -- use {
-    --   "hrsh7th/nvim-cmp",
-    --   config = function()
-    --     require("config.cmp").setup()
-    --   end,
-    -- }
-    -- -- Autocomplete sources
-    -- use { "hrsh7th/cmp-nvim-lsp",
-    --       after = "nvim-cmp" }
-    -- use { "hrsh7th/cmp-buffer",
-    --       after = "nvim-cmp" }
-    -- use {"hrsh7th/cmp-path",
-    --       after = "nvim-cmp" }
-    -- use {"hrsh7th/cmp-cmdline",
-    --       after = "nvim-cmp" }
-
-    -- LSP
     -- LSP installer
     use {
       "williamboman/mason.nvim",
@@ -292,7 +265,7 @@ function M.setup()
       config = function()
         require("config.cmp").setup()
       end,
-      -- after = "onsails/lspkind-nvim",
+      --after = "onsails/lspkind-nvim",
     }
 
     -- Refactoring 
