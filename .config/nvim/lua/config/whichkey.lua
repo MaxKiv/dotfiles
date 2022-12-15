@@ -83,7 +83,7 @@ function M.setup()
       r = { "<cmd>!explorer.exe .<CR>", "Project root" },
       --TODO make this the neovim lua interpreter, as that should always be there
       -- l = { "<cmd>!luajit %<CR>", "current file luajit" },
-      l = { "<cmd>lua %<CR>", "current file luajit" },
+      l = { "<cmd>lua dofile(vim.fn.expand('%:p'))<CR>", "current file luajit" },
     },
 
     p = { "<cmd>lua NvimFileLocation.copy_file_location('absolute', true, false)<cr>", "copy full file path" },
