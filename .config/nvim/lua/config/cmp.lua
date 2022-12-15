@@ -1,5 +1,4 @@
-
-local M  = {}
+local M = {}
 
 function M.setup()
   local cmp = require("cmp")
@@ -15,26 +14,29 @@ function M.setup()
         -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
-    window = {
-      -- completion = cmp.config.window.bordered(),
-      -- documentation = cmp.config.window.bordered(),
-    },
     mapping = cmp.mapping.preset.insert({
       ['<C-b>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
+      ['<C-j>'] = cmp.mapping.confirm({ select = true }),
       ['<C-e>'] = cmp.mapping.abort(),
-      -- ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     }),
     completion = {
       keyword_length = 1,
       completeopt = "menu,noselect",
+    },
+    window = {
+      completion = cmp.config.window.bordered({
+        winhighlight = "Normal:Normal,FloatBorder:BorderBG,CursorLine:PmenuSel,Search:None",
+      }),
     },
     formatting = {
       format = lspkind.cmp_format {
         mode = "symbol_text",
         menu = {
           nvim_lsp = "[LSP]",
+          treesitter = "[Tree]",
+          spell = "[Spell]",
           vsnip = "[Snip]",
           nvim_lua = "[Lua]",
           path = "[Path]",
@@ -44,14 +46,16 @@ function M.setup()
     },
     sources = cmp.config.sources({
       { name = "nvim_lsp" },
+      { name = "treesitter" },
       { name = "vsnip" }, -- For vsnip users.
+      { name = "spell" },
       { name = "buffer" },
       { name = "path" },
       -- { name = 'luasnip' }, -- For luasnip users.
       -- { name = 'ultisnips' }, -- For ultisnips users.
       -- { name = 'snippy' }, -- For snippy users.
     },
-      {{ name = "buffer" },
+      { { name = "buffer" },
       })
 
   })
@@ -73,7 +77,6 @@ function M.setup()
     }
   })
 
-
   -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
   cmp.setup.cmdline(':', {
     mapping = cmp.mapping.preset.cmdline(),
@@ -90,8 +93,8 @@ function M.setup()
     sources = {
       { name = 'path' }
     },
-      { name = 'cmdline', keyword_pattern=[=[[^[:blank:]\!]*]=], keyword_length =4 }
-    })
+    { name = 'cmdline', keyword_pattern = [=[[^[:blank:]\!]*]=], keyword_length = 4 }
+  })
 
 end
 

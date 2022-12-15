@@ -56,6 +56,7 @@ function M.setup()
     use {
       "morhetz/gruvbox",
       config = function()
+        vim.cmd "let g:gruvbox_contrast_dark = 'hard'"
         vim.cmd "colorscheme gruvbox"
       end,
     }
@@ -74,7 +75,7 @@ function M.setup()
       requires = {
         { "nvim-lua/plenary.nvim" },
         { "cljoly/telescope-repo.nvim",},
-        { "nvim-telescope/telescope-file-browser.nvim" },
+        -- { "nvim-telescope/telescope-file-browser.nvim" },
         { "nvim-telescope/telescope-live-grep-args.nvim" },
         { "nvim-telescope/telescope-ui-select.nvim" },
         { "ThePrimeagen/harpoon" },
@@ -94,7 +95,7 @@ function M.setup()
             },
           }
         })
-        require("telescope").load_extension("file_browser")
+        -- require("telescope").load_extension("file_browser")
         require("telescope").load_extension("repo")
         require("telescope").load_extension("live_grep_args")
         require("telescope").load_extension("ui-select")
