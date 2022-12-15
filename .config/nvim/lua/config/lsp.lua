@@ -29,9 +29,10 @@ function M.setup()
           -- '/home/max/Downloads/esp-clang/bin/clangd', -- for ESP
           '--background-index',
           '--clang-tidy',
+          '--checks=*',
+          '--fix',
           '--enable-config',
           -- '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-*',
-          -- '--query-driver=',
         },
         capabilities = capabilities,
       })
@@ -54,8 +55,6 @@ function M.setup()
         csharp_lsp_cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(omnisharp_pid) };
       end
       require("lspconfig").omnisharp.setup({
-        -- cmd = { "mono", "/home/max/.local/share/nvim/mason/packages/omnisharp-mono/omnisharp/Microsoft.CodeAnalysis.ExternalAccess.OmniSharp.dll"},
-        -- cmd = { "dotnet", "/home/max/.local/share/nvim/mason/packages/omnisharp-mono/omnisharp/OmniSharp.Roslyn.dll", "--self-contained"},
         cmd = csharp_lsp_cmd,
         enable_roselyn_analyzers = true,
         organize_imports_on_format = true,

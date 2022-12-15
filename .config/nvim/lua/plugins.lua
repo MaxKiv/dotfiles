@@ -120,7 +120,17 @@ function M.setup()
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- Get full file path
-    use("diegoulloao/nvim-file-location")
+    use ({
+      "diegoulloao/nvim-file-location",
+      config = function()
+        require("nvim-file-location").setup({
+          -- keymap = "<leader>L",
+          -- mode = "workdir", -- options: workdir | absolute
+          -- add_line = true,
+          -- add_column = false,
+        })
+      end
+    })
 
     -- Better surround
     use({
