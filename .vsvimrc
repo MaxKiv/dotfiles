@@ -1,4 +1,5 @@
 map gp :vsc Edit.GoToImplementation<CR>
+map gr :vsc Edit.FindAllReferences<CR>
 map <space>cr :source C:\Users\max\.vsvimrc<CR>
 map <A-j> g'}
 map <A-k> g'{
