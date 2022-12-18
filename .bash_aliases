@@ -23,6 +23,12 @@ alias bidf="idf.py build"
 alias cidf="idf.py fullclean"
 alias scr="screen /dev/ttyUSB0 115200,cs8"
 
+# ESP development
+alias gidf8=". $HOME/esp/ESP8266_RTOS_SDK/export.sh"
+# alias bidf="idf.py build"
+# alias cidf="idf.py fullclean"
+# alias scr="screen /dev/ttyUSB0 115200,cs8"
+
 initcmp () {
     dotfiles add $HOME/.config/nvim/init.vim 
     dotfiles commit -m "$1"
