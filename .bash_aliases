@@ -13,7 +13,7 @@ alias nv='nvim'
 alias vim='nvim'
 
 # .Dotfiles management
-alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 dotfiles config --local status.showUntrackedFiles no
 
 # Embedded
@@ -32,7 +32,7 @@ alias gidf8=". $HOME/esp/ESP8266_RTOS_SDK/export.sh"
 # alias scr="screen /dev/ttyUSB0 115200,cs8"
 
 initcmp () {
-    dotfiles add $HOME/.config/nvim/init.vim 
+    dotfiles add $HOME/.config/nvim/init.vim
     dotfiles commit -m "$1"
     dotfiles push;
     }
@@ -149,16 +149,16 @@ fda() {
 
 # fkill - kill processes - list only the ones you can kill. Modified the earlier script.
 fkill() {
-  local pid 
+  local pid
   if [ "$UID" != "0" ]; then
     pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
   else
     pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-  fi  
+  fi
   if [ "x$pid" != "x" ]
   then
     echo $pid | xargs kill -${1:-9}
-  fi  
+  fi
 }
 
 ### Tmux ###
@@ -183,7 +183,7 @@ cdw() {
   cd $mod
 }
 
-# run admin command prompt in wsl XD 
+# run admin command prompt in wsl XD
 wsudo() {
   powershell.exe -Command "Start-Process 'cmd.exe' -Verb runAs"
 }
@@ -192,7 +192,7 @@ exp() {
   explorer.exe .
 }
 
-# nvim config 
+# nvim config
 nvu() {
   nvim -u "/home/max/projects/nvim/init.lua"
 }
