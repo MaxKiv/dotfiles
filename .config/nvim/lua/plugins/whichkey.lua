@@ -184,6 +184,7 @@ return {
           s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols" },
           f = { "<cmd>lua vim.lsp.buf.format({async = true })<CR>", "Format file" },
           j = { "<cmd>LspInfo<CR>", "LSP Info" },
+          k = { "<cmd>LspLog<CR>", "LSP Log" },
           -- fr = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Formate range" },
           h = { "<cmd>ClangdSwitchSourceHeader<CR>", "Source/Header" }, -- clangd switch to Header...
         },

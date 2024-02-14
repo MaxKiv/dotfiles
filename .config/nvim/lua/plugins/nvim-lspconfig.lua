@@ -60,6 +60,15 @@ local lspconfig = {
     binary = "rome",
     root_dir = { 'package.json', 'node_modules', '.git' },
   },
+  ["jedi_language_server"] = {
+    binary = "jedi-language-server",
+    cmd = { "jedi-language-server", "-v" },
+    root_dir = {
+      "pyrightconfig.json",
+      "pyproject.toml",
+      ".git"
+    },
+  },
   -- pyright = {
   --   binary = "pyright",
   --   root_dir = {
