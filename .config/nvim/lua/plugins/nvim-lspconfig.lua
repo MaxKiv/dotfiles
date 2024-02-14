@@ -26,7 +26,7 @@ local servers = {
   jsonls = {
     binary = "json-lsp",
   },
-  sumneko_lua = {
+  lua_ls = {
     binary = "lua-language-server",
     settings = {
       Lua = {

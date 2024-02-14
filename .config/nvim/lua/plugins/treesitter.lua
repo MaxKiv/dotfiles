@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    version = false, -- last release is way too old and doesn't work on Windows
+    version = nil, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
     event = "BufReadPost",
     keys = {
@@ -12,7 +12,19 @@ return {
     ---@type TSConfig
     opts = {
       -- A list of parser names, or "all"
-      ensure_installed = "all",
+      ensure_installed = {
+        "lua",
+        "vim",
+        "c",
+        "python",
+        "help",
+        "query",
+        "git_rebase",
+        "markdown",
+        "markdown_inline",
+        "rust",
+        "cpp",
+      },
 
       -- Install languages synchronously (only applied to `ensure_installed`)
       sync_install = true,
