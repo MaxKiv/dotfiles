@@ -62,10 +62,19 @@ mkcd() {
   mkdir "$1" && cd "$_"
 }
 
+# turn on/off keyboard
+strd() {
+  xinput set-int-prop 17 "Device Enabled" 8 0
+}
+drts() {
+  xinput set-int-prop 17 "Device Enabled" 8 1
+}
+
 # git stuff
 alias gs='git status'
 alias gl='git log --oneline --decorate --graph'
 alias glp='git log -p'
+alias gpf='git push --force-with-lease'
 
 # global pushd/popd
 function gpushd() {
