@@ -22,6 +22,7 @@
   "nui.nvim": { "branch": "main", "commit": "698e75814cd7c56b0dd8af4936bcef2d13807f3c" },
   "nvim-cmp": { "branch": "main", "commit": "0f47dcaf7e39d64cd067e090e6f2eda6326e7366" },
   "nvim-dap": { "branch": "master", "commit": "6cedcb527e264c8f25e86afa8dae74c6692dee51" },
+  "nvim-dap-projects": { "branch": "main", "commit": "f319ffd99c6c8a0b930bcfc4bee0c751ffbf5808" },
   "nvim-dap-ui": { "branch": "master", "commit": "749bfe12d1447703899fa823c1c075fbe2d42c24" },
   "nvim-file-location": { "branch": "main", "commit": "1f6829a46059e42ce073655991ab672700633cf7" },
   "nvim-lspconfig": { "branch": "master", "commit": "3bd4ca412982afa6f88bb7ef890660cee51c3e58" },
@@ -40,6 +41,7 @@
   "telescope.nvim": { "branch": "master", "commit": "713d26b98583b160b50fb827adb751f768238ed3" },
   "tokyonight.nvim": { "branch": "main", "commit": "f2ed28707a0ad49047d9b733395ea205ea09f517" },
   "trouble.nvim": { "branch": "main", "commit": "d56bfc0c501ced4002a57cb60433362fb2ce9c4d" },
+  "undotree": { "branch": "master", "commit": "485f01efde4e22cb1ce547b9e8c9238f36566f21" },
   "vim-fugitive": { "branch": "master", "commit": "5f0d280b517cacb16f59316659966c7ca5e2bea2" },
   "vim-vsnip": { "branch": "master", "commit": "7753ba9c10429c29d25abfd11b4c60b76718c438" },
   "which-key.nvim": { "branch": "main", "commit": "af8f26bfbb61b5f722c9fbc72b296dc9db0bcfdc" }

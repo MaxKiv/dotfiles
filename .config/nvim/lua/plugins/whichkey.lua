@@ -101,6 +101,30 @@ return {
 
         p = { "<cmd>lua require('functions').copy_file_path()<cr>", "copy full file path" },
 
+        d = {
+          name = "DAP",
+          g = { [[<cmd>lua require("dap").continue()<CR>]], "Continue session" },
+          h = { [[<cmd>lua require("dap").terminate()<CR>]], "Stop session" },
+          r = { [[<cmd>lua require("dap").restart_frame()<CR>]], "Restart frame" },
+          -- k = { [[<cmd>lua require("dap").up()<CR>]], "Up" },
+          -- j = { [[<cmd>lua require("dap").down()<CR>]], "Down" },
+          k = { [[<cmd>lua require("dap").step_out()<CR>]], "Step out" },
+          j = { [[<cmd>lua require("dap").step_over()<CR>]], "Step over" },
+          l = { [[<cmd>lua require("dap").step_into()<CR>]], "Step into" },
+          c = { [[<cmd>lua require("dap").run_to_cursor()<CR>]], "To cursor" },
+          b = { [[<cmd>lua require("dap").toggle_breakpoint()<CR>]], "Toggle breakpoint" },
+          B = {
+            [[<cmd>lua require("dap").toggle_breakpoint(vim.fn.input({ prompt = 'Breakpoint Condition: '}), nil, nil, true)<CR>]],
+            "Conditional BP" },
+          L = {
+            [[<cmd>lua require("dap").toggle_breakpoint(nil, nil, vim.fn.input({ prompt = 'Log point message: '})<CR>]],
+            "Toggle logpoint" },
+          -- g = { [[<cmd>lua require("dap").goto_()<CR>]], "Goto" },
+          s = { [[<cmd>lua require('dap.ui.widgets').centered_float(require('dap.ui.widgets').scopes)<CR>]], "Scopes" },
+          S = { [[<cmd>lua require('dap.ui.widgets').centered_float(require('dap.ui.widgets').frames)<CR>]], "Stack frames" },
+          t = { [[<cmd>lua require('dap.ui.widgets').centered_float(require('dap.ui.widgets').threads)<CR>]], "Threads" },
+        },
+
         a = {
           name = "Format",
           w = { [[<cmd>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><CR>]], "Remove trailing whitespaces" },
