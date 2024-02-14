@@ -82,7 +82,7 @@ return {
 
         m = { "<cmd>Glow<CR>", "View Markdown" },
 
-        g = { "<cmd>Neogit<CR>", "Neogit"},
+        -- g = { "<cmd>Neogit<CR>", "Neogit"},
 
         h = {
           name = "Harpoon",

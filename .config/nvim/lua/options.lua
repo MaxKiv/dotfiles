@@ -43,3 +43,13 @@ opt.colorcolumn = "80"
 opt.swapfile = false
 opt.backup = false
 opt.modelines = 0
+
+-- Neovide
+if vim.g.neovide then
+  vim.opt.guifont = { "Hasklug NFM", ":10" }
+  vim.g.neovide_scale_factor = 0.8
+  vim.g.neovide_scroll_animation_length = 0.15
+  vim.g.neovide_cursor_animation_length = 0.08
+  vim.g.neovide_cursor_trail_size = 0.4
+  vim.g.neovide_profiler = false
+end
