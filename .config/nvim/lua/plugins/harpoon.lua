@@ -8,7 +8,21 @@ return {
       {"ha",[[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]], desc = "Goto 1" },
       {"hs",[[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]], desc = "Goto 2" },
       {"hd",[[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]], desc = "Goto 3" },
-      {"ht",[[<cmd>lua require("harpoon.tmux").gotoTerminal(1)<Cr>]], desc = "Goto terminal" },
+      {
+        "hq",
+        [[<cmd>lua if jit.os == "Windows" then require("harpoon.term").gotoTerminal(1) else require("harpoon.tmux").gotoTerminal(1) end <CR>]],
+        desc = "Goto terminal"
+      },
+      {
+        "hw",
+        [[<cmd>lua if jit.os == "Windows" then require("harpoon.term").gotoTerminal(2) else require("harpoon.tmux").gotoTerminal(2) end <CR>]],
+        desc = "Goto terminal"
+      },
+      {
+        "he",
+        [[<cmd>lua if jit.os == "Windows" then require("harpoon.term").gotoTerminal(3) else require("harpoon.tmux").gotoTerminal(3) end <CR>]],
+        desc = "Goto terminal"
+      },
     }
   },
 }

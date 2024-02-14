@@ -56,21 +56,21 @@ local servers = {
     binary = "rome",
     root_dir = { 'package.json', 'node_modules', '.git' },
   },
-  pyright = {
-    binary = "pyright",
-    root_dir = {
-      "pyrightconfig.json",
-      "pyproject.toml",
-      ".git"
-    },
-    settings = {
-      analysis = {
-        autoSearchPaths = false,
-        diagnosticMode = "workspace",
-        useLibraryCodeForTypes = false
-      }
-    }
-  },
+  -- pyright = {
+  --   binary = "pyright",
+  --   root_dir = {
+  --     "pyrightconfig.json",
+  --     "pyproject.toml",
+  --     ".git"
+  --   },
+  --   settings = {
+  --     analysis = {
+  --       autoSearchPaths = false,
+  --       diagnosticMode = "workspace",
+  --       useLibraryCodeForTypes = false
+  --     }
+  --   }
+  -- },
   lua_ls = {
     binary = "lua-language-server",
     settings = {
