@@ -64,6 +64,8 @@ mkcd() {
 
 # git stuff
 alias gs='git status'
+alias gl='git log --oneline --decorate --graph'
+alias glp='git log -p'
 
 # global pushd/popd
 function gpushd() {

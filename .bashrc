@@ -147,3 +147,4 @@ fi
 [ -f "/home/max/.ghcup/env" ] && source "/home/max/.ghcup/env" # ghcup-env
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+. "$HOME/.cargo/env"
