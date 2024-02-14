@@ -2,6 +2,13 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# Dotfiles management, NOTE: this is run even for non-interactive shells (nvim)
+alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+dot config --local status.showUntrackedFiles no
+alias df = "dot fetch";
+alias dau = "dot add -u";
+alias dcam = "dot commit --amend --no-edit";
+
 # If not running interactively, don't do anything
 case $- in
   *i*) ;;
@@ -125,13 +132,6 @@ alias l='ls -CF'
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
-
-# Dotfiles management
-# These are outside of bash_aliases, because of nixos
-alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-dot config --local status.showUntrackedFiles no
-alias ds='dot status'
-
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

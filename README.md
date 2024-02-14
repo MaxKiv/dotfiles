@@ -1,39 +1,44 @@
-This repo contains all my dotfiles in 1 place.
+Another dotfile repo... 🥗
 
-## TODO
-Split Unix/Windows into branches
+# 🔧 TODO
+[ ] Merge with nix repo...
+[ ] Refactor nvim telescope stuff
+[ ] Fix nvim whichkey binds
 
-## Fast install
+# 👨🏾‍🔧 Install options
+## 🐧 Unix/wsl
 
-	curl -Lks https://bit.ly/dotfiles_maxkiv | /bin/bash
-	
-	sb
+`bash
+git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+dot checkout
+`
 
-## Other install options
-### Unix/wsl
+## ⁉️ MinGW Windows
 
-	git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
-	alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-	dot checkout
-	
-### MinGW Windows
+`bash
+git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
+alias dot='/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+dot checkout
+`
 
-	git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
-	alias dot='/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-	dot checkout
+## 🪟 Powershell Windows
 
-### Powershell Windows
+`ps1
+git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
+function dot {
+    git --git-dir="$HOME\.dotfiles" --work-tree="$HOME" @Args
+}
+dot checkout
+`
 
-	git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
-	function dtf {
- 		git --git-dir="$HOME\.dotfiles" --work-tree="$HOME" @Args
-	}
-	dot checkout
+# Alacritty
 
-
-## Windows: Alacritty
-
-	# Symlink alacritty config
-	mkdir C:\Users\max\AppData\Roaming\alacritty
-	New-Item -ItemType SymbolicLink -Path "C:\Users\max\AppData\Roaming\alacritty\alacritty.yml" -Target "C:\Users\max\.config\alacritty\alacritty.yml"
+## Symlink alacritty config
+On windows the alacritty config should be located in Appdata\Roaming, to make it
+so:
+`ps1
+mkdir C:\Users\max\AppData\Roaming\alacritty
+New-Item -ItemType SymbolicLink -Path "C:\Users\max\AppData\Roaming\alacritty\alacritty.yml" -Target "C:\Users\max\.config\alacritty\alacritty.yml"
+`
 

@@ -55,7 +55,7 @@ end
 
 -- TODO this could be cleaner
 M.diff_is_toggled = false
-M.toggle_diff_splits = function ()
+M.toggle_diff_splits = function()
   local neo_tree_loaded, _ = pcall(require, 'neo-tree')
   if M.diff_is_toggled then
     if neo_tree_loaded then
@@ -67,5 +67,26 @@ M.toggle_diff_splits = function ()
   end
   M.diff_is_toggled = not M.diff_is_toggled
 end
+
+-- Execute a default (non-interactive) shell command and capture its output
+-- into a Lua variable
+M.execute_command = function(command)
+  local handle = io.popen(command)
+  local result = handle:read("*a")
+  handle:close()
+  return result
+end
+
+-- Execute a shell command and capture its output into a Lua variable
+M.execute_shell_command = function(command)
+  local output = vim.fn.systemlist(command)
+  return output
+end
+
+-- Get dotfiles directory on this system
+local output = M.execute_shell_command([[
+  bash -i -c "dot rev-parse --show-toplevel"
+]])
+M.dotfiles_dir = output[#output] or "$HOME/.config/nvim"
 
 return M

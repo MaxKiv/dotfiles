@@ -20,7 +20,7 @@ return {
     vim.fn.sign_define("DiagnosticSignInfo",
       { text = " ", texthl = "DiagnosticSignInfo" })
     vim.fn.sign_define("DiagnosticSignHint",
-      { text = "", texthl = "DiagnosticSignHint" })
+      { text = "?", texthl = "DiagnosticSignHint" })
 
     require("neo-tree").setup({
       close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
@@ -76,15 +76,15 @@ return {
         git_status = {
           symbols = {
             -- Change type
-            added     = "",  -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified  = "",  -- or "", but this is redundant info if you use git_status_colors on the name
+            added     = "✚",  -- or "✚", but this is redundant info if you use git_status_colors on the name
+            modified  = "𝚫",  -- or "", but this is redundant info if you use git_status_colors on the name
             deleted   = "✖", -- this can only be used in the git_status source
-            renamed   = "", -- this can only be used in the git_status source
+            renamed   = "R", -- this can only be used in the git_status source
             -- Status type
             untracked = "",
-            ignored   = "",
-            unstaged  = "",
-            staged    = "",
+            ignored   = "𝐈",
+            unstaged  = "𝗨",
+            staged    = "𝐒",
             conflict  = "",
           }
         },

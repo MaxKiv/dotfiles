@@ -94,11 +94,13 @@ return {
         noremap = true, -- use 'noremap' when creating keymaps
         nowait = true,  -- use 'nowait' when creating keymaps
       }
+
+      local dotfiles_telescope_cmd = "<cmd>lua require'telescope.builtin'.find_files({cwd= vim.fn.expand('" .. require('functions').dotfiles_dir .. "'), follow=true, no_ignore=true, hidden=true})<CR>"
+
       local nnore = {
         [':'] = { "<cmd>lua require('telescope.builtin').commands()<CR>", "Commands" },
 
-        c = { "<cmd>lua require'telescope.builtin'.find_files({cwd= vim.fn.expand('$HOME/.config') })<CR>",
-          "Browse dotfiles" },
+        c = { dotfiles_telescope_cmd, "Browse dotfiles" },
 
         g = {
           name = "Git",
