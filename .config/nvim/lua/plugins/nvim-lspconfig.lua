@@ -2,7 +2,7 @@
 local servers = {
   -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   ["rust_analyzer"] = {
-    -- NOTE: requered Name of LSP binary
+    -- NOTE: required Name of LSP binary
     binary = "rust-analyzer",
   },
   clangd = {
@@ -15,6 +15,9 @@ local servers = {
       '--clang-tidy',
       '--enable-config',
     },
+  },
+  ["robotframework_ls"] = {
+    binary = "robotframework-lsp",
   },
   pyright = {
     binary = "pyright",
