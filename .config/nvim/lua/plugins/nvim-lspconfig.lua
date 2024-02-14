@@ -1,4 +1,9 @@
--- List of language servers and their options
+-- Name of the file that (partially) overwrites default lspconfig
+local lspconfig_filename = "nvim_lspconfig.lua"
+
+-- Default list of language servers and their options, optionally overwritten
+-- by a file with the above name in the cwd
+---@class lsp_servers_type
 local servers = {
   -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   ["rust_analyzer"] = {
@@ -30,10 +35,10 @@ local servers = {
   clangd = {
     binary = "clangd",
     cmd = {
-      'clangd',
-      -- '/home/max/Downloads/esp-clang/bin/clangd', -- for ESP
-      -- '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-*',
-      '--query-driver=C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4 arm 8.50.9/arm/bin/iccarm.exe',
+      -- 'clangd',
+      '/home/max/Downloads/esp-clang/bin/clangd', -- for ESP
+      '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-*',
+      -- '--query-driver=C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4 arm 8.50.9/arm/bin/iccarm.exe',
       '--background-index',
       '--clang-tidy',
       '--enable-config',
@@ -108,6 +113,18 @@ local servers = {
   },
 }
 
+--- @param lsp_servers lsp_servers_type
+local function project_local_overwrite_lsp_servers(lsp_servers)
+  local success, local_lspconfig = pcall(dofile, vim.fn.fnamemodify(vim.fn.getcwd(), ":p") .. lspconfig_filename)
+  if success then
+    print("overwriting lspconfig using: " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p") .. lspconfig_filename)
+    -- overwrite defaults with local config
+    for key, value in pairs(local_lspconfig) do
+      lsp_servers[key] = value
+    end
+  end
+  return lsp_servers
+end
 
 return {
   {
@@ -133,8 +150,9 @@ return {
         virtual_text = { spacing = 4, prefix = "●" },
         severity_sort = true,
       },
-      -- List servers you want installed and configured
-      servers = servers
+      -- List of servers you want installed and configured
+      servers = project_local_overwrite_lsp_servers(servers)
+      -- servers = servers
     },
     config = function(_, opts)
       local on_attach = function(client, bufnr)
