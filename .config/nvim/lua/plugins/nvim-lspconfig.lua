@@ -62,7 +62,6 @@ local lspconfig = {
   },
   ["jedi_language_server"] = {
     binary = "jedi-language-server",
-    cmd = { "jedi-language-server", "-v" },
     root_dir = {
       "pyrightconfig.json",
       "pyproject.toml",
