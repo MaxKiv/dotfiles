@@ -83,7 +83,9 @@ return {
         d = { "<cmd>lua require('neogen').generate()<CR>", "Generate Docs" },
         e = {
           name = "Exec",
-          r = { "<cmd>!explorer.exe .<CR>", "Project root" },
+          r = { "<cmd>!explorer.exe .<CR>", "File explorer project root" },
+          p = { "<cmd>!explorer.exe " .. vim.fn.expand('%:p:h') .. "<CR>", "File explorer current file" },
+          t = { "<cmd>!start alacritty.exe <CR>", "Terminal project root" },
           l = { "<cmd>lua dofile(vim.fn.expand('%:p'))<CR>", "current file luajit" },
         },
         p = { "<cmd>lua require('functions').copy_file_path()<cr>", "copy full file path" },
