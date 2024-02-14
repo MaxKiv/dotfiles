@@ -3,3 +3,5 @@ map gr :vsc Edit.FindAllReferences<CR>
 map <space>cr :source C:\Users\max\.vsvimrc<CR>
 map <A-j> g'}
 map <A-k> g'{
+
+set clipboard=unnamed
