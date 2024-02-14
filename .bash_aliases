@@ -14,7 +14,8 @@ alias vim='nvim'
 
 # .Dotfiles management
 alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-dotfiles config --local status.showUntrackedFiles no
+dot config --local status.showUntrackedFiles no
+alias ds='dot status'
 
 # Embedded
 alias logic="$HOME/Downloads/Logic-2.4.1-master.AppImage"
@@ -56,6 +57,9 @@ ca() {
 mkcd() {
   mkdir "$1" && cd "$_"
 }
+
+# git stuff
+alias gs='git status'
 
 # global pushd/popd
 function gpushd() {

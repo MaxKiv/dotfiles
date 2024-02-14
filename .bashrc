@@ -144,11 +144,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# fzf
-export FZF_DEFAULT_COMMAND="find -L"
-source /usr/share/doc/fzf/examples/key-bindings.bash
-source /usr/share/doc/fzf/examples/completion.bash
-
 # Rust
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
