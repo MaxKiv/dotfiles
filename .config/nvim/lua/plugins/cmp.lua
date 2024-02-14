@@ -41,7 +41,7 @@ return {
           ['<C-e>'] = cmp.mapping.abort(),
         }),
         completion = {
-          keyword_length = 1,
+          keyword_length = 2,
           completeopt = "menu,noselect",
         },
         window = {
