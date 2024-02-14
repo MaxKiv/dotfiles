@@ -5,10 +5,10 @@ return {
     keys = {
       {"hf",[[<cmd>lua require("harpoon.mark").add_file()<Cr>]], desc = "Mark Buffer" },
       {"hm",[[<cmd>lua require("harpoon.ui").toggle_quick_menu()<Cr>]], desc = "View Marks" },
-      {"<C-1>",[[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]], desc = "Goto 1" },
-      {"<C-2>",[[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]], desc = "Goto 2" },
-      {"<C-3>",[[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]], desc = "Goto 3" },
-      {"<C-4>",[[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]], desc = "Goto 4" },
+      {"<S-F1>",[[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]], desc = "Goto 1" },
+      {"<S-F2>",[[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]], desc = "Goto 2" },
+      {"<S-F3>",[[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]], desc = "Goto 3" },
+      {"<S-F4>",[[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]], desc = "Goto 4" },
       {
         "hq",
         [[<cmd>lua if jit.os == "Windows" then require("harpoon.term").gotoTerminal(1) else require("harpoon.tmux").gotoTerminal(1) end <CR>]],
