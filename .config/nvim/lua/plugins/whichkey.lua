@@ -53,10 +53,13 @@ return {
 
         ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
         ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
-        ["]e"] = { [[<cmd>lua vim.diagnostic_goto(true, "ERROR")]], "Next Error" },
-        ["[e"] = { [[<cmd>lua vim.diagnostic_goto(false, "ERROR")]], "Prev Error" },
-        ["]w"] = { [[<cmd>lua vim.diagnostic_goto(true, "WARN")]], "Next Warning" },
-        ["[w"] = { [[<cmd>lua vim.diagnostic_goto(false, "WARN")]], "Prev Warning" },
+        ["]e"] = { [[<cmd>lua vim.diagnostic_goto(true, "ERROR")<cr>]], "Next Error" },
+        ["[e"] = { [[<cmd>lua vim.diagnostic_goto(false, "ERROR")<cr>]], "Prev Error" },
+        ["]w"] = { [[<cmd>lua vim.diagnostic_goto(true, "WARN")<cr>]], "Next Warning" },
+        ["[w"] = { [[<cmd>lua vim.diagnostic_goto(false, "WARN")<cr>]], "Prev Warning" },
+
+        ["<C-w>|"] = { [[<cmd>vsplit<cr>]], "Prev Warning" },
+        ["<C-w>-"] = { [[<cmd>split<cr>]], "Prev Warning" },
 
       }
       wk.register(nnore_noleader, nopts_noleader)

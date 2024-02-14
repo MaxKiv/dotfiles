@@ -17,6 +17,9 @@ alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 dot config --local status.showUntrackedFiles no
 alias ds='dot status'
 
+# bat is the better cat
+alias cat='batcat'
+
 # Embedded
 alias logic="$HOME/Downloads/Logic-2.4.1-master.AppImage"
 

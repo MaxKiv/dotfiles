@@ -294,6 +294,7 @@ return {
 
     config = function(_, opts)
       local dap = require('dap')
+      dap.set_log_level('trace')
       local mason_binary_dir = vim.fn.stdpath('data') .. '/mason/bin/'
       require("mason").setup(opts)
       local mr = require("mason-registry")
@@ -329,6 +330,55 @@ return {
         executable = {
           command = 'codelldb',
           args = { '--port', '13000' },
+        },
+      }
+
+      dap.adapters.c_local = {
+        type = 'server',
+        port = '13000',
+        executable = {
+          command = 'codelldb',
+          args = { '--port', '13000' },
+        },
+      }
+
+      dap.adapters.c = {
+        -- id = 'iets',
+        type = 'server',
+        port = '3332',
+
+        -- command = 'python debug_adapter_main.py',
+        -- args = { "-e", "build/blinky.elf" },
+
+        -- args = { "-f", "interface/ftdi/esp32_devkitj_v1.cfg",
+        --   "-f", "target/esp32.cfg",
+        --   "-c", "program_esp build/blink.bin 0x10000 verify" },
+        -- executable = {
+        --   command = 'openocd',
+        --   args = { "-f", "interface/ftdi/esp32_devkitj_v1.cfg",
+        --     "-f", "target/esp32.cfg",
+        --     "-c", "program_esp build/blink.bin 0x10000 verify" },
+        -- },
+
+      }
+
+      dap.configurations.c = {
+        {
+          name = "iets config",
+          type = 'c',
+          request = 'attach',
+          program = 'build/blink.elf',
+          stopOnEntry = true,
+          port = 3332,
+        },
+
+        {
+          name = "local",
+          type = 'c_local',
+          request = 'launch',
+          program = 'a.out',
+          stopOnEntry = false,
+          port = 13000,
         },
       }
 
