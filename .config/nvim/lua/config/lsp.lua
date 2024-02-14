@@ -48,9 +48,8 @@ function M.setup()
         capabilities = capabilities,
       })
     elseif (lsp == "omnisharp") then
-
       -- Omnisharp stuff
-      local omnisharp_bin = "/usr/local/bin/omnisharp-roslyn/OmniSharp"
+      local omnisharp_bin = "/home/max/.local/share/nvim/mason/bin/omnisharp"
       local omnisharp_pid = vim.fn.getpid()
       local csharp_lsp_cmd;
       if vim.loop.os_uname().sysname == "Windows_NT" then
