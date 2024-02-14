@@ -108,13 +108,13 @@ return {
 
         e = {
           name = "Exec",
-          r = { "<cmd>!explorer.exe .<CR>", "File explorer project root" },
-          p = { "<cmd>!start %:p:h<CR>", "File explorer current file" },
-          t = { "<cmd>!start alacritty.exe<CR>", "Terminal project root" },
+          r = { "<cmd>silent !explorer.exe .<CR>", "File explorer project root" },
+          p = { "<cmd>silent !start %:p:h<CR>", "File explorer current file" },
+          t = { "<cmd>silent !start alacritty.exe<CR>", "Terminal project root" },
           l = { "<cmd>lua dofile(vim.fn.expand('%:p'))<CR>", "current file luajit" },
         },
 
-        p = { "<cmd>lua require('functions').copy_file_path()<cr>", "copy full file path" },
+        p = { "<cmd>lua require('functions').copy_file_path() print('full path copied to clipboard')<cr>", "copy full file path" },
 
         a = {
           name = "Format",
