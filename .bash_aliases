@@ -27,6 +27,7 @@ alias logic="$HOME/Downloads/Logic-2.4.1-master.AppImage"
 alias gidf=". $HOME/git/esp-idf/export.sh"
 alias ridf=". $HOME/export-esp.sh"
 #alias scr="screen /dev/ttyUSB0 115200,cs8"
+export OPENOCD_COMMANDS="-f interface/ftdi/esp32_devkitj_v1.cfg -f target/esp32.cfg"
 
 # ESP development
 alias gidf8=". $HOME/esp/ESP8266_RTOS_SDK/export.sh"
