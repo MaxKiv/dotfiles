@@ -14,12 +14,12 @@ return {
     end,
   },
 
-  -- -- tokyonight
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = true,
-  --   opts = { style = "moon" },
-  -- },
+  -- tokyonight
+  {
+    "folke/tokyonight.nvim",
+    lazy = true,
+    opts = { style = "moon" },
+  },
 
   -- -- catppuccin
   -- {
