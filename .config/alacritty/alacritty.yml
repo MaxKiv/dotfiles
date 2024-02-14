@@ -4,6 +4,7 @@
 key_bindings:
 - { key: Space, mods: Control, chars: "\x00" }
 - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+- { key: Return,   mods: Alt, action: ToggleFullscreen }
 # - { key: Space,   mods: Control|Shift, action: None }
 # - { key: Space,   mods: Control|Shift, chars: "\x1b[32;5u"}
 
@@ -16,25 +17,30 @@ key_bindings:
 # Change font
 font:
     normal:
-        family: Hasklug NFM
+        family: Hasklug Nerd Font Mono
         style: Regular
 
     bold:
-        family: Hasklug NFM
+        family: Hasklug Nerd Font Mono
         style: Bold
 
     italic:
-        family: Hasklug NFM
+        family: Hasklug Nerd Font Mono
         style: Italic
 
     bold_italic:
-        family: Hasklug NFM
+        family: Hasklug Nerd Font Mono
         style: Bold Italic
 
     size: 11
 
 window:
     startup_mode: Maximized
+    decorations: none
+    opacity: 1.0
+
+selection:
+  save_to_clipboard: true
 
 # Windows size hack
 env:
