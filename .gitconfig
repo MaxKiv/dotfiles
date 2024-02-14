@@ -1,19 +1,22 @@
 [credential "http://rb-proxy-de.bosch.com:8080"]
 	provider = generic
 [credential "https://sourcecode.socialcoding.bosch.com"]
-	provider = bitbucket
+  provider = bitbucket
 [user]
-	name = Kivits Max (HC-CS/XCT-Dev2)
-	email = kim1dev@bosch.com
+  name = Kivits Max (HC-CS/XCT-Dev2)
+  email = kim1dev@bosch.com
 [core]
-	editor = nvim --noplugin
+  editor = nvim --noplugin
   pager = delta
+	ignorecase = false
 [interactive]
-    diffFilter = delta --color-only
-[delta]
-    navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  diffFilter = delta --color-only
 [merge]
-    conflictstyle = diff3
+  conflictstyle = diff3
 [diff]
-    colorMoved = default
+  colorMoved = default
+[delta]
+  navigate = true     # use n and N to move between diff sections
+  light = false       # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  side-by-side = true # side-by-side diff
+  line-numbers = true # show line numbers

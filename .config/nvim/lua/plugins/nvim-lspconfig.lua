@@ -47,15 +47,15 @@ local lspconfig = {
       ".git"
     },
   },
-  ["robotframework_ls"] = {
-    binary = "robotframework-lsp",
-    root_dir = {
-      ".git"
-    },
-    cmd = {
-      [[C:\Users\KIM1DEV\AppData\Local\nvim-data\mason\packages\robotframework-lsp\venv\Scripts\robotframework_ls.exe]],
-    },
-  },
+  -- ["robotframework_ls"] = {
+  --   binary = "robotframework-lsp",
+  --   root_dir = {
+  --     ".git"
+  --   },
+  --   cmd = {
+  --     [[C:\Users\KIM1DEV\AppData\Local\nvim-data\mason\packages\robotframework-lsp\venv\Scripts\robotframework_ls.exe]],
+  --   },
+  -- },
   rome = {
     binary = "rome",
     root_dir = { 'package.json', 'node_modules', '.git' },

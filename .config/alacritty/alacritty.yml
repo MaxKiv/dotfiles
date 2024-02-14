@@ -7,6 +7,12 @@ key_bindings:
 # - { key: Space,   mods: Control|Shift, action: None }
 # - { key: Space,   mods: Control|Shift, chars: "\x1b[32;5u"}
 
+# Remap <C-1> to <S-F1> etc. This way I can use <C-1> in vim
+- { key: Key1,       mods: Control,   chars: "\x1b[1;2P" }
+- { key: Key2,       mods: Control,   chars: "\x1b[1;2Q" }
+- { key: Key3,       mods: Control,   chars: "\x1b[1;2R" }
+- { key: Key4,       mods: Control,   chars: "\x1b[1;2S" }
+
 # Change font
 font:
     normal:
