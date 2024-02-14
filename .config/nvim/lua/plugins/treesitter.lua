@@ -4,6 +4,9 @@ return {
     version = nil, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects"
+    },
 
     opts = {
       -- A list of parser names, or "all"
@@ -41,7 +44,6 @@ return {
       textobjects = {
         select = {
           enable = true,
-
           -- Automatically jump forward to textobj, similar to targets.vim
           lookahead = true,
 
@@ -133,6 +135,7 @@ return {
         },
       }
     },
+
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
 
