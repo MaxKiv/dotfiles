@@ -36,15 +36,15 @@ alias gidf8=". $HOME/esp/ESP8266_RTOS_SDK/export.sh"
 # alias scr="screen /dev/ttyUSB0 115200,cs8"
 
 initcmp () {
-    dotfiles add $HOME/.config/nvim/init.vim
-    dotfiles commit -m "$1"
-    dotfiles push;
+    dot add $HOME/.config/nvim/init.vim
+    dot commit -m "$1"
+    dot push;
     }
 bsrccmp () {
-    dotfiles add $HOME/.bashrc
-    dotfiles add $HOME/.bash_aliases
-    dotfiles commit -m "$1"
-    dotfiles push;
+    dot add $HOME/.bashrc
+    dot add $HOME/.bash_aliases
+    dot commit -m "$1"
+    dot push;
     }
 
 # mkdir and cd :)
@@ -175,6 +175,10 @@ tma() {
 tmf() {
   local session=$(tmux ls | cut -d":" -f1 | fzf)
   tmux a -t "$session"
+}
+tmd() {
+  local session=$(tmux ls | cut -d":" -f1 | fzf)
+  tmux kill-session -t "$session"
 }
 alias tms='tmux new-session -s'
 alias tml='tmux list-session'

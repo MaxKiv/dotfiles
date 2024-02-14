@@ -105,12 +105,9 @@ agent_load_env
 agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
 
 if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
-    agent_start
-    ssh-add $HOME/.ssh/MaxKiv
-    ssh-add $HOME/.ssh/Max-Kivits
+    ssh-add $HOME/.ssh/id_ed25519
 elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
-    ssh-add $HOME/.ssh/MaxKiv
-    ssh-add $HOME/.ssh/Max-Kivits
+    ssh-add $HOME/.ssh/id_ed25519
 fi
 
 unset env
@@ -139,6 +136,9 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Corpo stuff
+[ -f "$HOME/corpo.sh" ] && source "$HOME/corpo.sh"
 
 # Rust
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"

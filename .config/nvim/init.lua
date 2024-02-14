@@ -3,9 +3,6 @@
 -- Neovim internal lua interpreter seems to be 5.1
 table.unpack = table.unpack or unpack -- 5.1 compatibility
 
--- Plugin management via lazy
-require("plugin_manager")
-
 -- "Global" Keymappings
 require("mappings")
 
@@ -17,3 +14,7 @@ require("autocmd")
 
 -- Global functions
 require("functions")
+
+-- Plugin management via lazy
+require("plugin_manager")
+

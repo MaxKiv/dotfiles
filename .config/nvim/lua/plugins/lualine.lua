@@ -3,7 +3,7 @@ return {
 
     "nvim-lualine/lualine.nvim",
     event = "VimEnter",
-    requires = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local navic = require "nvim-navic"
 
