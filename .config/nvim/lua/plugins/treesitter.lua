@@ -15,6 +15,7 @@ return {
         "cpp",
         "rust",
         "python",
+        "nix",
       },
 
       -- Install languages synchronously (only applied to `ensure_installed`)
