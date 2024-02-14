@@ -32,6 +32,9 @@ local lspconfig = {
   --     },
   --   },
   -- },
+  ["nil_ls"] = {
+    binary = "nil",
+  },
   clangd = {
     binary = "clangd",
     cmd = {

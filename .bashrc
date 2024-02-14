@@ -126,6 +126,13 @@ if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
 
+# Dotfiles management
+# These are outside of bash_aliases, because of nixos
+alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+dot config --local status.showUntrackedFiles no
+alias ds='dot status'
+
+
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).

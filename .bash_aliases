@@ -1,5 +1,12 @@
 # Contains all my bashrc aliases
 
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias grep='grep --color=auto'
+
 # Sourcing .bashrc
 alias sb='source ~/.bashrc'
 
@@ -11,11 +18,6 @@ alias reboot='reboot now'
 # Vim
 alias nv='nvim'
 alias vim='nvim'
-
-# .Dotfiles management
-alias dot="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-dot config --local status.showUntrackedFiles no
-alias ds='dot status'
 
 # bat is the better cat
 alias cat='batcat'
