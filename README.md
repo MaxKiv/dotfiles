@@ -13,14 +13,14 @@ Split Unix/Windows into branches
 ### Unix/wsl
 
 	git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
-	alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-	dotfiles checkout
+	alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+	dot checkout
 	
 ### MinGW Windows
 
 	git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
-	alias dotfiles='/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-	dotfiles checkout
+	alias dot='/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+	dot checkout
 
 ### Powershell Windows
 
@@ -28,7 +28,7 @@ Split Unix/Windows into branches
 	function dtf {
  		git --git-dir="$HOME\.dotfiles" --work-tree="$HOME" @Args
 	}
-	dotfiles checkout
+	dot checkout
 
 
 ## Windows: Alacritty
