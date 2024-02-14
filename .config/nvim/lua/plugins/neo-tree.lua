@@ -44,7 +44,7 @@ return {
         },
         indent = {
           indent_size = 2,
-          padding = 1, -- extra padding on left hand side
+          padding = 0, -- extra padding on left hand side
           -- indent guides
           with_markers = true,
           indent_marker = "│",
@@ -136,14 +136,20 @@ return {
           ["y"] = "copy_to_clipboard",
           ["x"] = "cut_to_clipboard",
           ["p"] = "paste_from_clipboard",
-          ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
-          -- ["c"] = {
-          --  "copy",
-          --  config = {
-          --    show_path = "none" -- "none", "relative", "absolute"
-          --  }
-          --}
-          ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
+          -- ["c"] = "copy", -- takes text input for destination, also accepts the optional config.show_path option like "add":
+          ["c"] = {
+           "copy",
+           config = {
+             show_path = "relative" -- "none", "relative", "absolute"
+           }
+          },
+          -- ["m"] = "move", -- takes text input for destination, also accepts the optional config.show_path option like "add".
+          ["m"] = {
+           "move",
+           config = {
+             show_path = "relative" -- "none", "relative", "absolute"
+           }
+          },
           ["q"] = "close_window",
           ["R"] = "refresh",
           ["?"] = "show_help",
@@ -184,7 +190,7 @@ return {
         -- "open_current",  -- netrw disabled, opening a directory opens within the
         -- window like netrw would, regardless of window.position
         -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-        use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+        use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
         -- instead of relying on nvim autocmd events.
         window = {
           mappings = {

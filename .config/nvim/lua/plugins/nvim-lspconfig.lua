@@ -6,32 +6,32 @@ local lspconfig_filename = "nvim_lspconfig.lua"
 ---@class lspconfig_t
 local lspconfig = {
   -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-  ["rust_analyzer"] = {
-    -- NOTE: required Name of LSP binary
-    binary = "rust-analyzer",
-    settings = {
-      imports = {
-        granularity = {
-          group = "crate",
-        },
-        prefix = "self",
-      },
-      cargo = {
-        buildScripts = {
-          enable = true,
-        },
-        -- ESP32 only :(
-        target = "xtensa-esp32-none-elf",
-        features = "esp32",
-      },
-      checkOnSave = {
-        allTargets = false,
-      },
-      procMacro = {
-        enable = true
-      },
-    },
-  },
+  -- ["rust_analyzer"] = {
+  --   -- NOTE: required Name of LSP binary
+  --   binary = "rust-analyzer",
+  --   settings = {
+  --     imports = {
+  --       granularity = {
+  --         group = "crate",
+  --       },
+  --       prefix = "self",
+  --     },
+  --     cargo = {
+  --       buildScripts = {
+  --         enable = true,
+  --       },
+  --       -- ESP32 only :(
+  --       target = "xtensa-esp32-none-elf",
+  --       features = "esp32",
+  --     },
+  --     checkOnSave = {
+  --       allTargets = false,
+  --     },
+  --     procMacro = {
+  --       enable = true
+  --     },
+  --   },
+  -- },
   clangd = {
     binary = "clangd",
     cmd = {
@@ -117,14 +117,13 @@ local lspconfig = {
 --- @param dir_list List List of dirs to find nvim_lspconfig.lua in
 --- @return lspconfig_t[]
 local function build_project_local_lspconfig(lspconfig, dir_list)
-
-  for i, dir in ipairs(dir_list) do
-  local success, local_lspconfig = pcall(dofile, dir .. lspconfig_filename)
-  if success then
-    for key, value in pairs(local_lspconfig) do
-      lspconfig[key] = value
+  for _, dir in ipairs(dir_list) do
+    local success, local_lspconfig = pcall(dofile, dir .. lspconfig_filename)
+    if success then
+      for key, value in pairs(local_lspconfig) do
+        lspconfig[key] = value
+      end
     end
-  end
   end
 
   return lspconfig
@@ -184,6 +183,7 @@ return {
         severity_sort = true,
       },
       -- List of LSP servers you want installed and configured
+      -- looks for nvim_lspconfig.lua files from HOME to cwd
       servers = project_local_overwrite_lsp_servers(lspconfig)
     },
     config = function(_, opts)
