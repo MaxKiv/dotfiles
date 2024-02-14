@@ -39,9 +39,6 @@ return {
             override_file_sorter = true,
             case_mode = "smart_case", --  "smart_case", "ignore_case" or "respect_case"
           },
-          file_browser = {
-            hijack_netrw = false,
-          },
           live_grep_args = {
             auto_quoting = true, -- enable/disable auto-quoting
             -- define mappings, e.g.
@@ -60,7 +57,6 @@ return {
         }
       })
       require("telescope").load_extension("repo")
-      require("telescope").load_extension("file_browser")
       require("telescope").load_extension("ui-select")
       require("telescope").load_extension("undo")
       require("telescope").load_extension("fzf")
