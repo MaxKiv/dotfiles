@@ -1,7 +1,3 @@
-[credential "http://rb-proxy-de.bosch.com:8080"]
-	provider = generic
-[credential "https://sourcecode.socialcoding.bosch.com"]
-  provider = bitbucket
 [user]
   name = Kivits Max (HC-CS/XCT-Dev2)
   email = kim1dev@bosch.com
