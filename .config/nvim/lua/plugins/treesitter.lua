@@ -3,11 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     version = nil, -- last release is way too old and doesn't work on Windows
     build = ":TSUpdate",
-    event = "BufReadPost",
-    keys = {
-      { "<c-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Schrink selection", mode = "x" },
-    },
+    event = { "BufReadPost", "BufNewFile" },
 
     opts = {
       -- A list of parser names, or "all"
@@ -78,7 +74,16 @@ return {
           goto_next_start = {
             ["]a"] = "@parameter.outer",
             ["]m"] = "@function.outer",
-            ["]]"] = "@class.outer",
+            ["]]"] = { query = "@class.outer", desc = "Next class start" },
+            --
+            -- You can use regex matching (i.e. lua pattern) and/or pass a list in a "query" key to group multiple queires.
+            ["]o"] = "@loop.*",
+            -- ["]o"] = { query = { "@loop.inner", "@loop.outer" } }
+            --
+            -- You can pass a query group to use query from `queries/<lang>/<query_group>.scm file in your runtime path.
+            -- Below example nvim-treesitter's `locals.scm` and `folds.scm`. They also provide highlights.scm and indent.scm.
+            ["]s"] = { query = "@scope", query_group = "locals", desc = "Next scope" },
+            ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
           },
           goto_next_end = {
             ["]M"] = "@function.outer",
@@ -93,13 +98,23 @@ return {
             ["[M"] = "@function.outer",
             ["[]"] = "@class.outer",
           },
+          -- Below will go to either the start or the end, whichever is closer.
+          -- Use if you want more granular movements
+          -- Make it even more gradual by adding multiple queries and regex.
+          goto_next = {
+            ["]d"] = "@conditional.outer",
+          },
+          goto_previous = {
+            ["[d"] = "@conditional.outer",
+          }
         },
+
       },
 
       playground = {
-        enable = true,
+        enable = false,
         disable = {},
-        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+        updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
         persist_queries = false, -- Whether the query persists across vim sessions
         keybindings = {
           toggle_query_editor = 'o',
@@ -123,13 +138,13 @@ return {
       parser_config.robot = {
         install_info = {
           url = [[C:\Users\KIM1DEV\git\tree-sitter-robot]], -- local path or git repo
-          files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
+          files = { "src/parser.c" },                       -- note that some parsers also require src/scanner.c or src/scanner.cc
           -- optional entries:
-          branch = "main", -- default branch in case of git repo if different from master
-          generate_requires_npm = false, -- if stand-alone parser without npm dependencies
-          requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+          branch = "main",                                  -- default branch in case of git repo if different from master
+          generate_requires_npm = false,                    -- if stand-alone parser without npm dependencies
+          requires_generate_from_grammar = false,           -- if folder contains pre-generated src/parser.c
         },
-        filetype = "robot", -- if filetype does not match the parser name
+        filetype = "robot",                                 -- if filetype does not match the parser name
       }
     end,
   },

@@ -53,6 +53,11 @@ return {
 
         ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
         ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
+        ["]e"] = { [[<cmd>lua vim.diagnostic_goto(true, "ERROR")]], "Next Error" },
+        ["[e"] = { [[<cmd>lua vim.diagnostic_goto(false, "ERROR")]], "Prev Error" },
+        ["]w"] = { [[<cmd>lua vim.diagnostic_goto(true, "WARN")]], "Next Warning" },
+        ["[w"] = { [[<cmd>lua vim.diagnostic_goto(false, "WARN")]], "Prev Warning" },
+
       }
       wk.register(nnore_noleader, nopts_noleader)
 
@@ -108,7 +113,7 @@ return {
           e = { [[<cmd>:g/^\s*$/d<CR>]], "Remove empty lines" },
         },
 
-        m = { "<cmd>Glow<CR>", "View Markdown" },
+        -- m = { "<cmd>Glow<CR>", "View Markdown" },
 
         f = {
           name = "Find",
@@ -128,7 +133,7 @@ return {
           o = { "<cmd>Telescope jumplist<CR>", "Jumplist" },
           k = { "<cmd>Telescope resume<CR>", "Resume previous state" },
           t = { "<cmd>Telescope find_files cwd=~/.todo<CR>", "Todos" },
-          i = { "<cmd>Telescope find_files cwd=~/git/Information<CR>", "Home directory" },
+          i = { "<cmd>Telescope find_files cwd=~/git/Information<CR>", "Notes" },
         },
 
         j = {

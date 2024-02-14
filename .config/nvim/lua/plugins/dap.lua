@@ -32,7 +32,7 @@ return {
       {
         -- Nice DAP ui
         "rcarriga/nvim-dap-ui",
-        config = function(plugin, opts)
+        config = function(_, _)
           local dap, dapui = require("dap"), require("dapui")
           --use nvim-dap events to open and close the windows automatically
           dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -132,7 +132,7 @@ return {
       {
         -- Vscode like dap project file
         "ldelossa/nvim-dap-projects",
-        config = function(plugin, opts)
+        config = function(_, _)
           -- require('nvim-dap-projects').config_paths = {"./test/nvim-dap.lua"}
           require('nvim-dap-projects').search_project_config()
         end
@@ -407,6 +407,7 @@ return {
         },
       }
 
+      -- Breakpoint styling
       vim.api.nvim_set_hl(0, "blue", { fg = "#3d59a1" })
       vim.api.nvim_set_hl(0, "green", { fg = "#9ece6a" })
       vim.api.nvim_set_hl(0, "yellow", { fg = "#FFFF00" })
@@ -422,6 +423,7 @@ return {
         { text = '', texthl = 'green', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
       vim.fn.sign_define('DapLogPoint',
         { text = '', texthl = 'yellow', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+
     end,
 
   },
