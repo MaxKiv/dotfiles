@@ -27,6 +27,9 @@ function open {
 function gs {
   git status
 }
+function gf {
+  git fetch -t -p
+}
 function gau {
   git add -u
 }
@@ -42,6 +45,9 @@ function gl {
 }
 function glp {
   git log -p
+}
+function gpf {
+  git push --force-with-lease
 }
 del alias:gc -Force
 function gc() {
