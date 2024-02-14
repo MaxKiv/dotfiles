@@ -64,6 +64,9 @@ return {
 
         ["<A-l>"] = { [[<cmd>vertical resize +5<cr>]], "resize +5" },
         ["<A-h>"] = { [[<cmd>vertical resize -5<cr>]], "resize -5" },
+        ["<A-Right>"] = { [[<cmd>vertical resize +5<cr>]], "resize -5" },
+        ["<A-Left>"] = { [[<cmd>vertical resize -5<cr>]], "resize +5" },
+
 
         ["<C-w>|"] = { [[<cmd>vsplit<cr>]], "open vsplit" },
         ["<C-w>-"] = { [[<cmd>split<cr>]], "open split" },

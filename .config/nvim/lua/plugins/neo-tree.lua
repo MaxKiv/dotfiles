@@ -8,7 +8,6 @@ return {
   },
   keys = {
     { [[\]], "<cmd>NeoTreeRevealToggle<cr>", "Reveal Neotree" },
-    { [[<CR>]], "<cmd>NeoTreeFocus<cr>", "Focus Neotree" },
   },
   config = function()
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -162,7 +161,7 @@ return {
         filtered_items = {
           visible = false, -- when true, they will just be displayed differently than normal items
           hide_dotfiles = false,
-          hide_gitignored = true,
+          hide_gitignored = false,
           hide_hidden = false, -- only works on Windows for hidden files/directories
           hide_by_name = {
             --"node_modules"
@@ -182,7 +181,7 @@ return {
             --".null-ls_*",
           },
         },
-        follow_current_file = true,            -- This will find and focus the file in the active buffer every
+        follow_current_file = false,            -- This will find and focus the file in the active buffer every
         -- time the current file is changed while the tree is open.
         group_empty_dirs = false,               -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
@@ -196,6 +195,7 @@ return {
           mappings = {
             ["<bs>"] = "navigate_up",
             ["."] = "set_root",
+            ["/"] = "fuzzy_finder",
             ["H"] = "toggle_hidden",
             -- ["/"] = "fuzzy_finder",
             ["D"] = "fuzzy_finder_directory",
