@@ -5,7 +5,7 @@ return {
     event = "VimEnter",
     requires = { "kyazdani42/nvim-web-devicons" },
     config = function()
-      local gps = require "nvim-gps"
+      local navic = require "nvim-navic"
 
       require("lualine").setup({
         options = {
@@ -23,8 +23,12 @@ return {
           lualine_c = {
             { "filename" },
             {
-              gps.get_location,
-              cond = gps.is_available,
+              function()
+                return navic.get_location()
+              end,
+              cond = function()
+                return navic.is_available()
+              end,
               color = { fg = "ffaf00ff" },
             },
           },

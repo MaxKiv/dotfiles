@@ -41,6 +41,8 @@ return {
           r = { "<cmd>Telescope lsp_references<CR>", "Symbol references" },
           p = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto implementation" },
           o = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
+          j = { "<cmd>diffget<CR>", "Diff Get" },
+          f = { "<cmd>diffput><CR>", "Diff Put" },
         },
 
         K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Symbol hover" },
@@ -48,8 +50,8 @@ return {
         ["]h"] = { "<cmd>Gitsigns next_hunk<CR>", "Next Hunk" },
         ["[h"] = { "<cmd>Gitsigns prev_hunk<CR>", "Prev Hunk" },
 
-        ["<C-l>"] = { "<cmd>diffget<CR>", "Diff Get" },
-        ["<C-h>"] = { "<cmd>diffput><CR>", "Diff Put" },
+        ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
+        ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
       }
       wk.register(nnore_noleader, nopts_noleader)
 
@@ -64,12 +66,8 @@ return {
       local nnore = {
         [':'] = { "<cmd>lua require('telescope.builtin').commands()<CR>", "Commands" },
 
-        c = {
-          name = "Config",
-          r = { "<cmd>source $MYVIMRC<CR>", "Reload" },
-          c = { "<cmd>lua require'telescope.builtin'.find_files({cwd= vim.fn.expand('$HOME/.config') })<CR>",
-            "Browse dotfiles" },
-        },
+        c = { "<cmd>lua require'telescope.builtin'.find_files({cwd= vim.fn.expand('$HOME/.config') })<CR>",
+          "Browse dotfiles" },
 
         g = {
           name = "Git",
@@ -110,12 +108,6 @@ return {
         },
 
         m = { "<cmd>Glow<CR>", "View Markdown" },
-
-        h = {
-          name = "Harpoon",
-          m = { [[<cmd>lua require("harpoon.mark").add_file()<Cr>]], "Mark" },
-          f = { [[<cmd>lua require("harpoon.ui").toggle_quick_menu()<Cr>]], "Menu" },
-        },
 
         f = {
           name = "Find",
