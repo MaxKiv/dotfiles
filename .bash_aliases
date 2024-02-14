@@ -21,9 +21,8 @@ alias logic="$HOME/Downloads/Logic-2.4.1-master.AppImage"
 
 # ESP development
 alias gidf=". $HOME/git/esp-idf/export.sh"
-alias bidf="idf.py build"
-alias cidf="idf.py fullclean"
-alias scr="screen /dev/ttyUSB0 115200,cs8"
+alias ridf=". $HOME/export-esp.sh"
+#alias scr="screen /dev/ttyUSB0 115200,cs8"
 
 # ESP development
 alias gidf8=". $HOME/esp/ESP8266_RTOS_SDK/export.sh"
