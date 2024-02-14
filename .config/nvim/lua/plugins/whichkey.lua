@@ -70,16 +70,18 @@ return {
         ["[w"] = { [[<cmd>lua vim.diagnostic.goto_prev({severity = WARN})<cr>]], "Prev Warning" },
 
         ["<A-l>"] = { [[<cmd>vertical resize +5<cr>]], "vertical resize +5" },
-        ["<A-Left>"] = { [[<cmd>vertical resize +5<cr>]], "vertical resize +5" },
+        ["<A-Right>"] = { [[<cmd>vertical resize +5<cr>]], "vertical resize +5" },
         ["<A-h>"] = { [[<cmd>vertical resize -5<cr>]], "vertical resize -5" },
-        ["<A-Right>"] = { [[<cmd>vertical resize -5<cr>]], "vertical resize -5" },
+        ["<A-Left>"] = { [[<cmd>vertical resize -5<cr>]], "vertical resize -5" },
         ["<A-k>"] = { [[<cmd> resize +5<cr>]], "resize +5" },
         ["<A-Up>"] = { [[<cmd> resize +5<cr>]], "resize +5" },
         ["<A-j>"] = { [[<cmd resize -5<cr>]], "resize -5" },
         ["<A-Down>"] = { [[<cmd resize -5<cr>]], "resize -5" },
 
         ["<C-w>|"] = { [[<cmd>vsplit<cr>]], "open vsplit" },
+        ["<C-w>v"] = { [[<cmd>vsplit<cr>]], "open vsplit" },
         ["<C-w>-"] = { [[<cmd>split<cr>]], "open split" },
+        ["<C-w>s"] = { [[<cmd>split<cr>]], "open split" },
 
       }
       wk.register(nnore_noleader, nopts_noleader)
@@ -122,6 +124,8 @@ return {
           m = {
             [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = "<<<<<<<"})<CR>]],
             "Git markers in project" },
+          t = { "<cmd>Git checkout --theirs -- %<cr>", "Checkout theirs" },
+          o = { "<cmd>Git checkout --ours -- %<cr>", "Checkout ours" },
         },
 
         e = {
