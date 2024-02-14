@@ -193,3 +193,7 @@ exp() {
   explorer.exe .
 }
 
+# nvim config 
+nvu() {
+  nvim -u "/home/max/projects/nvim/init.lua"
+}

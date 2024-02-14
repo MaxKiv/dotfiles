@@ -1,22 +1,19 @@
--- init.lua neovim config
-local verbose = true
+-- Neovim config entry point, looks for modules in ./lua/
 
--- source lua files
-local luafiles = {
-  -- settings = false,
-  -- keymaps = false,
-  plugins = false,
-}
-for luafile, _ in pairs(luafiles) do
-  local err
-  -- luafiles[luafile], err = pcall(require, tostring(luafile))
-  luafiles[luafile], err = pcall(require(tostring(luafile)).setup, "")
-  if verbose then
-    if not luafiles[luafile] then
-      print(luafile .. " not sourced correctly: " .. err)
-    else
-      print(luafile .. " sources correctly")
-    end
-  end
-end
+-- Load global functions
+-- require("core.globals")
 
+-- Plugin management via lazy
+require("plugin_manager")
+
+-- "Global" Keymappings
+require("mappings")
+
+-- All non plugin related (vim) options
+require("options")
+
+-- Vim autocommands/autogroups
+require("autocmd")
+
+-- Global functions
+require("functions")
