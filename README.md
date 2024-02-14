@@ -1,5 +1,8 @@
 This repo contains all my dotfiles in 1 place.
 
+## TODO
+Split Unix/Windows into branches
+
 ## Fast install
 
 	curl -Lks https://bit.ly/dotfiles_maxkiv | /bin/bash
