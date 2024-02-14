@@ -65,6 +65,19 @@ opt.swapfile = false
 opt.backup = false
 opt.modelines = 0
 
+-- Filthy mouse degenerate
+if vim.fn.has('wsl') == 1 then
+  opt.mouse = ''
+else
+  opt.mouse = 'nv'
+end
+
+-- This hits the spot 😍
+vim.cmd('cnoreabbrev Q  q')
+vim.cmd('cnoreabbrev Qa qa')
+vim.cmd('cnoreabbrev W  w')
+vim.cmd('cnoreabbrev Wq wq')
+
 -- Neovide
 if vim.g.neovide then
   vim.opt.guifont = { "Hasklug NFM", ":10" }
