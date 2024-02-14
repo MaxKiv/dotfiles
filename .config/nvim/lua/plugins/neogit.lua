@@ -109,7 +109,11 @@ return {
           finder = {
             -- Binds <cr> to trigger select action
             ["<cr>"] = "select",
-          }
+          },
+          log_view = {
+            ["<c-k>"] = "",
+            ["<c-j>"] = "",
+          },
         }
       }
     end
