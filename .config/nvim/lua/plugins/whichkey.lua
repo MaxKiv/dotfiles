@@ -43,10 +43,9 @@ return {
           o = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
         },
         K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Symbol hover" },
-            ["]h"] = { "<cmd>Gitsigns next_hunk", "Next Hunk" },
-            ["[h"] = { "<cmd>Gitsigns prev_hunk", "Prev Hunk" },
+        ["]h"] = { "<cmd>Gitsigns next_hunk", "Next Hunk" },
+        ["[h"] = { "<cmd>Gitsigns prev_hunk", "Prev Hunk" },
       }
-
       wk.register(nnore_noleader, nopts_noleader)
 
       local nopts = {
@@ -58,48 +57,61 @@ return {
         nowait = true,  -- use 'nowait' when creating keymaps
       }
       local nnore = {
+        [':'] = { "<cmd>lua require('telescope.builtin').commands()<CR>", "Commands" },
+
         c = {
           name = "Config",
           r = { "<cmd>source $MYVIMRC<CR>", "Reload" },
-          c = { "<cmd>lua require'telescope.builtin'.find_files({cwd= vim.fn.expand('$HOME/.config') })<CR>", "Browse dotfiles" },
+          c = { "<cmd>lua require'telescope.builtin'.find_files({cwd= vim.fn.expand('$HOME/.config') })<CR>",
+            "Browse dotfiles" },
         },
+
         g = {
           name = "Git",
-          j = { "<cmd>lua require('telescope').extensions.advanced_git_search.diff_branch_file()<cr>", "Search local branches" },
+          j = { "<cmd>lua require('telescope').extensions.advanced_git_search.diff_branch_file()<cr>",
+            "Search local branches" },
           k = { "<cmd>lua require('telescope').extensions.advanced_git_search.search_log_content()<cr>", "Search git log" },
-          l = { "<cmd>lua require('telescope').extensions.advanced_git_search.diff_commit_line()<cr>", "Search line changes" },
-          f = { "<cmd>lua require('telescope').extensions.advanced_git_search.diff_commit_file()<cr>", "Search file changes" },
-          [';'] = { "<cmd>lua require('telescope').extensions.advanced_git_search.search_log_content_file()<cr>", "Search git log" },
+          l = { "<cmd>lua require('telescope').extensions.advanced_git_search.diff_commit_line()<cr>",
+            "Search line changes" },
+          f = { "<cmd>lua require('telescope').extensions.advanced_git_search.diff_commit_file()<cr>",
+            "Search file changes" },
+          [';'] = { "<cmd>lua require('telescope').extensions.advanced_git_search.search_log_content_file()<cr>",
+            "Search git log" },
           a = { "<cmd>lua require('telescope').extensions.advanced_git_search.checkout_reflog()<cr>", "Search git reflog" },
           s = { "<cmd>Gitsigns stage_buffer<cr>", "Stage Buffer" },
           r = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
           p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
-          b = { "<cmd>lua function() gs.blame_line({ full = true }) end", "Blame line" },
+          b = { "<cmd>lua function() gs.blame_line({ full = true }) end <cr>", "Blame line" },
           d = { "<cmd>lua function() gs.diffthis<cr>", "Diff This" },
           m = {
             [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = "<<<<<<<"})<CR>]],
             "Git markers in project" },
         },
-        d = { "<cmd>lua require('neogen').generate()<CR>", "Generate Docs" },
+
         e = {
           name = "Exec",
           r = { "<cmd>!explorer.exe .<CR>", "File explorer project root" },
-          p = { "<cmd>!explorer.exe " .. vim.fn.expand('%:p:h') .. "<CR>", "File explorer current file" },
+          p = { "<cmd>!start %:p:h<CR>", "File explorer current file" },
           t = { "<cmd>!start alacritty.exe <CR>", "Terminal project root" },
           l = { "<cmd>lua dofile(vim.fn.expand('%:p'))<CR>", "current file luajit" },
         },
+
         p = { "<cmd>lua require('functions').copy_file_path()<cr>", "copy full file path" },
+
         a = {
           name = "Format",
           w = { [[<cmd>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><CR>]], "Remove trailing whitespaces" },
           e = { [[<cmd>:g/^\s*$/d<CR>]], "Remove empty lines" },
         },
+
         m = { "<cmd>Glow<CR>", "View Markdown" },
+
         h = {
           name = "Harpoon",
           m = { [[<cmd>lua require("harpoon.mark").add_file()<Cr>]], "Mark" },
           f = { [[<cmd>lua require("harpoon.ui").toggle_quick_menu()<Cr>]], "Menu" },
         },
+
         f = {
           name = "Find",
           u = { "<cmd>Telescope undo<CR>", "Undo list" },
@@ -107,7 +119,7 @@ return {
             [[<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>]],
             "Find files" },
           e = { "<cmd>Telescope file_browser<CR>", "File browser" },
-              [";"] = { "<cmd>Telescope git_files<CR>", "Git Tracked" },
+          [";"] = { "<cmd>Telescope git_files<CR>", "Git Tracked" },
           a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" },
           l = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
           r = { "<cmd>Telescope repo list<CR>", "Repos" },
@@ -121,6 +133,7 @@ return {
           i = { "<cmd>Telescope find_files cwd=~/git/Information<CR>", "Home directory" },
           f = { "<cmd>Telescope file_browser<CR>", "File Browser" },
         },
+
         j = {
           name = "Grep",
           f = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
@@ -131,6 +144,7 @@ return {
           a = { "<cmd>Telescope treesitter<CR>", "Treesitter Symbols" },
           k = { "<cmd>Telescope resume<CR>", "Resume previous state" },
         },
+
         l = {
           name = "LSP",
           i = { "<cmd>Telescope lsp_incoming_calls<CR>", "List incoming calls" },
@@ -153,39 +167,6 @@ return {
 
       wk.register(nnore, nopts)
     end,
-
-    -- config = function()
-    --   require("which-key").setup({
-    --     plugins = {
-    --       marks = true, -- shows a list of your marks on ' and `
-    --       registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-    --       spelling = {
-    --         enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-    --         suggestions = 10, -- how many suggestions should be shown in the list?
-    --       },
-    --       -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-    --       -- No actual key bindings are created
-    --       presets = {
-    --         operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-    --         motions = true, -- adds help for motions
-    --         text_objects = true, -- help for text objects triggered after entering an operator
-    --         windows = true, -- default bindings on <c-w>
-    --         nav = true, -- misc bindings to work with windows
-    --         z = true, -- bindings for folds, spelling and others prefixed with z
-    --         g = true, -- bindings for prefixed with g
-    --       },
-    --     },
-    --     window = {
-    --       border = "none", -- none, single, double, shadow
-    --       position = "bottom", -- bottom, top
-    --     },
-    --     triggers_blacklist = {
-    --       i = { "j", "k", "<c-r>" },
-    --       v = { "j", "k" },
-    --     },
-    --   })
-    -- end
-
   },
 
 }
