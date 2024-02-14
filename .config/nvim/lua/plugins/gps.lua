@@ -3,6 +3,7 @@ return {
   {
     "SmiteshP/nvim-navic",
     requires = "neovim/nvim-lspconfig",
+    event = "BufReadPre",
     config = function()
       require("nvim-navic").setup({
         icons = {

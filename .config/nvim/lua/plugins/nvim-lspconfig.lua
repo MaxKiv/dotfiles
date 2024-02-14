@@ -52,6 +52,10 @@ local servers = {
       [[C:\Users\KIM1DEV\AppData\Local\nvim-data\mason\packages\robotframework-lsp\venv\Scripts\robotframework_ls.exe]],
     },
   },
+  rome = {
+    binary = "rome",
+    root_dir = { 'package.json', 'node_modules', '.git' },
+  },
   pyright = {
     binary = "pyright",
     root_dir = {
@@ -59,9 +63,13 @@ local servers = {
       "pyproject.toml",
       ".git"
     },
-  },
-  jsonls = {
-    binary = "json-lsp",
+    settings = {
+      analysis = {
+        autoSearchPaths = false,
+        diagnosticMode = "workspace",
+        useLibraryCodeForTypes = true
+      }
+    }
   },
   lua_ls = {
     binary = "lua-language-server",
@@ -128,7 +136,7 @@ return {
       -- List servers you want installed and configured
       servers = servers
     },
-    config = function(plugin, opts)
+    config = function(_, opts)
       local on_attach = function(client, bufnr)
         -- Enable completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -184,7 +192,7 @@ return {
     "williamboman/mason.nvim",
     cmd = "Mason",
     -- Make sure all required LSP servers are installed
-    config = function(plugin, opts)
+    config = function(_, opts)
       require("mason").setup(opts)
       local mr = require("mason-registry")
       for _, options in pairs(servers) do

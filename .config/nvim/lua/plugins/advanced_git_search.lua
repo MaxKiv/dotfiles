@@ -6,7 +6,6 @@ return {
     config = function()
       require("telescope").load_extension("advanced_git_search")
     end,
-    lazy = true,
     dependencies = {
       "nvim-telescope/telescope.nvim",
       -- to show diff splits and open commits in browser
