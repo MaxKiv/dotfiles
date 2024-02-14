@@ -10,6 +10,9 @@ function sb {
 function ll {
 	dir @Args
 }
+function gs {
+	git status
+}
 # Utilities
 function f() {
   param($Directory = $null)

@@ -41,6 +41,14 @@ local servers = {
   },
   cmake = {
     binary = "cmake-language-server",
+    settings = {
+      CMake = {
+        filetypes = {
+          "cmake",
+          "CmakeLists.txt",
+        },
+      },
+    },
   },
   bashls = {
     binary = "bash-language-server",

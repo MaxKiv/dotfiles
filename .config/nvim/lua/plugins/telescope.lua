@@ -12,8 +12,11 @@ return {
       "nvim-telescope/telescope-ui-select.nvim",
       "debugloop/telescope-undo.nvim",
       "ThePrimeagen/harpoon",
-      { "nvim-telescope/telescope-fzf-native.nvim",
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build =
+        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+      },
     },
     config = function()
       require("telescope").setup({
@@ -28,7 +31,19 @@ return {
             case_mode = "smart_case", --  "smart_case", "ignore_case" or "respect_case"
           },
           file_browser = {
-            hijack_netrw = true,
+            hijack_netrw = false,
+          },
+          live_grep_args = {
+            auto_quoting = true, -- enable/disable auto-quoting
+            -- define mappings, e.g.
+            mappings = {
+                                 -- extend mappings
+              i = {
+                ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+                ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
+                ["<C-t>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t" }),
+              },
+            },
           },
         }
       })

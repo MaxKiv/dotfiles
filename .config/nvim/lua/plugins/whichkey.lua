@@ -38,9 +38,9 @@ return {
       }
       local nnore_noleader = {
         g = {
-          d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition"},
+          d = {"<cmd>Telescope lsp_definitions<CR>", "Goto Definition"},
           r = {"<cmd>Telescope lsp_references<CR>", "Symbol references"},
-          p = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto implementation"},
+          p = {"<cmd>Telescope lsp_implementations<CR>", "Goto implementation"},
           o = {"<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declaration"},
         },
         K = {"<cmd>lua vim.lsp.buf.hover()<CR>", "Symbol hover"},
