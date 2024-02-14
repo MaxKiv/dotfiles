@@ -7,10 +7,10 @@ opt.wrap = false
 opt.updatetime = 100
 opt.termguicolors = true
 opt.clipboard = "unnamedplus"
-opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undodir = (os.getenv("HOME") or "") .. "/.vim/undodir"
 opt.undofile = true
 opt.timeoutlen = 400 -- time to wait for a mapped sequence to complete (in milliseconds)
-opt.ttimeoutlen = 0 -- Time in milliseconds to wait for a key code sequence to complete
+opt.ttimeoutlen = 0  -- Time in milliseconds to wait for a key code sequence to complete
 opt.showmode = false -- Dont show mode since we have a statusline
 opt.cursorline = true
 opt.grepprg = "rg --vimgrep"
@@ -22,7 +22,7 @@ opt.incsearch = true
 opt.hlsearch = false
 
 -- Scrolling
-opt.scrolloff = 999 -- Cursor is always centered
+opt.scrolloff = 999 -- Cursor is always centered pew pew
 
 -- Gutter
 opt.relativenumber = true

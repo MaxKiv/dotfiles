@@ -44,6 +44,8 @@ return {
           o = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
           j = { "<cmd>diffget<CR>", "Diff Get" },
           f = { "<cmd>diffput><CR>", "Diff Put" },
+          l = { "$", "to line end" },
+          h = { "^", "to line start" },
         },
 
         K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Symbol hover" },
@@ -61,8 +63,8 @@ return {
         ["]w"] = { [[<cmd>lua vim.diagnostic.goto_next({severity = WARN})<cr>]], "Next Warning" },
         ["[w"] = { [[<cmd>lua vim.diagnostic.goto_prev({severity = WARN})<cr>]], "Prev Warning" },
 
-        ["<C-w>|"] = { [[<cmd>vsplit<cr>]], "Prev Warning" },
-        ["<C-w>-"] = { [[<cmd>split<cr>]], "Prev Warning" },
+        ["<C-w>|"] = { [[<cmd>vsplit<cr>]], "open vsplit" },
+        ["<C-w>-"] = { [[<cmd>split<cr>]], "open split" },
 
       }
       wk.register(nnore_noleader, nopts_noleader)
@@ -97,10 +99,10 @@ return {
           S = { "<cmd>Gitsigns stage_buffer<cr>", "Stage Buffer" },
           r = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
           p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
-          b = { "<cmd>lua function() gs.blame_line({ full = true }) end <cr>", "Blame line" },
+          b = { [[<cmd>lua require("gitsigns").blame_line()<cr>]], "Blame line" },
           d = { "<cmd>DiffviewOpen<cr>", "Open Diffview" },
           c = { "<cmd>DiffviewClose<cr>", "Close Diffview" },
-          D = { "<cmd>lua function() gs.diffthis end<cr>", "Diff This" },
+          D = { [[<cmd>lua require("gitsigns").diffthis()<cr>]], "Diff This" },
           m = {
             [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = "<<<<<<<"})<CR>]],
             "Git markers in project" },
@@ -114,7 +116,8 @@ return {
           l = { "<cmd>lua dofile(vim.fn.expand('%:p'))<CR>", "current file luajit" },
         },
 
-        p = { "<cmd>lua require('functions').copy_file_path() print('full path copied to clipboard')<cr>", "copy full file path" },
+        p = { "<cmd>lua require('functions').copy_file_path() print('file path copied')<cr>", "copy file path" },
+        P = { "<cmd>lua require('functions').copy_file_name() print('file name copied')<cr>", "copy file name" },
 
         a = {
           name = "Format",

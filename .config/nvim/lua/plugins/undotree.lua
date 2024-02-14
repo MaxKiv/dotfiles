@@ -12,7 +12,7 @@ return {
         "<leader>u",
         function() vim.cmd("UndotreeToggle") end,
         desc =
-        "Continue"
+        "Show Undo Tree"
       },
     }
   },

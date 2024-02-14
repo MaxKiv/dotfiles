@@ -37,4 +37,8 @@ M.copy_file_path = function()
   vim.fn.setreg('+', vim.fn.expand('%:p'))
 end
 
+M.copy_file_name = function()
+  vim.fn.setreg('+', vim.fn.expand('%:t'))
+end
+
 return M

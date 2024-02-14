@@ -16,4 +16,3 @@ map("n", "<A-k>", "g'{", { desc = "paragraph jump  w/o jumplist" })
 
 -- exit  terminal mode
 vim.cmd([[:tnoremap <Esc> <C-\><C-n>]])
-

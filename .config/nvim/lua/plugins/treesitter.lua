@@ -8,7 +8,10 @@ return {
     opts = {
       -- A list of parser names, or "all"
       ensure_installed = {
-
+        "c",
+        "cpp",
+        "rust",
+        "python",
       },
 
       -- Install languages synchronously (only applied to `ensure_installed`)
@@ -25,13 +28,13 @@ return {
 
       -- Enable incremental selection
       incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-Space>",
-          node_incremental = "<C-Space>",
-          scope_incremental = "<nop>",
-          node_decremental = "<bs>",
-        }
+        -- enable = false,
+        -- keymaps = {
+        --   init_selection = "<C-Space>",
+        --   node_incremental = "<C-Space>",
+        --   scope_incremental = "<nop>",
+        --   node_decremental = "<bs>",
+        -- }
       },
 
       -- Treesitter text objects 🙌
@@ -137,7 +140,7 @@ return {
       local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
       parser_config.robot = {
         install_info = {
-          url = [[C:\Users\KIM1DEV\git\tree-sitter-robot]], -- local path or git repo
+          url = os.getenv("HOME")..[[\git\tree-sitter-robot]], -- local path or git repo
           files = { "src/parser.c" },                       -- note that some parsers also require src/scanner.c or src/scanner.cc
           -- optional entries:
           branch = "main",                                  -- default branch in case of git repo if different from master

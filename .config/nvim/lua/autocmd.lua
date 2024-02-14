@@ -8,7 +8,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Remove trailing whitespace on save
-local TrimWhiteSpaceGrp = api.nvim_create_augroup("TrimWhiteSpaceGrp", { clear = true })
+local TrimWhiteSpaceGrp = api.nvim_create_augroup(
+  "TrimWhiteSpaceGrp", { clear = true })
 api.nvim_create_autocmd("BufWritePre", {
   command = [[:%s/\s\+$//e]],
   group = TrimWhiteSpaceGrp,
