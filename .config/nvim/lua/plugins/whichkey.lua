@@ -128,6 +128,12 @@ return {
           a = { "<cmd>Telescope treesitter<CR>", "Treesitter Symbols" },
           k = { "<cmd>Telescope resume<CR>", "Resume previous state" },
         },
+        g = {
+          name = "Git",
+          f = {
+            [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = "<<<<<<<"})<CR>]],
+            "Git markers in project" },
+        },
         l = {
           name = "LSP",
           i = { "<cmd>Telescope lsp_incoming_calls<CR>", "List incoming calls" },

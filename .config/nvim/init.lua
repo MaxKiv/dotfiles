@@ -1,5 +1,8 @@
 -- Neovim config entry point, looks for modules in ./lua/
 
+-- Neovim internal lua interpreter seems to be 5.1
+table.unpack = table.unpack or unpack -- 5.1 compatibility
+
 -- Load global functions
 -- require("core.globals")
 

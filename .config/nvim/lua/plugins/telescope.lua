@@ -20,6 +20,12 @@ return {
     },
     config = function()
       require("telescope").setup({
+        defaults = {
+          layout_config = {
+            vertical = { width = 0.95 }
+            -- other layout configuration here
+          },
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {}
@@ -37,8 +43,11 @@ return {
             auto_quoting = true, -- enable/disable auto-quoting
             -- define mappings, e.g.
             mappings = {
-                                 -- extend mappings
+              -- extend mappings
               i = {
+                ["<C-h>"] = require("telescope.actions").which_key,
+                ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+                ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
                 ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
                 ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
                 ["<C-t>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t" }),
