@@ -7,7 +7,7 @@ return {
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
-      "nvim-telescope/telescope-dap.nvim",
+      -- "nvim-telescope/telescope-dap.nvim",
       "debugloop/telescope-undo.nvim",
       "ThePrimeagen/harpoon",
       {
@@ -67,7 +67,7 @@ return {
       telescope.load_extension("undo")
       telescope.load_extension("fzf")
       telescope.load_extension("harpoon")
-      telescope.load_extension("dap")
+      -- telescope.load_extension("dap")
 
     end,
   }
