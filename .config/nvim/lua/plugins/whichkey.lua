@@ -136,7 +136,9 @@ return {
           j = {
             [[<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>]],
             "Find files" },
-          [";"] = { "<cmd>Telescope git_files<CR>", "Git Tracked" },
+          [";"] = {
+            [=[<cmd>lua require"telescope.builtin".find_files({find_command = { 'rg', '--files', '--iglob', '!.git', '--iglob', '!*.idx', '--hidden'}, hidden = true, no_ignore=true})<CR>]=],
+            "Hidden files" },
           a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" },
           l = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
           r = { "<cmd>Telescope repo list<CR>", "Repos" },
