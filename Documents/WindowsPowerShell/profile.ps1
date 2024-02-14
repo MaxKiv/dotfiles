@@ -12,6 +12,9 @@ Set-Alias grep findstr
 function dot {
   git --git-dir="$HOME\.dotfiles" --work-tree="$HOME" @Args
 }
+function ds {
+  dot status
+}
 function sb {
   . $profile
 }
@@ -23,6 +26,15 @@ function open {
 }
 function gs {
   git status
+}
+function gau {
+  git add -u
+}
+function grd {
+  & git rebase $Args origin/develop
+}
+function grc {
+  & git rebase --continue
 }
 del alias:gl -Force
 function gl {

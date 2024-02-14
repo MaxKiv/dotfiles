@@ -25,6 +25,7 @@ return {
       }
       local vnore = {
         u = { [[<cmd>'<,'>g/^\(.*\)\n\_.*\(^\1$\)/d<CR>]], "Keep only unique lines" },
+        j = { [[<cmd>lua require("telescope.builtin").grep_string()<CR>]], "Grep visual selection" },
       }
       wk.register(vnore, vopts)
 
@@ -119,6 +120,9 @@ return {
 
         p = { "<cmd>lua require('functions').copy_file_path() print('file path copied')<cr>", "copy file path" },
         P = { "<cmd>lua require('functions').copy_file_name() print('file name copied')<cr>", "copy file name" },
+        ["<C-p>"] = { "<cmd>lua require('functions').copy_file_path_from_root() print('file root path copied')<cr>", "copy file path from root" },
+
+        ["\\"] = { "<cmd>lua require('functions').clipboard_switch_brackets() print('Switched clipboard brackets')<cr>", "Switch cliboard brackets" },
 
         a = {
           name = "Format",

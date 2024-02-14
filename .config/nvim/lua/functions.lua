@@ -1,4 +1,4 @@
-local cmd = vim.cmd
+local cmd = vim.cmdfunct
 local fn = vim.fn
 
 local M = {}
@@ -37,6 +37,20 @@ end
 
 M.copy_file_name = function()
   vim.fn.setreg('+', vim.fn.expand('%:t'))
+end
+
+M.copy_file_path_from_root = function()
+  vim.fn.setreg('+', vim.fn.fnamemodify(vim.fn.expand('%'), ':p:.'))
+end
+
+M.clipboard_switch_brackets = function()
+  local sub, count = string.gsub(vim.fn.getreg('+'), [[\]], [[/]])
+  if(count > 0) then
+    vim.fn.setreg('+', sub)
+  else
+    local sub, _ = string.gsub(vim.fn.getreg('+'), [[/]], [[\]])
+    vim.fn.setreg('+', sub)
+  end
 end
 
 -- TODO this could be cleaner
