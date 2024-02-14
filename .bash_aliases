@@ -75,6 +75,9 @@ alias gs='git status'
 alias gl='git log --oneline --decorate --graph'
 alias glp='git log -p'
 alias gpf='git push --force-with-lease'
+alias gf='git fetch -p -t'
+alias gau='git add -u'
+alias gcam='git commit --amend --no-edit'
 
 # global pushd/popd
 function gpushd() {
