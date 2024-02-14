@@ -3,23 +3,24 @@
 # Remap default C-Space to send ASCII NUL, required to use C-Space as tmux prefix key
 key_bindings:
 - { key: Space, mods: Control, chars: "\x00" }
+- { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
 
 # Change font
-font: 
+font:
     normal:
         family: Hasklug NFM
         style: Regular
 
-    bold: 
-        family: Nimbus Mono
+    bold:
+        family: Hasklug NFM
         style: Bold
-        
-    italic: 
-        family: Nimbus Mono
+
+    italic:
+        family: Hasklug NFM
         style: Italic
 
-    bold_italic: 
-        family: Nimbus Mono
+    bold_italic:
+        family: Hasklug NFM
         style: Bold Italic
 
     size: 11

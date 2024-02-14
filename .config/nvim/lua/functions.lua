@@ -33,4 +33,8 @@ M.toggle_colorcolumn = function()
   end
 end
 
+M.copy_file_path = function()
+  vim.fn.setreg('+', vim.fn.expand('%:p'))
+end
+
 return M

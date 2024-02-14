@@ -37,7 +37,7 @@ return {
       }
       local nnore_noleader = {
         g = {
-          d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition" },
+          d = { "<cmd>Telescope lsp_definitions<CR>", "Goto Definition" },
           r = { "<cmd>Telescope lsp_references<CR>", "Symbol references" },
           p = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto implementation" },
           o = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
@@ -61,7 +61,7 @@ return {
         c = {
           name = "Config",
           r = { "<cmd>source $MYVIMRC<CR>", "Reload" },
-          c = { "<cmd>Telescope find_files cwd=~/.config/<CR>", "Browse dotfiles" },
+          c = { "<cmd>lua require'telescope.builtin'.find_files({cwd= vim.fn.expand('$HOME/.config') })<CR>", "Browse dotfiles" },
         },
         g = {
           name = "Git",
@@ -76,6 +76,9 @@ return {
           p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
           b = { "<cmd>lua function() gs.blame_line({ full = true }) end", "Blame line" },
           d = { "<cmd>lua function() gs.diffthis<cr>", "Diff This" },
+          m = {
+            [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = "<<<<<<<"})<CR>]],
+            "Git markers in project" },
         },
         d = { "<cmd>lua require('neogen').generate()<CR>", "Generate Docs" },
         e = {
@@ -83,15 +86,13 @@ return {
           r = { "<cmd>!explorer.exe .<CR>", "Project root" },
           l = { "<cmd>lua dofile(vim.fn.expand('%:p'))<CR>", "current file luajit" },
         },
-        p = { "<cmd>lua NvimFileLocation.copy_file_location('absolute', true, false)<cr>", "copy full file path" },
+        p = { "<cmd>lua require('functions').copy_file_path()<cr>", "copy full file path" },
         a = {
           name = "Format",
           w = { [[<cmd>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><CR>]], "Remove trailing whitespaces" },
           e = { [[<cmd>:g/^\s*$/d<CR>]], "Remove empty lines" },
         },
         m = { "<cmd>Glow<CR>", "View Markdown" },
-        -- g = { "<cmd>Neogit<CR>", "Neogit"},
-
         h = {
           name = "Harpoon",
           m = { [[<cmd>lua require("harpoon.mark").add_file()<Cr>]], "Mark" },
@@ -150,6 +151,7 @@ return {
 
       wk.register(nnore, nopts)
     end,
+
     -- config = function()
     --   require("which-key").setup({
     --     plugins = {

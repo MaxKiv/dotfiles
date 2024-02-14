@@ -38,17 +38,32 @@ local servers = {
       '--clang-tidy',
       '--enable-config',
     },
+    root_dir = {
+      "compile_commands.json",
+      ".git"
+    },
   },
       ["robotframework_ls"] = {
     binary = "robotframework-lsp",
+    root_dir = {
+      ".git"
+    },
+    cmd = {
+      [[C:\Users\KIM1DEV\AppData\Local\nvim-data\mason\packages\robotframework-lsp\venv\Scripts\robotframework_ls.exe]],
+    },
   },
   pyright = {
     binary = "pyright",
+    root_dir = {
+      "pyrightconfig.json",
+      "pyproject.toml",
+      ".git"
+    },
   },
   jsonls = {
     binary = "json-lsp",
   },
-  lua_ls = {
+  sumneko_lua = {
     binary = "lua-language-server",
     settings = {
       Lua = {
@@ -60,16 +75,16 @@ local servers = {
         }
       },
     },
+    root_dir = {
+      ".git",
+      vim.fn.expand('$HOME/.config'),
+    },
   },
-  cmake = {
-    binary = "cmake-language-server",
-    settings = {
-      CMake = {
-        filetypes = {
-          "cmake",
-          "CmakeLists.txt",
-        },
-      },
+  neocmakelsp = {
+    binary = "neocmakelsp",
+    setup_name = "neocmake",
+    cmd = {
+      [[C:\Users\KIM1DEV\git\neocmakelsp\target\release\neocmakelsp.exe]], "--stdio",
     },
   },
   bashls = {
@@ -103,9 +118,7 @@ return {
         virtual_text = { spacing = 4, prefix = "●" },
         severity_sort = true,
       },
-      -- Automatically format on save
-      autoformat = true,
-      -- List servers you want installed
+      -- List servers you want installed and configured
       servers = servers
     },
     config = function(plugin, opts)
@@ -121,36 +134,22 @@ return {
 
       -- Get cmp capabilities from nvim-cmp
       local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local lspconfig = require('lspconfig')
 
       for lsp, options in pairs(opts.servers) do
-        require('lspconfig')[lsp].setup({
+        -- LSP setup defaults
+        options.setup_name = options.setup_name or lsp
+        options.root_dir = options.root_dir or {'.git'}
+        -- Setup each LSP
+        lspconfig[options.setup_name].setup({
           settings = options.settings,
           on_attach = on_attach,
           flags = lsp_flags,
           capabilities = capabilities,
+          cmd = options.cmd,
+          root_dir = lspconfig.util.root_pattern(table.unpack(options.root_dir))
         })
       end
-
-      -- elseif (lsp == "omnisharp") then
-      --   -- Omnisharp stuff
-      --   local omnisharp_bin = "/home/max/.local/share/nvim/mason/bin/omnisharp"
-      --   local omnisharp_pid = vim.fn.getpid()
-      --   local csharp_lsp_cmd;
-      --   if vim.loop.os_uname().sysname == "Windows_NT" then
-      --     csharp_lsp_cmd = { "dotnet", [[C:\Users\max\AppData\Local\nvim-data\mason\packages\omnisharp\OmniSharp.dll]] };
-      --   else
-      --     csharp_lsp_cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(omnisharp_pid) };
-      --   end
-      --   require("lspconfig").omnisharp.setup({
-      --     cmd = csharp_lsp_cmd,
-      --     enable_roselyn_analyzers = true,
-      --     organize_imports_on_format = true,
-      --     root_pattern = { "*.sln" },
-      --     on_attach = on_attach,
-      --     flags = lsp_flags,
-      --     capabilities = capabilities,
-      --   })
-      -- elseif (lsp == "lemminx") then
 
       -- full lsp logs
       vim.lsp.set_log_level("WARN")
@@ -162,7 +161,6 @@ return {
         Hint = " ",
         Info = " "
       }
-
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })

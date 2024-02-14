@@ -15,11 +15,20 @@ return {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build =
-        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+          'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
       },
     },
     config = function()
       require("telescope").setup({
+        defaults = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = vim.o.lines,
+            width = vim.o.columns,
+            prompt_position = "bottom",
+            preview_height = 0.5,
+          },
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {}
@@ -37,8 +46,11 @@ return {
             auto_quoting = true, -- enable/disable auto-quoting
             -- define mappings, e.g.
             mappings = {
-                                 -- extend mappings
+              -- extend mappings
               i = {
+                ["<C-h>"] = require("telescope.actions").which_key,
+                ["<C-Down>"] = require("telescope.actions").cycle_history_next,
+                ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
                 ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
                 ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
                 ["<C-t>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t" }),
