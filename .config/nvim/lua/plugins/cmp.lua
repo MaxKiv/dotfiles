@@ -11,6 +11,7 @@ return {
   { "hrsh7th/cmp-path" },
   {
     "hrsh7th/nvim-cmp",
+
     config = function()
       local cmp = require("cmp")
       local lspkind = require("lspkind")

@@ -1,7 +1,7 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    lazy = false,
+    lazy = true,
     cmd = "Telescope",
     version = false, -- telescope did only one release, so use HEAD for now
     dependencies = {
@@ -15,11 +15,14 @@ return {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build =
-          'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
       },
     },
     config = function()
-      require("telescope").setup({
+      local telescope = require("telescope")
+      local trouble = require("trouble.providers.telescope")
+
+      telescope.setup({
         defaults = {
           layout_strategy = 'vertical',
           layout_config = {
@@ -45,25 +48,24 @@ return {
             mappings = {
               -- extend mappings
               i = {
-                ["<C-h>"] = require("telescope.actions").which_key,
-                ["<C-Down>"] = require("telescope.actions").cycle_history_next,
-                ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
+                ["<C-h>"] = "which_key",
                 ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
                 ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
                 ["<C-t>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t" }),
+                ["<c-x>"] = trouble.open_with_trouble,
               },
+              n = { ["<c-x>"] = trouble.open_with_trouble },
             },
           },
         }
       })
-      require("telescope").load_extension("repo")
-      require("telescope").load_extension("ui-select")
-      require("telescope").load_extension("undo")
-      require("telescope").load_extension("fzf")
-      -- require("telescope").load_extension("refactoring")
-      require("telescope").load_extension("harpoon")
-      -- require('telescope').load_extension('dap')
-      -- require("telescope").load_extension("ui-select")
+
+      telescope.load_extension("repo")
+      telescope.load_extension("ui-select")
+      telescope.load_extension("undo")
+      telescope.load_extension("fzf")
+      telescope.load_extension("harpoon")
+
     end,
   }
 }

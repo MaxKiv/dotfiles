@@ -10,6 +10,8 @@ return {
         v = { "j", "k" },
       },
     },
+    lazy = true,
+
     config = function(_, opts)
       local wk = require("which-key")
       wk.setup(opts)
@@ -121,7 +123,8 @@ return {
             "Toggle logpoint" },
           -- g = { [[<cmd>lua require("dap").goto_()<CR>]], "Goto" },
           s = { [[<cmd>lua require('dap.ui.widgets').centered_float(require('dap.ui.widgets').scopes)<CR>]], "Scopes" },
-          S = { [[<cmd>lua require('dap.ui.widgets').centered_float(require('dap.ui.widgets').frames)<CR>]], "Stack frames" },
+          S = { [[<cmd>lua require('dap.ui.widgets').centered_float(require('dap.ui.widgets').frames)<CR>]],
+            "Stack frames" },
           t = { [[<cmd>lua require('dap.ui.widgets').centered_float(require('dap.ui.widgets').threads)<CR>]], "Threads" },
         },
 
@@ -184,6 +187,14 @@ return {
           -- fr = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Formate range" },
           h = { "<cmd>ClangdSwitchSourceHeader<CR>", "Source/Header" }, -- clangd switch to Header...
         },
+
+        x = {
+          x = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
+          q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+          w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
+          d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
+        },
+
       }
 
       wk.register(nnore, nopts)
