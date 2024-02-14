@@ -3,8 +3,8 @@ local lspconfig_filename = "nvim_lspconfig.lua"
 
 -- Default list of language servers and their options, optionally overwritten
 -- by a file with the above name in the cwd
----@class lsp_servers_type
-local servers = {
+---@class lspconfig_t
+local lspconfig = {
   -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   ["rust_analyzer"] = {
     -- NOTE: required Name of LSP binary
@@ -35,9 +35,9 @@ local servers = {
   clangd = {
     binary = "clangd",
     cmd = {
-      -- 'clangd',
-      '/home/max/Downloads/esp-clang/bin/clangd', -- for ESP
-      '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-*',
+      'clangd',
+      -- '/home/max/Downloads/esp-clang/bin/clangd', -- for ESP
+      -- '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-*',
       -- '--query-driver=C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4 arm 8.50.9/arm/bin/iccarm.exe',
       '--background-index',
       '--clang-tidy',
@@ -113,17 +113,51 @@ local servers = {
   },
 }
 
---- @param lsp_servers lsp_servers_type
-local function project_local_overwrite_lsp_servers(lsp_servers)
-  local success, local_lspconfig = pcall(dofile, vim.fn.fnamemodify(vim.fn.getcwd(), ":p") .. lspconfig_filename)
+-- Build up a local lspconfig list from cwd -> home
+--- @param lspconfig lspconfig_t
+--- @param dir_list List List of dirs to find nvim_lspconfig.lua in
+--- @return lspconfig_t[]
+local function build_project_local_lspconfig(lspconfig, dir_list)
+
+  for i, dir in ipairs(dir_list) do
+  local success, local_lspconfig = pcall(dofile, dir .. lspconfig_filename)
   if success then
-    print("overwriting lspconfig using: " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p") .. lspconfig_filename)
-    -- overwrite defaults with local config
     for key, value in pairs(local_lspconfig) do
-      lsp_servers[key] = value
+      lspconfig[key] = value
     end
   end
-  return lsp_servers
+  end
+
+  return lspconfig
+end
+
+--- Returns a list of dirs from HOME up to dir
+--- @param dir string directory to end at
+local function list_dirs_to_cwd(dir)
+  local home = os.getenv("HOME") .. "/"
+  local newdir = string.gsub(dir, home, "") or ""
+  local out = {}
+  table.insert(out, home)
+  for w in string.gmatch(newdir, ".-%/") do
+    home = home .. w
+    table.insert(out, home)
+  end
+  return out
+end
+
+--- @param lsp_config lspconfig_t
+--- @return lspconfig_t
+local function project_local_overwrite_lsp_servers(lsp_config)
+  ---@type lspconfig_t[]
+  local local_lspconfig = {}
+  local dir_list = list_dirs_to_cwd(vim.fn.fnamemodify(vim.fn.getcwd(), ":p"))
+  local lspconfig_list = build_project_local_lspconfig(local_lspconfig, dir_list)
+
+  for key, value in pairs(lspconfig_list) do
+    lspconfig[key] = value
+  end
+
+  return lsp_config
 end
 
 return {
@@ -150,9 +184,8 @@ return {
         virtual_text = { spacing = 4, prefix = "●" },
         severity_sort = true,
       },
-      -- List of servers you want installed and configured
-      servers = project_local_overwrite_lsp_servers(servers)
-      -- servers = servers
+      -- List of LSP servers you want installed and configured
+      servers = project_local_overwrite_lsp_servers(lspconfig)
     },
     config = function(_, opts)
       local on_attach = function(client, bufnr)
@@ -213,7 +246,7 @@ return {
     config = function(_, opts)
       require("mason").setup(opts)
       local mr = require("mason-registry")
-      for _, options in pairs(servers) do
+      for _, options in pairs(lspconfig) do
         local p = mr.get_package(options.binary)
         if not p:is_installed() then
           p:install()
