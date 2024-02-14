@@ -18,6 +18,7 @@ opt.list = true -- Show some invisible characters (tabs...
 
 -- Searching
 opt.smartcase = true
+opt.ignorecase = true
 opt.incsearch = true
 opt.hlsearch = false
 

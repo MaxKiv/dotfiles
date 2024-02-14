@@ -42,8 +42,6 @@ return {
           r = { "<cmd>Telescope lsp_references<CR>", "Symbol references" },
           p = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto implementation" },
           o = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
-          j = { "<cmd>diffget<CR>", "Diff Get" },
-          f = { "<cmd>diffput<CR>", "Diff Put" },
           l = { "$", "to line end" },
           h = { "^", "to line start" },
         },
