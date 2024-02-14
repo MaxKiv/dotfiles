@@ -28,6 +28,23 @@ return {
       }
       wk.register(vnore, vopts)
 
+      local nopts_noleader = {
+        mode = "n", -- Normal mode
+        prefix = "",
+        buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+        silent = true, -- use 'silent' when creating keymaps
+        noremap = true, -- use 'noremap' when creating keymaps
+        nowait = true, -- use 'nowait' when creating keymaps
+      }
+      local nnore_noleader = {
+        g = {
+          d = {"<cmd>lua vim.lsp.buf.definition() <CR>", "Goto Definition"},
+          r = {"<cmd>Telescope lsp_references<CR>", "Symbol references"},
+        },
+      }
+
+      wk.register(nnore_noleader, nopts_noleader)
+
       local nopts = {
         mode = "n", -- Normal mode
         prefix = "<leader>",
