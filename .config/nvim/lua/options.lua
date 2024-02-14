@@ -25,6 +25,26 @@ opt.hlsearch = false
 -- Scrolling
 opt.scrolloff = 999 -- Cursor is always centered pew pew
 
+-- Set window title to current file
+opt.title = true
+
+-- Text behaviour (dinhmai74 dotfiles)
+-- o.formatoptions = o.formatoptions
+--                    + 't'    -- auto-wrap text using textwidth
+--                    + 'c'    -- auto-wrap comments using textwidth
+--                    + 'r'    -- auto insert comment leader on pressing enter
+--                    - 'o'    -- don't insert comment leader on pressing o
+--                    + 'q'    -- format comments with gq
+--                    - 'a'    -- don't autoformat the paragraphs (use some formatter instead)
+--                    + 'n'    -- autoformat numbered list
+--                    - '2'    -- I am a programmer and not a writer
+--                    + 'j'    -- Join comments smartly
+-- See :help vim.opt
+opt.formatoptions = 'tcrqnj'
+-- opt.formatoptions:append { "t", "c", "r", "q", "n", "j" }
+-- opt.formatoptions:remove { "o", "a", "2"}
+opt.joinspaces = false
+
 -- Gutter
 opt.relativenumber = true
 opt.nu = true

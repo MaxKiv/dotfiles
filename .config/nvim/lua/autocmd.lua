@@ -15,8 +15,11 @@ api.nvim_create_autocmd("BufWritePre", {
   group = TrimWhiteSpaceGrp,
 })
 
--- No auto comment
-vim.api.nvim_exec([[autocmd BufNewFile,BufReadPost * setlocal formatoptions-=o]], false)
+-- Reset formatoptions after opening a buffer, make sure no auto comment on 'o'
+api.nvim_create_autocmd(
+  { "BufReadPost", "BufEnter" },
+  { command = [[set formatoptions=tcrqnj]] }
+)
 
 -- go to last loc when opening a buffer
 api.nvim_create_autocmd(
