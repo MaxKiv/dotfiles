@@ -7,6 +7,11 @@
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzySetLocation
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 
+# Setup Zoxide
+if (Get-Command -Name "zoxide" -ErrorAction SilentlyContinue) {
+    Invoke-Expression (& { (zoxide init powershell | Out-String) })
+}
+
 # upgrade the windows experience ...
 Set-Alias grep findstr
 function dot {
@@ -58,6 +63,29 @@ function gca() { & git cherry-pick $Args }
 function gcpg($grep) {
   & git cherry-pick $(git rev-list --reverse --grep $grep develop..HEAD)
 }
+
+function gsw {
+    $branchList = @() # Initialize an array to store both local and remote branches
+
+    # Use `git branch` to list local branches and add them to the array
+    $localBranches = git branch | ForEach-Object { $_.Trim() }
+    $branchList += $localBranches
+
+    # Use `git for-each-ref` to list remote branches and add them to the array
+    $remoteBranches = git for-each-ref --format="%(refname:short)" "refs/remotes/origin/" | ForEach-Object { $_.Trim() }
+    $branchList += $remoteBranches
+
+    # Use `fzf` to interactively select a branch from the combined list
+    $selectedBranch = $branchList | fzf --ansi --preview 'git show --color=always {1}' | ForEach-Object { $_.Trim() }
+
+    if (-not [string]::IsNullOrEmpty($selectedBranch)) {
+        # Use `git switch` to switch to the selected branch
+        git switch $selectedBranch
+    } else {
+        Write-Host "No branch selected."
+    }
+}
+
 
 # I cant live without this
 Set-PSReadLineOption -EditMode Emacs
