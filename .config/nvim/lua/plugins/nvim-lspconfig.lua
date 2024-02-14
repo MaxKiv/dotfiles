@@ -42,6 +42,9 @@ local lspconfig = {
       '--background-index',
       '--clang-tidy',
       '--enable-config',
+      '-j=4', -- 4 cores
+      '--pch-storage=memory',
+      "--inlay-hints=true",
     },
     root_dir = {
       ".git"
@@ -68,21 +71,6 @@ local lspconfig = {
       ".git"
     },
   },
-  -- pyright = {
-  --   binary = "pyright",
-  --   root_dir = {
-  --     "pyrightconfig.json",
-  --     "pyproject.toml",
-  --     ".git"
-  --   },
-  --   settings = {
-  --     analysis = {
-  --       autoSearchPaths = false,
-  --       diagnosticMode = "workspace",
-  --       useLibraryCodeForTypes = false
-  --     }
-  --   }
-  -- },
   lua_ls = {
     binary = "lua-language-server",
     settings = {
