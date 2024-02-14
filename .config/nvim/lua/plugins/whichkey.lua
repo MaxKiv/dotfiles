@@ -48,6 +48,9 @@ return {
 
         K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Symbol hover" },
 
+        ["<C-j>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
+        ["<C-k>"] = { "<cmd>tabnext<CR>", "Next Tab" },
+
         ["]h"] = { "<cmd>Gitsigns next_hunk<CR>", "Next Hunk" },
         ["[h"] = { "<cmd>Gitsigns prev_hunk<CR>", "Prev Hunk" },
 
@@ -90,11 +93,14 @@ return {
           [';'] = { "<cmd>lua require('telescope').extensions.advanced_git_search.search_log_content_file()<cr>",
             "Search git log" },
           a = { "<cmd>lua require('telescope').extensions.advanced_git_search.checkout_reflog()<cr>", "Search git reflog" },
-          s = { "<cmd>Gitsigns stage_buffer<cr>", "Stage Buffer" },
+          s = { "<cmd>Neogit<cr>", "Neogit" },
+          S = { "<cmd>Gitsigns stage_buffer<cr>", "Stage Buffer" },
           r = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
           p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
           b = { "<cmd>lua function() gs.blame_line({ full = true }) end <cr>", "Blame line" },
-          d = { "<cmd>lua function() gs.diffthis<cr>", "Diff This" },
+          d = { "<cmd>DiffviewOpen<cr>", "Open Diffview" },
+          c = { "<cmd>DiffviewClose<cr>", "Close Diffview" },
+          D = { "<cmd>lua function() gs.diffthis end<cr>", "Diff This" },
           m = {
             [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = "<<<<<<<"})<CR>]],
             "Git markers in project" },
@@ -104,7 +110,7 @@ return {
           name = "Exec",
           r = { "<cmd>!explorer.exe .<CR>", "File explorer project root" },
           p = { "<cmd>!start %:p:h<CR>", "File explorer current file" },
-          t = { "<cmd>!start alacritty.exe <CR>", "Terminal project root" },
+          t = { "<cmd>!start alacritty.exe<CR>", "Terminal project root" },
           l = { "<cmd>lua dofile(vim.fn.expand('%:p'))<CR>", "current file luajit" },
         },
 
