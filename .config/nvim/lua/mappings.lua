@@ -14,3 +14,6 @@ map("n", "<S-l>", ":bnext<CR>", { desc = "next buffer" })
 map("n", "<A-j>", "g'}", { desc = "paragraph jump  w/o jumplist" })
 map("n", "<A-k>", "g'{", { desc = "paragraph jump  w/o jumplist" })
 
+-- exit  terminal mode
+vim.cmd([[:tnoremap <Esc> <C-\><C-n>]])
+
