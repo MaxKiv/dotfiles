@@ -11,6 +11,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 local TrimWhiteSpaceGrp = api.nvim_create_augroup(
   "TrimWhiteSpaceGrp", { clear = true })
 api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "!*.md" },
   command = [[:%s/\s\+$//e]],
   group = TrimWhiteSpaceGrp,
 })
