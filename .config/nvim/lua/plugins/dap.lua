@@ -113,8 +113,8 @@ return {
               },
             },
             floating = {
-              max_height = nil, -- These can be integers or a float between 0 and 1.
-              max_width = nil, -- Floats will be treated as percentage of your screen.
+              max_height = nil,  -- These can be integers or a float between 0 and 1.
+              max_width = nil,   -- Floats will be treated as percentage of your screen.
               border = "single", -- Border style. Can be "single", "double" or "rounded"
               mappings = {
                 close = { "q", "<Esc>" },
@@ -143,7 +143,7 @@ return {
         "folke/which-key.nvim",
         opts = {
           defaults = {
-            ["<leader>d"] = { name = "+debug" },
+            ["<leader>d"] = { desc = "+debug" },
           },
         },
       },
@@ -155,26 +155,141 @@ return {
     },
 
     keys = {
-      { "<leader>da", function() require("dap").continue() end, desc = "Continue" },
-      { "<leader>dd", function() require("dap").terminate() end, desc = "Terminate" },
-      { "<leader>dB", function() require("dap").toggle_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
-      { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle Breakpoint" },
-      { "<leader>dL", function() require("dap").toggle_breakpoint(nil, nil, vim.fn.input({ prompt = 'Log point message: '})) end, desc = "Toggle Logpoint" },
-      { "<leader>dc", function() require("dap").run_to_cursor() end, desc = "Run to Cursor" },
-      { "<leader>dg", function() require("dap").goto_() end, desc = "Go to line (no execute)" },
-      { "<leader>di", function() require("dap").step_into() end, desc = "Step Into" },
-      -- { "<leader>dj", function() require("dap").down() end, desc = "Down" },
-      -- { "<leader>dk", function() require("dap").up() end, desc = "Up" },
-      { "<leader>dl", function() require("dap").run_last() end, desc = "Run Last" },
-      { "<leader>dk", function() require("dap").step_out() end, desc = "Step Out" },
-      { "<leader>dj", function() require("dap").step_over() end, desc = "Step Over" },
-      { "<leader>dp", function() require("dap").pause() end, desc = "Pause" },
-      { "<leader>dr", function() require("dap").repl.toggle() end, desc = "Toggle REPL" },
-      { "<leader>dt", function() require("dap").restart_frame() end, desc = "Restart frame" },
-      { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
-      { "<leader>dS", function() require("dap.ui.widgets").centered_float(require('dap.ui.widgets').scopes) end, desc = "Scopes" },
-      { "<leader>ds", function() require("dap.ui.widgets").centered_float(require('dap.ui.widgets').frames) end, desc = "Frames" },
-      { "<leader>dt", function() require("dap.ui.widgets").centered_float(require('dap.ui.widgets').threads) end, desc = "Threads" },
+      {
+        "<leader>da",
+        function() require("dap").continue() end,
+        desc =
+        "Continue"
+      },
+      {
+        "<leader>df",
+        function() require("dap").terminate() end,
+        desc =
+        "Terminate"
+      },
+      {
+        "<leader>dB",
+        function() require("dap").toggle_breakpoint(vim.fn.input('Breakpoint condition: ')) end,
+        desc =
+        "Conditional Breakpoint"
+      },
+      {
+        "<leader>db",
+        function() require("dap").toggle_breakpoint() end,
+        desc =
+        "Toggle Breakpoint"
+      },
+      {
+        "<leader>dL",
+        function()
+          require("dap").toggle_breakpoint(nil, nil,
+            vim.fn.input({ prompt = 'Log point message: ' }))
+        end,
+        desc =
+        "Toggle Logpoint"
+      },
+      {
+        "<leader>dc",
+        function() require("dap").run_to_cursor() end,
+        desc =
+        "Run to Cursor"
+      },
+      {
+        "<leader>dg",
+        function() require("dap").goto_() end,
+        desc =
+        "Go to line (no execute)"
+      },
+      {
+        "<leader>di",
+        function() require("dap").step_into() end,
+        desc =
+        "Step Into"
+      },
+      {
+        "<leader>dd",
+        function() require("dap").down() end,
+        desc =
+        "Down"
+      },
+      {
+        "<leader>du",
+        function() require("dap").up() end,
+        desc =
+        "Up"
+      },
+      {
+        "<leader>dl",
+        function() require("dap").run_last() end,
+        desc =
+        "Run Last"
+      },
+      {
+        "<leader>dk",
+        function() require("dap").step_out() end,
+        desc =
+        "Step Out"
+      },
+      {
+        "<leader>dj",
+        function() require("dap").step_over() end,
+        desc =
+        "Step Over"
+      },
+      {
+        "<leader>dp",
+        function() require("dap").pause() end,
+        desc =
+        "Pause"
+      },
+      {
+        "<leader>dr",
+        function() require("dap").repl.toggle() end,
+        desc =
+        "Toggle REPL"
+      },
+      {
+        "<leader>dt",
+        function() require("dap").restart_frame() end,
+        desc =
+        "Restart frame"
+      },
+      {
+        "<leader>dw",
+        function() require("dap.ui.widgets").hover() end,
+        desc =
+        "Widgets"
+      },
+      {
+        "<leader>dS",
+        function() require("dap.ui.widgets").centered_float(require('dap.ui.widgets').scopes) end,
+        desc =
+        "Scopes"
+      },
+      {
+        "<leader>ds",
+        function() require("dap.ui.widgets").centered_float(require('dap.ui.widgets').frames) end,
+        desc =
+        "Frames"
+      },
+      {
+        "<leader>dt",
+        function() require("dap.ui.widgets").centered_float(require('dap.ui.widgets').threads) end,
+        desc =
+        "Threads"
+      },
+      {
+        "<leader>ff",
+        function() require("telescope").extensions.dap.frames() end,
+        desc =
+        "DAP frames"
+      },
+      {
+        "<leader>fb",
+        function() require("telescope").extensions.dap.list_breakpoints() end,
+        desc =
+        "DAP breakpoints"
+      },
     },
 
     config = function(_, opts)
@@ -291,8 +406,23 @@ return {
           args = {},
         },
       }
-    end,
 
+      vim.api.nvim_set_hl(0, "blue", { fg = "#3d59a1" })
+      vim.api.nvim_set_hl(0, "green", { fg = "#9ece6a" })
+      vim.api.nvim_set_hl(0, "yellow", { fg = "#FFFF00" })
+      vim.api.nvim_set_hl(0, "orange", { fg = "#f09000" })
+
+      vim.fn.sign_define('DapBreakpoint',
+        { text ='', texthl = 'blue', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+      vim.fn.sign_define('DapBreakpointCondition',
+        { text = 'ﳁ', texthl = 'blue', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+      vim.fn.sign_define('DapBreakpointRejected',
+        { text = '', texthl = 'orange', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+      vim.fn.sign_define('DapStopped',
+        { text = '', texthl = 'green', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+      vim.fn.sign_define('DapLogPoint',
+        { text = '', texthl = 'yellow', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+    end,
 
   },
 

@@ -1,7 +1,7 @@
 -- List of language servers and their options
 local servers = {
   -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-      ["rust_analyzer"] = {
+  ["rust_analyzer"] = {
     -- NOTE: required Name of LSP binary
     binary = "rust-analyzer",
     settings = {
@@ -43,7 +43,7 @@ local servers = {
       ".git"
     },
   },
-      ["robotframework_ls"] = {
+  ["robotframework_ls"] = {
     binary = "robotframework-lsp",
     root_dir = {
       ".git"
@@ -75,10 +75,8 @@ local servers = {
         }
       },
     },
-    root_dir = {
-      vim.fn.expand('$HOME/.config'),
-      ".git",
-    },
+    root_dir = { ".config/nvim", ".luarc.json", ".luarc.jsonc", ".luacheckrc", ".stylua.toml",
+      "stylua.toml", "selene.toml", "selene.yml", ".git" },
   },
   neocmakelsp = {
     binary = "neocmakelsp",
@@ -111,6 +109,14 @@ return {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
+      {
+        -- Automatically configures lua-language-server for your Neovim config,
+        -- Neovim runtime and plugin directories
+        "folke/neodev.nvim",
+        config = function()
+          require("neodev").setup({})
+        end
+      }
     },
     opts = {
       diagnostics = {
@@ -145,7 +151,7 @@ return {
       for lsp, options in pairs(opts.servers) do
         -- LSP setup defaults
         options.setup_name = options.setup_name or lsp
-        options.root_dir = options.root_dir or {'.git'}
+        options.root_dir = options.root_dir or { '.git' }
         -- Setup each LSP
         lspconfig[options.setup_name].setup({
           settings = options.settings,

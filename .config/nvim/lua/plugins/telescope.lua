@@ -1,15 +1,13 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    lazy = true,
-    cmd = "Telescope",
-    version = false, -- telescope did only one release, so use HEAD for now
     dependencies = {
       "nvim-lua/plenary.nvim",
       "cljoly/telescope-repo.nvim",
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
       "nvim-telescope/telescope-ui-select.nvim",
+      "nvim-telescope/telescope-dap.nvim",
       "debugloop/telescope-undo.nvim",
       "ThePrimeagen/harpoon",
       {
@@ -23,15 +21,19 @@ return {
       local trouble = require("trouble.providers.telescope")
 
       telescope.setup({
+
+        -- :h telescope.layout
         defaults = {
-          layout_strategy = 'vertical',
+          layout_strategy = 'flex',
           layout_config = {
             height = vim.o.lines,
             width = vim.o.columns,
+            -- preview_height = 0.2,
             prompt_position = "bottom",
-            preview_height = 0.5,
           },
+
         },
+
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown {}
@@ -65,6 +67,7 @@ return {
       telescope.load_extension("undo")
       telescope.load_extension("fzf")
       telescope.load_extension("harpoon")
+      telescope.load_extension("dap")
 
     end,
   }

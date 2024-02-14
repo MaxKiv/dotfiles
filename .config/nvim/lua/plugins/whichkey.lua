@@ -10,7 +10,6 @@ return {
         v = { "j", "k" },
       },
     },
-    lazy = true,
 
     config = function(_, opts)
       local wk = require("which-key")
@@ -32,7 +31,7 @@ return {
       local nopts_noleader = {
         mode = "n",     -- Normal mode
         prefix = "",
-        buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+        buffer = nil,   -- global mappings. specify a buffer number for buffer local mappings
         silent = true,  -- use 'silent' when creating keymaps
         noremap = true, -- use 'noremap' when creating keymaps
         nowait = true,  -- use 'nowait' when creating keymaps
@@ -103,7 +102,6 @@ return {
 
         p = { "<cmd>lua require('functions').copy_file_path()<cr>", "copy full file path" },
 
-
         a = {
           name = "Format",
           w = { [[<cmd>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><CR>]], "Remove trailing whitespaces" },
@@ -123,7 +121,7 @@ return {
           a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" },
           l = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
           r = { "<cmd>Telescope repo list<CR>", "Repos" },
-          b = { "<cmd>Telescope buffers<CR>", "Buffers" },
+          B = { "<cmd>Telescope buffers<CR>", "Buffers" },
           d = { "<cmd>Telescope help_tags<CR>", "Help tags" },
           m = { "<cmd>Telescope marks<CR>", "Marks" },
           p = { "<cmd>Telescope registers<CR>", "Registers" },
@@ -131,7 +129,6 @@ return {
           k = { "<cmd>Telescope resume<CR>", "Resume previous state" },
           t = { "<cmd>Telescope find_files cwd=~/.todo<CR>", "Todos" },
           i = { "<cmd>Telescope find_files cwd=~/git/Information<CR>", "Home directory" },
-          f = { "<cmd>Telescope file_browser<CR>", "File Browser" },
         },
 
         j = {

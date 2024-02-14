@@ -1,6 +1,15 @@
 return {
   {
     'krady21/compiler-explorer.nvim',
-    event = "BufReadPre",
+    cmd = {
+      "CEOpenWebsite",
+      "CELoadExample",
+      "CEDeleteCache",
+      "CECompileLive",
+      "CEAddLibrary",
+      "CECompile",
+      "CEFormat",
+    },
+
   },
 }

@@ -11,7 +11,8 @@ return {
   { "hrsh7th/cmp-path" },
   {
     "hrsh7th/nvim-cmp",
-
+    version = false,
+    event = "InsertEnter",
     config = function()
       local cmp = require("cmp")
       local lspkind = require("lspkind")
@@ -29,9 +30,15 @@ return {
         mapping = cmp.mapping.preset.insert({
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-j>'] = cmp.mapping.confirm({ select = true }),
+          ["<C-j>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          }),
+          ["<CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          }),
           ['<C-e>'] = cmp.mapping.abort(),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
         completion = {
           keyword_length = 1,
@@ -59,16 +66,19 @@ return {
           },
         },
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "treesitter" },
-          { name = "vsnip" }, -- For vsnip users.
-          { name = "spell" },
-          { name = "buffer" },
-          { name = "path" },
-        },
-          { { name = "buffer" },
-          })
+            { name = "nvim_lsp" },
+            { name = "treesitter" },
+            { name = "vsnip" }, -- For vsnip users.
+            { name = "spell" },
+            { name = "buffer" },
+            { name = "path" }, },
+          { { name = "buffer" }, }),
 
+        experimental = {
+          ghost_text = {
+            hl_group = "Comment",
+          },
+        },
       })
 
       -- Set configuration for specific filetype.
