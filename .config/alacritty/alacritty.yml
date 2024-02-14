@@ -34,7 +34,7 @@ font:
     size: 11
 
 window:
-    startup_mode: Fullscreen
+    startup_mode: Maximized
 
 # Windows size hack
 env:
