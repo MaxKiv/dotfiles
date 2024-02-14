@@ -3,7 +3,6 @@ local fn = vim.fn
 
 local M = {}
 
--- toggle quickfixlist
 M.toggle_qf = function()
   local windows = fn.getwininfo()
   local qf_exists = false
@@ -21,7 +20,6 @@ M.toggle_qf = function()
   end
 end
 
--- toggle colorcolumn
 M.toggle_colorcolumn = function()
   local value = vim.api.nvim_get_option_value("colorcolumn", {})
   if value == "" then
@@ -39,6 +37,21 @@ end
 
 M.copy_file_name = function()
   vim.fn.setreg('+', vim.fn.expand('%:t'))
+end
+
+-- TODO this could be cleaner
+M.diff_is_toggled = false
+M.toggle_diff_splits = function ()
+  local neo_tree_loaded, _ = pcall(require, 'neo-tree')
+  if M.diff_is_toggled then
+    if neo_tree_loaded then
+      vim.cmd([[NeoTreeClose]])
+    end
+    vim.cmd([[windo diffthis]])
+  else
+    vim.cmd([[diffoff!]])
+  end
+  M.diff_is_toggled = not M.diff_is_toggled
 end
 
 return M
