@@ -44,7 +44,6 @@ local lspconfig = {
       '--enable-config',
     },
     root_dir = {
-      "compile_commands.json",
       ".git"
     },
   },
@@ -94,9 +93,9 @@ local lspconfig = {
   neocmakelsp = {
     binary = "neocmakelsp",
     setup_name = "neocmake",
-    cmd = {
-      [[C:\Users\KIM1DEV\git\neocmakelsp\target\release\neocmakelsp.exe]], "--stdio",
-    },
+    -- cmd = {
+    --   [[C:\Users\KIM1DEV\git\neocmakelsp\target\release\neocmakelsp.exe]], "--stdio",
+    -- },
   },
   bashls = {
     binary = "bash-language-server",

@@ -8,6 +8,7 @@ return {
   },
   keys = {
     { [[\]], "<cmd>NeoTreeRevealToggle<cr>", "Reveal Neotree" },
+    { [[<CR>]], "<cmd>NeoTreeFocus<cr>", "Focus Neotree" },
   },
   config = function()
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])

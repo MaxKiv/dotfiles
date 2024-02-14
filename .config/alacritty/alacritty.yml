@@ -10,19 +10,19 @@ key_bindings:
 # Change font
 font:
     normal:
-        family: Hasklug NFM
+        family: Hasklug Nerd Font Mono
         style: Regular
 
     bold:
-        family: Hasklug NFM
+        family: Hasklug Nerd Font Mono
         style: Bold
 
     italic:
-        family: Hasklug NFM
+        family: Hasklug Nerd Font Mono
         style: Italic
 
     bold_italic:
-        family: Hasklug NFM
+        family: Hasklug Nerd Font Mono
         style: Bold Italic
 
     size: 11

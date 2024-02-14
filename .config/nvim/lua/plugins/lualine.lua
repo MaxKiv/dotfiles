@@ -18,7 +18,11 @@ return {
           always_divide_middle = true,
         },
         sections = {
-          lualine_a = { "mode" },
+          lualine_a = {
+            function ()
+              return vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+            end
+          },
           lualine_b = { "branch", "diff", "diagnostics" },
           lualine_c = {
             { "filename" },
