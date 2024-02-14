@@ -67,7 +67,7 @@ local servers = {
       analysis = {
         autoSearchPaths = false,
         diagnosticMode = "workspace",
-        useLibraryCodeForTypes = true
+        useLibraryCodeForTypes = false
       }
     }
   },

@@ -1,5 +1,9 @@
+# corporate proxy settings
+[system.net.webrequest]::defaultwebproxy = new-object system.net.webproxy('rb-proxy-de.bosch.com:8080')
+[system.net.webrequest]::defaultwebproxy.credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
+[system.net.webrequest]::defaultwebproxy.BypassProxyOnLocal = $true
 
-# Fzf integration
+# Fzf integration doesnt work ...
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzySetLocation
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
 
@@ -14,19 +18,28 @@ function sb {
 function ll {
   dir @Args
 }
+function open {
+  start @Args
+}
 function gs {
   git status
 }
+del alias:gl -Force
 function gl {
-  git log
+  & git log --oneline --decorate --graph $Args
 }
 function glp {
   git log -p
 }
-function gc($msg) {
-  git commit -m "$msg"
+del alias:gc -Force
+function gc() {
+  & git commit -m $Args
+}
+function gca() { & git commit -a -m $Args }
+function gca() { & git cherry-pick $Args }
+function gcpg($grep) {
+  & git cherry-pick $(git rev-list --reverse --grep $grep develop..HEAD)
 }
 
+# I cant live without this
 Set-PSReadLineOption -EditMode Emacs
-
-cd ~

@@ -325,12 +325,28 @@ return {
       end
 
       dap.adapters.cpp = {
-        type = 'server',
-        port = '13000',
-        executable = {
-          command = 'codelldb',
-          args = { '--port', '13000' },
+        {
+          type = 'server',
+          port = '13000',
+          executable = {
+            command = 'codelldb',
+            args = { '--port', '13000' },
+          },
         },
+        {
+          type = 'server',
+          port = '2331',
+          executable = {
+            command = [[C:\Program Files\SEGGER\JLink\JLinkGDBServerCL.exe]],
+            args = { '-device', 'R7FA6M2AF',
+              '-endian', 'little',
+              '-if', 'SWD',
+              '-speed', '4000',
+              '-port', '2331',
+              -- '-rtos', 'EmbOS',
+            },
+          },
+        }
       }
 
       dap.adapters.c_local = {
@@ -401,7 +417,7 @@ return {
           type = 'cpp',
           request = 'launch',
           program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+            return vim.fn.input('Path to executable: ')
           end,
           runInTerminal = false,
           cwd = '${workspaceFolder}',
@@ -415,7 +431,7 @@ return {
           type = 'cpp',
           request = 'launch',
           program = function()
-            return vim.fn.input('Path to source code: ', vim.fn.getcwd() .. '/', 'file')
+            return vim.fn.input('Path to executable: ')
           end,
         },
 
