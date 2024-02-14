@@ -11,7 +11,6 @@ alias reboot='reboot now'
 # Vim
 alias nv='nvim'
 alias vim='nvim'
-alias vi='nvim'
 
 # .Dotfiles management
 alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
