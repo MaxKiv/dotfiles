@@ -28,6 +28,7 @@ opt.scrolloff = 999 -- Cursor is always centered
 opt.relativenumber = true
 opt.nu = true
 opt.signcolumn = "yes"
+vim.cmd([[highlight clear SignColumn]])
 
 -- Tabs
 opt.tabstop = 2

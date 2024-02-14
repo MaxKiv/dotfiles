@@ -101,29 +101,42 @@ return {
         })
       end
 
-        -- elseif (lsp == "omnisharp") then
-        --   -- Omnisharp stuff
-        --   local omnisharp_bin = "/home/max/.local/share/nvim/mason/bin/omnisharp"
-        --   local omnisharp_pid = vim.fn.getpid()
-        --   local csharp_lsp_cmd;
-        --   if vim.loop.os_uname().sysname == "Windows_NT" then
-        --     csharp_lsp_cmd = { "dotnet", [[C:\Users\max\AppData\Local\nvim-data\mason\packages\omnisharp\OmniSharp.dll]] };
-        --   else
-        --     csharp_lsp_cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(omnisharp_pid) };
-        --   end
-        --   require("lspconfig").omnisharp.setup({
-        --     cmd = csharp_lsp_cmd,
-        --     enable_roselyn_analyzers = true,
-        --     organize_imports_on_format = true,
-        --     root_pattern = { "*.sln" },
-        --     on_attach = on_attach,
-        --     flags = lsp_flags,
-        --     capabilities = capabilities,
-        --   })
-        -- elseif (lsp == "lemminx") then
+      -- elseif (lsp == "omnisharp") then
+      --   -- Omnisharp stuff
+      --   local omnisharp_bin = "/home/max/.local/share/nvim/mason/bin/omnisharp"
+      --   local omnisharp_pid = vim.fn.getpid()
+      --   local csharp_lsp_cmd;
+      --   if vim.loop.os_uname().sysname == "Windows_NT" then
+      --     csharp_lsp_cmd = { "dotnet", [[C:\Users\max\AppData\Local\nvim-data\mason\packages\omnisharp\OmniSharp.dll]] };
+      --   else
+      --     csharp_lsp_cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(omnisharp_pid) };
+      --   end
+      --   require("lspconfig").omnisharp.setup({
+      --     cmd = csharp_lsp_cmd,
+      --     enable_roselyn_analyzers = true,
+      --     organize_imports_on_format = true,
+      --     root_pattern = { "*.sln" },
+      --     on_attach = on_attach,
+      --     flags = lsp_flags,
+      --     capabilities = capabilities,
+      --   })
+      -- elseif (lsp == "lemminx") then
 
       -- full lsp logs
       vim.lsp.set_log_level("WARN")
+
+      -- Set lsp gutter symbols
+      local signs = {
+        Error = " ",
+        Warn = " ",
+        Hint = " ",
+        Info = " "
+      }
+
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
 
     end,
   },
