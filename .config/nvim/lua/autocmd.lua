@@ -53,3 +53,9 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
+
+-- Set filetype groovy for JenkinsFiles
+vim.api.nvim_exec([[augroup jenk_ft
+  au!
+  autocmd BufNewFile,BufRead JenkinsFile   set filetype=groovy
+augroup END]], false)
