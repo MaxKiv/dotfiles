@@ -72,7 +72,7 @@ return {
 
         f = {
           name = "Find",
-          u = { "<cmd>Telescope<CR>", "Telescopic Johnson" },
+          u = { "<cmd>Telescope undo<CR>", "Undo list" },
           j = { [[<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>]],
             "Find files" },
           e = { "<cmd>Telescope file_browser<CR>", "File browser" },
