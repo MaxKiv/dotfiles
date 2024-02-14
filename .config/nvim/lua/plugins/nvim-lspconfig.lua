@@ -41,7 +41,7 @@ local servers = {
   jsonls = {
     binary = "json-lsp",
   },
-  lua_ls = {
+  sumneko_lua = {
     binary = "lua-language-server",
     settings = {
       Lua = {
@@ -52,6 +52,10 @@ local servers = {
           globals = { "vim", "LSP_SERVERS", "to_string" },
         }
       },
+    },
+    root_dir = {
+      ".git",
+      vim.fn.expand('$HOME/.config'),
     },
   },
   neocmakelsp = {

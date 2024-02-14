@@ -15,15 +15,18 @@ return {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build =
-        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+          'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
       },
     },
     config = function()
       require("telescope").setup({
         defaults = {
+          layout_strategy = 'vertical',
           layout_config = {
-            vertical = { width = 0.95 }
-            -- other layout configuration here
+            height = vim.o.lines,
+            width = vim.o.columns,
+            prompt_position = "bottom",
+            preview_height = 0.5,
           },
         },
         extensions = {
