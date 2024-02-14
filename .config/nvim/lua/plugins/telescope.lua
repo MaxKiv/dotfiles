@@ -63,7 +63,7 @@ return {
       -- require("telescope").load_extension("refactoring")
       require("telescope").load_extension("harpoon")
       -- require('telescope').load_extension('dap')
-      require("telescope").load_extension("ui-select")
+      -- require("telescope").load_extension("ui-select")
     end,
   }
 }

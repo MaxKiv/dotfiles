@@ -42,9 +42,14 @@ return {
           p = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto implementation" },
           o = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
         },
+
         K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Symbol hover" },
-        ["]h"] = { "<cmd>Gitsigns next_hunk", "Next Hunk" },
-        ["[h"] = { "<cmd>Gitsigns prev_hunk", "Prev Hunk" },
+
+        ["]h"] = { "<cmd>Gitsigns next_hunk<CR>", "Next Hunk" },
+        ["[h"] = { "<cmd>Gitsigns prev_hunk<CR>", "Prev Hunk" },
+
+        ["<C-l>"] = { "<cmd>diffget<CR>", "Diff Get" },
+        ["<C-h>"] = { "<cmd>diffput><CR>", "Diff Put" },
       }
       wk.register(nnore_noleader, nopts_noleader)
 
