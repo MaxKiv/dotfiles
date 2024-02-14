@@ -1,9 +1,31 @@
 -- List of language servers and their options
 local servers = {
   -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-  ["rust_analyzer"] = {
+      ["rust_analyzer"] = {
     -- NOTE: required Name of LSP binary
     binary = "rust-analyzer",
+    settings = {
+      imports = {
+        granularity = {
+          group = "crate",
+        },
+        prefix = "self",
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+        -- ESP32 only :(
+        target = "xtensa-esp32-none-elf",
+        features = "esp32",
+      },
+      checkOnSave = {
+        allTargets = false,
+      },
+      procMacro = {
+        enable = true
+      },
+    },
   },
   clangd = {
     binary = "clangd",
@@ -17,7 +39,7 @@ local servers = {
       '--enable-config',
     },
   },
-  ["robotframework_ls"] = {
+      ["robotframework_ls"] = {
     binary = "robotframework-lsp",
   },
   pyright = {
@@ -145,7 +167,6 @@ return {
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
-
     end,
   },
 

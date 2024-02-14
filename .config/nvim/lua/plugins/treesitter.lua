@@ -9,28 +9,17 @@ return {
       { "<bs>", desc = "Schrink selection", mode = "x" },
     },
 
-    ---@type TSConfig
     opts = {
       -- A list of parser names, or "all"
       ensure_installed = {
-        "lua",
-        "vim",
-        "c",
-        "python",
-        "help",
-        "query",
-        "git_rebase",
-        "markdown",
-        "markdown_inline",
-        "rust",
-        "cpp",
+
       },
 
       -- Install languages synchronously (only applied to `ensure_installed`)
       sync_install = true,
 
       -- Automatically install missing parsers when entering buffer
-      auto_install = true,
+      auto_install = false,
 
       -- Highlight using treesitters abstract syntax tree
       highlight = { enable = true, },
