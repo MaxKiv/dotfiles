@@ -38,7 +38,7 @@ local lspconfig = {
       'clangd',
       -- '/home/max/Downloads/esp-clang/bin/clangd', -- for ESP
       -- '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-*',
-      -- '--query-driver=C:/Program Files (x86)/IAR Systems/Embedded Workbench 8.4 arm 8.50.9/arm/bin/iccarm.exe',
+      -- '--query-driver=*iccarm.exe',
       '--background-index',
       '--clang-tidy',
       '--enable-config',

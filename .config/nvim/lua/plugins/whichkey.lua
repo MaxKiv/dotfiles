@@ -49,8 +49,15 @@ return {
 
         K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Symbol hover" },
 
-        ["<C-j>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
-        ["<C-k>"] = { "<cmd>tabnext<CR>", "Next Tab" },
+        ["<C-l>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
+        ["<C-Left>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
+        ["<C-h>"] = { "<cmd>tabnext<CR>", "Next Tab" },
+        ["<C-Right>"] = { "<cmd>tabnext<CR>", "Next Tab" },
+
+        ["<C-j>"] = { [[<cmd>g'}<cr>]], "paragraph jump  w/o jumplist" },
+        ["<C-Down>"] = { [[<cmd>g'}<cr>]], "paragraph jump  w/o jumplist" },
+        ["<C-k>"] = { [[<cmd>g'{<cr>]], "paragraph jump  w/o jumplist" },
+        ["<C-Up>"] = { [[<cmd>g'{<cr>]], "paragraph jump  w/o jumplist" },
 
         ["]h"] = { "<cmd>Gitsigns next_hunk<CR>", "Next Hunk" },
         ["[h"] = { "<cmd>Gitsigns prev_hunk<CR>", "Prev Hunk" },
@@ -62,11 +69,14 @@ return {
         ["]w"] = { [[<cmd>lua vim.diagnostic.goto_next({severity = WARN})<cr>]], "Next Warning" },
         ["[w"] = { [[<cmd>lua vim.diagnostic.goto_prev({severity = WARN})<cr>]], "Prev Warning" },
 
-        ["<A-l>"] = { [[<cmd>vertical resize +5<cr>]], "resize +5" },
-        ["<A-h>"] = { [[<cmd>vertical resize -5<cr>]], "resize -5" },
-        ["<A-Right>"] = { [[<cmd>vertical resize +5<cr>]], "resize -5" },
-        ["<A-Left>"] = { [[<cmd>vertical resize -5<cr>]], "resize +5" },
-
+        ["<A-l>"] = { [[<cmd>vertical resize +5<cr>]], "vertical resize +5" },
+        ["<A-Left>"] = { [[<cmd>vertical resize +5<cr>]], "vertical resize +5" },
+        ["<A-h>"] = { [[<cmd>vertical resize -5<cr>]], "vertical resize -5" },
+        ["<A-Right>"] = { [[<cmd>vertical resize -5<cr>]], "vertical resize -5" },
+        ["<A-k>"] = { [[<cmd> resize +5<cr>]], "resize +5" },
+        ["<A-Up>"] = { [[<cmd> resize +5<cr>]], "resize +5" },
+        ["<A-j>"] = { [[<cmd resize -5<cr>]], "resize -5" },
+        ["<A-Down>"] = { [[<cmd resize -5<cr>]], "resize -5" },
 
         ["<C-w>|"] = { [[<cmd>vsplit<cr>]], "open vsplit" },
         ["<C-w>-"] = { [[<cmd>split<cr>]], "open split" },

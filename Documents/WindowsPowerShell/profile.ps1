@@ -21,7 +21,7 @@ function ds {
   dot status
 }
 function sb {
-  . $profile
+  . $HOME\Documents\WindowsPowerShell\profile.ps1
 }
 function ll {
   dir @Args
@@ -37,6 +37,9 @@ function gf {
 }
 function gau {
   git add -u
+}
+function gcam {
+  git commit --amend --no-edit $Args
 }
 function grd {
   & git rebase $Args origin/develop
@@ -59,7 +62,6 @@ function gc() {
   & git commit -m $Args
 }
 function gca() { & git commit -a -m $Args }
-function gca() { & git cherry-pick $Args }
 function gcpg($grep) {
   & git cherry-pick $(git rev-list --reverse --grep $grep develop..HEAD)
 }
