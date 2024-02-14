@@ -53,7 +53,7 @@ return {
                 ["<C-h>"] = "which_key",
                 ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
                 ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
-                ["<C-t>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t" }),
+                ["<C-e>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t" }),
                 ["<c-x>"] = trouble.open_with_trouble,
               },
               n = { ["<c-x>"] = trouble.open_with_trouble },
