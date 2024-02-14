@@ -1,6 +1,26 @@
+let mapleader="\<space>"
+let cc=80
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+set scrolloff=999
+set relativenumber
+
 map gp :vsc Edit.GoToImplementation<CR>
 map gr :vsc Edit.FindAllReferences<CR>
-map <space>cr :source C:\Users\max\.vsvimrc<CR>
+nmap <leader>cr :source C:\Users\max\.vsvimrc<CR>
+nmap <leader>lf :vsc Edit.FormatDocument<cr>
+nmap <leader>jf :vsc Edit.FindInFiles<cr>
+nmap <leader>fj :vsc Edit.GoToFile<cr>
+nmap <leader>ls :vsc Edit.GoToSymbol<cr>
+nmap <leader>lr :vsc Refactor.Rename<cr>
+
+nmap <leader>la :vsc EditorContextMenus.CodeWindow.QuickActionsForPosition<cr>
+nmap K :vsc Edit.QuickInfo<cr>
+
+
 map <A-j> g'}
 map <A-k> g'{
 
