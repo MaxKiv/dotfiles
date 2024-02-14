@@ -43,10 +43,28 @@ function M.setup()
     -- Packer plugin manager
     use { "wbthomason/packer.nvim" }
 
+    -- ---- Colorscheme
+    -- -- Gruvbox
+    -- use {
+    --   "ellisonleao/gruvbox.nvim",
+    --   config = function()
+    --     require("config.gruvbox").setup()
+    --   end,
+    -- }
+
+    -- ---- Colorscheme
+    -- -- Gruvbox
+    -- use {
+    --   "sainnhe/gruvbox-material",
+    --   config = function()
+    --     require("config.gruvbox").setup()
+    --   end,
+    -- }
+
     ---- Colorscheme
     -- Gruvbox
     use {
-      "ellisonleao/gruvbox.nvim",
+      "eddyekofo94/gruvbox-flat.nvim",
       config = function()
         require("config.gruvbox").setup()
       end,
@@ -120,7 +138,7 @@ function M.setup()
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- Get full file path
-    use ({
+    use({
       "diegoulloao/nvim-file-location",
       config = function()
         require("nvim-file-location").setup({

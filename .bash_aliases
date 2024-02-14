@@ -17,6 +17,9 @@ alias vi='nvim'
 alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 dotfiles config --local status.showUntrackedFiles no
 
+# Embedded
+alias logic="$HOME/Downloads/Logic-2.4.1-master.AppImage"
+
 # ESP development
 alias gidf=". $HOME/git/esp-idf/export.sh"
 alias bidf="idf.py build"

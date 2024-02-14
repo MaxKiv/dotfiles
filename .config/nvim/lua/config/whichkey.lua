@@ -148,8 +148,9 @@ function M.setup()
       -- e = { "<cmd>Telescope lsp_document_diagnostics<CR>", "Show All Diagnostics"},
       e = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All Diagnostics" },
       s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols" },
-      ff = { "<cmd>lua vim.lsp.buf.format({async = true })<CR>", "Format file" },
-      fr = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Formate range" },
+      f = { "<cmd>lua vim.lsp.buf.format({async = true })<CR>", "Format file" },
+      j = { "<cmd>LspInfo<CR>", "LSP Info" },
+      -- fr = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Formate range" },
       h = { "<cmd>ClangdSwitchSourceHeader<CR>", "Source/Header" }, -- clangd switch to Header...
     },
   }
