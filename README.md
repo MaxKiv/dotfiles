@@ -22,6 +22,10 @@ This repo contains all my dotfiles in 1 place.
 
 ## Windows: Powershell
 
+	function dtf {
+ 		git --git-dir="$HOME\.dotfiles" --work-tree="$HOME" @Args
+	}
+	# Symlink alacritty config
 	mkdir C:\Users\max\AppData\Roaming\alacritty
 	New-Item -ItemType SymbolicLink -Path "C:\Users\max\AppData\Roaming\alacritty\alacritty.yml" -Target "C:\Users\max\.config\alacritty\alacritty.yml"
 
