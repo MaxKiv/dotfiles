@@ -216,6 +216,10 @@ return {
           d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
         },
 
+        o = {
+           "<cmd>lua require('oil').toggle_float()<CR>", "Toggle oil float"
+        },
+
       }
 
       wk.register(nnore, nopts)
