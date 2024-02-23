@@ -57,11 +57,36 @@ function glp {
 function gpf {
   git push --force-with-lease
 }
+function gru {
+  git reset "@{u}" --hard
+}
 del alias:gc -Force
 function gc() {
   & git commit -m $Args
 }
 function gca() { & git commit -a -m $Args }
+function gcpb() {
+    $branchList = @() # Initialize an array to store both local and remote branches
+
+    # Use `git branch` to list local branches and add them to the array
+    $localBranches = git branch | ForEach-Object { $_.Trim() }
+    $branchList += $localBranches
+
+    # Use `git for-each-ref` to list remote branches and add them to the array
+    $remoteBranches = git for-each-ref --format="%(refname:short)" "refs/remotes/origin/" | ForEach-Object { $_.Trim() }
+    $branchList += $remoteBranches
+
+    # Use `fzf` to interactively select a branch from the combined list
+    $selectedBranch = $branchList | fzf --ansi --preview 'git show --color=always {1}' | ForEach-Object { $_.Trim() }
+
+    Write-Host $(git merge-base $selectedBranch HEAD)
+    if (-not [string]::IsNullOrEmpty($selectedBranch)) {
+        # Use `git switch` to switch to the selected branch
+        git cherry-pick $(git merge-base $selectedBranch HEAD)..HEAD
+    } else {
+        Write-Host "No branch selected."
+    }
+}
 function gcpg($grep) {
   & git cherry-pick $(git rev-list --reverse --grep $grep develop..HEAD)
 }
