@@ -72,11 +72,39 @@ else
   opt.mouse = 'nv'
 end
 
--- This hits the spot 😍
-vim.cmd('cnoreabbrev Q  q')
-vim.cmd('cnoreabbrev Qa qa')
-vim.cmd('cnoreabbrev W  w')
-vim.cmd('cnoreabbrev Wq wq')
+-- This hits the spot 😍 Aliases W to w etc
+vim.cmd([[
+  fun! SetupCommandAlias(from, to)
+    exec 'cnoreabbrev <expr> '.a:from
+          \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+          \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+  endfun
+  call SetupCommandAlias("W","w")
+]])
+vim.cmd([[
+  fun! SetupCommandAlias(from, to)
+    exec 'cnoreabbrev <expr> '.a:from
+          \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+          \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+  endfun
+  call SetupCommandAlias("Wq","wq")
+]])
+vim.cmd([[
+  fun! SetupCommandAlias(from, to)
+    exec 'cnoreabbrev <expr> '.a:from
+          \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+          \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+  endfun
+  call SetupCommandAlias("Q","q")
+]])
+vim.cmd([[
+  fun! SetupCommandAlias(from, to)
+    exec 'cnoreabbrev <expr> '.a:from
+          \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+          \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+  endfun
+  call SetupCommandAlias("Qa","qa")
+]])
 
 -- Neovide
 if vim.g.neovide then
