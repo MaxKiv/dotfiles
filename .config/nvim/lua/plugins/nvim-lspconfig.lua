@@ -131,7 +131,7 @@ end
 --- Returns a list of dirs from HOME up to dir
 --- @param dir string directory to end at
 local function list_dirs_to_cwd(dir)
-  local home = os.getenv("HOME") .. "/"
+  local home = os.getenv("HOME") or os.getenv("HOMEPATH") .. "/"
   local newdir = string.gsub(dir, home, "") or ""
   local out = {}
   table.insert(out, home)
