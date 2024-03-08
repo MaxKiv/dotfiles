@@ -87,6 +87,14 @@ vim.cmd([[
           \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
           \ .'? ("'.a:to.'") : ("'.a:from.'"))'
   endfun
+  call SetupCommandAlias("aw","wa")
+]])
+vim.cmd([[
+  fun! SetupCommandAlias(from, to)
+    exec 'cnoreabbrev <expr> '.a:from
+          \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+          \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+  endfun
   call SetupCommandAlias("Wq","wq")
 ]])
 vim.cmd([[
