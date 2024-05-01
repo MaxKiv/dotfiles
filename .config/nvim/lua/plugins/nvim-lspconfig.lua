@@ -32,8 +32,15 @@ local lspconfig = {
   --     },
   --   },
   -- },
-  ["nil_ls"] = {
+  nil_ls = {
     binary = "nil",
+    settings = {
+      ['nil'] = {
+        formatting = {
+          command = { "nixpkgs-fmt" },
+        },
+      },
+    },
   },
   clangd = {
     binary = "clangd",
