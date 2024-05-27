@@ -26,6 +26,7 @@ return {
       local vnore = {
         u = { [[<cmd>'<,'>g/^\(.*\)\n\_.*\(^\1$\)/d<CR>]], "Keep only unique lines" },
         j = { [[<cmd>lua require("telescope.builtin").grep_string()<CR>]], "Grep visual selection" },
+        la = { [[<cmd>lua vim.lsp.buf.code_action()<CR>]], "LSP code actions over visual selection" },
       }
       wk.register(vnore, vopts)
 
@@ -49,9 +50,9 @@ return {
 
         K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Symbol hover" },
 
-        ["<C-l>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
+        ["<C-h>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
         ["<C-Left>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
-        ["<C-h>"] = { "<cmd>tabnext<CR>", "Next Tab" },
+        ["<C-l>"] = { "<cmd>tabnext<CR>", "Next Tab" },
         ["<C-Right>"] = { "<cmd>tabnext<CR>", "Next Tab" },
 
         ["<C-j>"] = { [[<cmd>g'}<cr>]], "paragraph jump  w/o jumplist" },
