@@ -17,14 +17,12 @@ return {
   -- tokyonight
   {
     "folke/tokyonight.nvim",
-    event = "VeryLazy",
     opts = { style = "moon" },
   },
 
   -- catppuccin
   {
     "catppuccin/nvim",
-    event = "VeryLazy",
     name = "catppuccin",
     config = function()
       vim.cmd.colorscheme "catppuccin-mocha"
