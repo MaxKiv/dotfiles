@@ -48,8 +48,6 @@ return {
           h = { "^", "to line start" },
         },
 
-        K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Symbol hover" },
-
         ["<C-h>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
         ["<C-Left>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
         ["<C-l>"] = { "<cmd>tabnext<CR>", "Next Tab" },
@@ -63,8 +61,6 @@ return {
         ["]h"] = { "<cmd>Gitsigns next_hunk<CR>", "Next Hunk" },
         ["[h"] = { "<cmd>Gitsigns prev_hunk<CR>", "Prev Hunk" },
 
-        ["]d"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
-        ["[d"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
         ["]e"] = { [[<cmd>lua vim.diagnostic.goto_next({severity = ERROR})<cr>]], "Next Error" },
         ["[e"] = { [[<cmd>lua vim.diagnostic.goto_prev({severity = ERROR})<cr>]], "Prev Error" },
         ["]w"] = { [[<cmd>lua vim.diagnostic.goto_next({severity = WARN})<cr>]], "Next Warning" },
