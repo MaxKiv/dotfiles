@@ -206,13 +206,6 @@ return {
           h = { "<cmd>ClangdSwitchSourceHeader<CR>", "Source/Header" }, -- clangd switch to Header...
         },
 
-        x = {
-          x = { "<cmd>TroubleToggle<cr>", "Toggle Trouble" },
-          q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
-          w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
-          d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
-        },
-
         o = {
            "<cmd>lua require('oil').toggle_float()<CR>", "Toggle oil float"
         },
