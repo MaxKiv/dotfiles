@@ -18,7 +18,10 @@ return {
     },
     config = function()
       local telescope = require("telescope")
-      local trouble = require("trouble.providers.telescope")
+      local open_with_trouble = require("trouble.sources.telescope").open
+
+      -- Use this to add more results without clearing the trouble list
+      local add_to_trouble = require("trouble.sources.telescope").add
 
       telescope.setup({
 
@@ -54,9 +57,11 @@ return {
                 ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
                 ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
                 ["<C-e>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t" }),
-                ["<c-x>"] = trouble.open_with_trouble,
+                ["<c-t>"] = open_with_trouble,
               },
-              n = { ["<c-x>"] = trouble.open_with_trouble },
+              n = {
+                ["<c-t>"] = open_with_trouble
+              },
             },
           },
         }

@@ -6,6 +6,7 @@ local lspconfig_filename = "nvim_lspconfig.lua"
 ---@class lspconfig_t
 local lspconfig = {
   -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+  -- NOTE: this is setup by rustaceanvim
   -- ["rust_analyzer"] = {
   --   -- NOTE: required Name of LSP binary
   --   binary = "rust-analyzer",

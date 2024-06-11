@@ -48,14 +48,12 @@ return {
           h = { "^", "to line start" },
         },
 
-        ["<C-h>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
+        ["<C-n>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
         ["<C-Left>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
-        ["<C-l>"] = { "<cmd>tabnext<CR>", "Next Tab" },
+        ["<C-p>"] = { "<cmd>tabnext<CR>", "Next Tab" },
         ["<C-Right>"] = { "<cmd>tabnext<CR>", "Next Tab" },
 
-        ["<C-j>"] = { [[<cmd>g'}<cr>]], "paragraph jump  w/o jumplist" },
         ["<C-Down>"] = { [[<cmd>g'}<cr>]], "paragraph jump  w/o jumplist" },
-        ["<C-k>"] = { [[<cmd>g'{<cr>]], "paragraph jump  w/o jumplist" },
         ["<C-Up>"] = { [[<cmd>g'{<cr>]], "paragraph jump  w/o jumplist" },
 
         ["]h"] = { "<cmd>Gitsigns next_hunk<CR>", "Next Hunk" },

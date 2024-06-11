@@ -9,6 +9,10 @@ return {
       {"<S-F2>",[[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]], desc = "Goto 2" },
       {"<S-F3>",[[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]], desc = "Goto 3" },
       {"<S-F4>",[[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]], desc = "Goto 4" },
+      {"<C-h>",[[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]], desc = "Goto 1" },
+      {"<C-j>",[[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]], desc = "Goto 2" },
+      {"<C-k>",[[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]], desc = "Goto 3" },
+      {"<C-l>",[[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]], desc = "Goto 4" },
 
       -- {
       --   "hq",
