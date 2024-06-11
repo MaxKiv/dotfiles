@@ -253,11 +253,15 @@ return {
     -- Make sure all required LSP servers are installed
     config = function(_, opts)
       require("mason").setup(opts)
-      local mr = require("mason-registry")
-      for _, options in pairs(lspconfig) do
-        local p = mr.get_package(options.binary)
-        if not p:is_installed() then
-          p:install()
+
+      -- Install LSP for all OS except Nixos
+      if require("functions").running_nixos() then
+        local mr = require("mason-registry")
+        for _, options in pairs(lspconfig) do
+          local p = mr.get_package(options.binary)
+          if not p:is_installed() then
+            p:install()
+          end
         end
       end
     end

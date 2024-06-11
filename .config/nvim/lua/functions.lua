@@ -89,4 +89,11 @@ local output = M.execute_shell_command([[
 ]])
 M.dotfiles_dir = output[#output] or "$HOME/.config/nvim"
 
+M.running_nixos = function ()
+  local uv = vim.loop
+  local nixos_file = "/etc/NIXOS"
+  local stat = uv.fs_stat(nixos_file)
+  return stat and stat.type == 'file'
+end
+
 return M
