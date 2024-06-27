@@ -147,7 +147,7 @@ return {
 
         -- m = { "<cmd>Glow<CR>", "View Markdown" },
 
-        r = { "<cmd>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>", "Toggle relative line number" },
+        n = { "<cmd>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>", "Toggle relative line number" },
 
         s = { "<cmd>lua require('functions').toggle_diff_splits()<CR>", "Toggle diffsplits" },
 

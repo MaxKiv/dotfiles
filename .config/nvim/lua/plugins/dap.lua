@@ -10,6 +10,8 @@ local dap_config = {
   },
 }
 
+local exe_path = nil
+
 return {
   {
     "mfussenegger/nvim-dap",
@@ -65,21 +67,22 @@ return {
               {
                 elements = {
                   -- Elements can be strings or table with id and size keys.
-                  { id = "scopes", size = 0.25 },
+                  "watches",
                   "breakpoints",
                   "stacks",
-                  "watches",
+                  "repl",
                 },
-                size = 40, -- 40 columns
+                size = 50, -- 50 columns
                 position = "left",
               },
               {
                 elements = {
                   -- "console",
-                  "repl"
+                  -- { id = "scopes", size = .75 },
+                  "scopes",
                   -- {id = "repl", size = .75 },
                 },
-                size = 0.25, -- 25% of total lines
+                size = .30, -- 25% of total lines
                 position = "bottom",
               },
             },
@@ -102,7 +105,7 @@ return {
             floating = {
               max_height = nil,  -- These can be integers or a float between 0 and 1.
               max_width = nil,   -- Floats will be treated as percentage of your screen.
-              border = "single", -- Border style. Can be "single", "double" or "rounded"
+              border = "double", -- Border style. Can be "single", "double" or "rounded"
               mappings = {
                 close = { "q", "<Esc>" },
               },
@@ -305,6 +308,12 @@ return {
         desc =
           "DAP breakpoints"
       },
+      {
+        "<leader>dv",
+        function() require('dap.ext.vscode').load_launchjs(nil, nil) end,
+        desc =
+          "Load launch json in current project root"
+      },
     },
 
     config = function(_, opts)
@@ -362,52 +371,70 @@ return {
         }
       }
 
-      dap.adapters.c_local = {
-        type = 'server',
-        port = '13000',
-        executable = {
-          command = 'codelldb',
-          args = { '--port', '13000' },
+      dap.adapters.codelldb = {
+        {
+          type = 'server',
+          port = '13000',
+          executable = {
+            command = 'codelldb',
+            args = { '--port', '13000' },
+          },
+        },
+        {
+          {
+            -- id = 'iets',
+            type = 'server',
+            port = '3332',
+            -- command = 'python debug_adapter_main.py',
+            -- args = { "-e", "build/blinky.elf" },
+
+            -- args = { "-f", "interface/ftdi/esp32_devkitj_v1.cfg",
+            --   "-f", "target/esp32.cfg",
+            --   "-c", "program_esp build/blink.bin 0x10000 verify" },
+            -- executable = {
+            --   command = 'openocd',
+            --   args = { "-f", "interface/ftdi/esp32_devkitj_v1.cfg",
+            --     "-f", "target/esp32.cfg",
+            --     "-c", "program_esp build/blink.bin 0x10000 verify" },
+            -- },
+
+          }
         },
       }
 
-      dap.adapters.c = {
-        -- id = 'iets',
-        type = 'server',
-        port = '3332',
-
-        -- command = 'python debug_adapter_main.py',
-        -- args = { "-e", "build/blinky.elf" },
-
-        -- args = { "-f", "interface/ftdi/esp32_devkitj_v1.cfg",
-        --   "-f", "target/esp32.cfg",
-        --   "-c", "program_esp build/blink.bin 0x10000 verify" },
-        -- executable = {
-        --   command = 'openocd',
-        --   args = { "-f", "interface/ftdi/esp32_devkitj_v1.cfg",
-        --     "-f", "target/esp32.cfg",
-        --     "-c", "program_esp build/blink.bin 0x10000 verify" },
-        -- },
-
-      }
 
       dap.configurations.c = {
+
         {
-          name = "iets config",
+          name = "Local Exe",
           type = 'c',
-          request = 'attach',
-          program = 'build/blink.elf',
-          stopOnEntry = true,
-          port = 3332,
+          request = 'launch',
+          program = function()
+            if exe_path then
+              return exe_path
+            else
+              exe_path = vim.fn.input('Path to executable: ')
+              return exe_path
+            end
+          end,
+          stopOnEntry = false,
+          port = 13000,
         },
 
         {
-          name = "local",
-          type = 'c_local',
-          request = 'launch',
-          program = 'a.out',
-          stopOnEntry = false,
-          port = 13000,
+          name = "Attach to running Exe",
+          type = 'c',
+          request = 'attach',
+          program = function()
+            if exe_path then
+              return exe_path
+            else
+              exe_path = vim.fn.input('Path to executable: ')
+              return exe_path
+            end
+          end,
+          stopOnEntry = true,
+          port = 3332,
         },
       }
 

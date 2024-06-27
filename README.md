@@ -1,9 +1,11 @@
-Another dotfile repo... 🥗
+Another dotfile repo...
 
 # 🔧 TODO
-[ ] Merge with nix repo...
-[ ] Refactor nvim telescope stuff
-[ ] Fix nvim whichkey binds
+Nvim:
+[ ] Try out fzf.lua
+[ ] Try out https://github.com/t-troebst/perfanno.nvim
+[ ] Refactor DAP
+[ ] Refactor LSP
 
 # 👨🏾‍🔧 Install options
 ## 🐧 Unix/wsl

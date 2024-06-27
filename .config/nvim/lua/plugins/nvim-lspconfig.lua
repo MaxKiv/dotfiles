@@ -113,10 +113,10 @@ local lspconfig = {
   gopls = {
     binary = "gopls",
   },
-  hls = {
-    binary = "haskell-language-server",
-    cmd = { "haskell-language-server-wrapper", "--lsp" },
-  },
+  -- hls = {
+  --   binary = "haskell-language-server",
+  --   cmd = { "haskell-language-server-wrapper", "--lsp" },
+  -- },
 }
 
 -- Build up a local lspconfig list from cwd -> home
@@ -185,6 +185,7 @@ return {
       }
     },
     opts = {
+      inlay_hints = { enabled = true },
       diagnostics = {
         underline = true,
         update_in_insert = false,
@@ -203,6 +204,12 @@ return {
         -- Enable statusline location if this lsp supports it
         if client.server_capabilities.documentSymbolProvider then
           require("nvim-navic").attach(client, bufnr)
+        end
+
+        -- Enable inlay hints if this lsp supports it
+        if client.server_capabilities.inlayHintProvider then
+          vim.g.inlay_hints_visible = true
+          vim.lsp.inlay_hint(bufnr, true)
         end
       end
 
@@ -255,7 +262,7 @@ return {
       require("mason").setup(opts)
 
       -- Install LSP for all OS except Nixos
-      if require("functions").running_nixos() then
+      if not require("functions").running_nixos() then
         local mr = require("mason-registry")
         for _, options in pairs(lspconfig) do
           local p = mr.get_package(options.binary)
