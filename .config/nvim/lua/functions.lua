@@ -3,6 +3,38 @@ local fn = vim.fn
 
 local M = {}
 
+-- Join all paragraphs
+M.join_paragraphs = function()
+  -- Get the current buffer
+  local buf = vim.api.nvim_get_current_buf()
+
+  -- Get all lines in the buffer
+  local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+
+  -- Placeholder for the new lines
+  local new_lines = {}
+  local paragraph = {}
+
+  for _, line in ipairs(lines) do
+    if line == "" then
+      if #paragraph > 0 then
+        table.insert(new_lines, table.concat(paragraph, " "))
+        paragraph = {}
+      end
+      table.insert(new_lines, "")
+    else
+      table.insert(paragraph, line)
+    end
+  end
+
+  if #paragraph > 0 then
+    table.insert(new_lines, table.concat(paragraph, " "))
+  end
+
+  -- Replace buffer content with new_lines
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, new_lines)
+end
+
 M.toggle_qf = function()
   local windows = fn.getwininfo()
   local qf_exists = false

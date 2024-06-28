@@ -151,6 +151,8 @@ return {
 
         s = { "<cmd>lua require('functions').toggle_diff_splits()<CR>", "Toggle diffsplits" },
 
+        q = { "<cmd>lua require('functions').join_paragraphs()<CR>", "Join paragraphs in file" },
+
         f = {
           name = "Find",
           u = { "<cmd>Telescope undo<CR>", "Undo list" },
