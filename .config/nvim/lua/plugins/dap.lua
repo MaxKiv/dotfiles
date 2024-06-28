@@ -324,15 +324,6 @@ return {
       require("overseer").patch_dap(true)
       require("dap.ext.vscode").json_decode = require("overseer.json").decode
 
-      -- Helper to let user enter binary to debug
-      local function program()
-        return vim.fn.input({
-          prompt = 'Path to executable: ',
-          default = vim.fn.getcwd() .. '/',
-          completion = 'file'
-        })
-      end
-
       require("mason").setup(opts)
       local mr = require("mason-registry")
       -- make sure required Debug adapters are installed and configured
@@ -345,144 +336,49 @@ return {
         end
       end
 
-      dap.adapters.cpp = {
-        {
-          type = 'server',
-          port = '13000',
-          executable = {
-            command = 'codelldb',
-            args = { '--port', '13000' },
-          },
-        },
-        {
-          type = 'server',
-          port = '2331',
-          executable = {
-            -- Yeah this never worked yet sadly
-            command = [[C:\Program Files\SEGGER\JLink\JLinkGDBServerCL.exe]],
-            args = { '-device', 'R7FA6M2AF',
-              '-endian', 'little',
-              '-if', 'SWD',
-              '-speed', '4000',
-              '-port', '2331',
-              -- '-rtos', 'EmbOS',
-            },
-          },
-        }
-      }
+      -- Helper to let user enter binary to debug
+      local function pick_program()
+        if exe_path then
+          return exe_path
+        else
+          exe_path = vim.fn.input('Path to executable: ')
+          return exe_path
+        end
+      end
 
-      dap.adapters.codelldb = {
-        {
-          type = 'server',
-          port = '13000',
-          executable = {
-            command = 'codelldb',
-            args = { '--port', '13000' },
-          },
-        },
-        {
-          {
-            -- id = 'iets',
-            type = 'server',
-            port = '3332',
-            -- command = 'python debug_adapter_main.py',
-            -- args = { "-e", "build/blinky.elf" },
+      local pickers = require("telescope.pickers")
+      local finders = require("telescope.finders")
+      local conf = require("telescope.config").values
+      local actions = require("telescope.actions")
+      local action_state = require("telescope.actions.state")
 
-            -- args = { "-f", "interface/ftdi/esp32_devkitj_v1.cfg",
-            --   "-f", "target/esp32.cfg",
-            --   "-c", "program_esp build/blink.bin 0x10000 verify" },
-            -- executable = {
-            --   command = 'openocd',
-            --   args = { "-f", "interface/ftdi/esp32_devkitj_v1.cfg",
-            --     "-f", "target/esp32.cfg",
-            --     "-c", "program_esp build/blink.bin 0x10000 verify" },
-            -- },
-
-          }
-        },
-      }
-
-
-      dap.configurations.c = {
-
-        {
-          name = "Local Exe",
-          type = 'c',
-          request = 'launch',
-          program = function()
-            if exe_path then
-              return exe_path
-            else
-              exe_path = vim.fn.input('Path to executable: ')
-              return exe_path
-            end
-          end,
-          stopOnEntry = false,
-          port = 13000,
-        },
-
-        {
-          name = "Attach to running Exe",
-          type = 'c',
-          request = 'attach',
-          program = function()
-            if exe_path then
-              return exe_path
-            else
-              exe_path = vim.fn.input('Path to executable: ')
-              return exe_path
-            end
-          end,
-          stopOnEntry = true,
-          port = 3332,
-        },
-      }
-
-      -- Setup configurations
-      dap.configurations.python = {
-        {
-          name = "Launch file",
-          type = 'python',
-          request = 'launch',
-          program = "${file}",
-          pythonPath = function()
-            return '/usr/bin/python'
-          end,
-        },
-      }
-
+      -- Setup default DAP configurations for C/C++/Rust
       dap.configurations.cpp = {
         {
-          name = "lldb: Debug executable",
-          type = 'cpp',
-          request = 'launch',
+          name = "codelldb: Launch Exe",
+          type = "codelldb",
+          request = "launch",
           program = function()
-            return vim.fn.input('Path to executable: ')
+            return coroutine.create(function(coro)
+              local opts = {}
+              pickers
+                  .new(opts, {
+                    prompt_title = "Path to executable",
+                    finder = finders.new_oneshot_job({ "fd", "--hidden", "--no-ignore", "--type", "x" }, {}),
+                    sorter = conf.generic_sorter(opts),
+                    attach_mappings = function(buffer_number)
+                      actions.select_default:replace(function()
+                        actions.close(buffer_number)
+                        coroutine.resume(coro, action_state.get_selected_entry()[1])
+                      end)
+                      return true
+                    end,
+                  })
+                  :find()
+            end)
           end,
-          runInTerminal = false,
           cwd = '${workspaceFolder}',
           stopOnEntry = false,
-          args = {},
-          port = 13000,
-        },
-
-        {
-          name = "codelldb: Launch",
-          type = "codelldb",
-          request = "launch",
-          program = program,
-          cwd = '${workspaceFolder}',
-          args = {},
-        },
-
-        {
-          name = "codelldb: Launch external",
-          type = "codelldb",
-          request = "launch",
-          program = program,
-          cwd = '${workspaceFolder}',
-          args = {},
-          terminal = 'external',
         },
 
         {
@@ -503,23 +399,63 @@ return {
           args = {},
         },
       }
+      dap.configurations.c = dap.configurations.cpp
+      dap.configurations.rust = dap.configurations.cpp
+
+      dap.configurations.python = {
+        {
+          name = "Launch file",
+          type = 'python',
+          request = 'launch',
+          program = "${file}",
+          pythonPath = function()
+            return '/usr/bin/python'
+          end,
+        },
+      }
+
+      -- /home/max/.local/share/nvim/mason/bin/codelldb
+      -- Setup DAP Adapters
+      dap.adapters.codelldb = {
+        type = 'server',
+        port = "${port}",
+        executable = {
+          -- CHANGE THIS to your path!
+          command = 'codelldb',
+          args = {"--port", "${port}"},
+
+          -- On windows you may have to uncomment this:
+          -- detached = false,
+        }
+      }
+
+      -- dap.adapters.codelldb = {
+      --   {
+      --     type = 'executable',
+      --     port = '13000',
+      --     executable = {
+      --       command = 'codelldb',
+      --       args = { '--port', '13000' },
+      --     },
+      --   },
+      -- }
 
       -- Breakpoint styling
       vim.api.nvim_set_hl(0, "blue", { fg = "#3d59a1" })
       vim.api.nvim_set_hl(0, "green", { fg = "#9ece6a" })
       vim.api.nvim_set_hl(0, "yellow", { fg = "#FFFF00" })
-      vim.api.nvim_set_hl(0, "orange", { fg = "#f09000" })
+      vim.api.nvim_set_hl(0, "red", { fg = "#FF0000" })
 
       vim.fn.sign_define('DapBreakpoint',
-        { text = '', texthl = 'blue', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+        { text = '⭕', texthl = 'red', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
       vim.fn.sign_define('DapBreakpointCondition',
-        { text = 'ﳁ', texthl = 'blue', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+        { text = '⚆', texthl = 'red', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
       vim.fn.sign_define('DapBreakpointRejected',
-        { text = '', texthl = 'orange', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+        { text = '❌', texthl = 'blue', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
       vim.fn.sign_define('DapStopped',
-        { text = '', texthl = 'green', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+        { text = '🮅', texthl = 'green', linehl = 'DapStopped', numhl = 'DapStopped' })
       vim.fn.sign_define('DapLogPoint',
-        { text = '', texthl = 'yellow', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
+        { text = '⭕', texthl = 'yellow', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
     end,
 
   },

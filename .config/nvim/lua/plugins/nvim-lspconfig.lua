@@ -245,10 +245,10 @@ return {
 
       -- Set lsp gutter symbols
       local signs = {
-        Error = " ",
+        Error = "❗",
         Warn = " ",
-        Hint = " ",
-        Info = " "
+        Hint = "ℹ️",
+        Info = "❓"
       }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
