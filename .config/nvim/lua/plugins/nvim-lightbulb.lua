@@ -1,6 +1,6 @@
 return {
   {
-    'kosayoda/nvim-lightbulb',
+    'gh-liu/nvim-lightbulb',
     config = function()
       require("nvim-lightbulb").setup({
         -- Priority of the lightbulb for all handlers except float.

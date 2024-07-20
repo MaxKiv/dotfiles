@@ -41,8 +41,9 @@ api.nvim_create_autocmd(
   {
     pattern = { "*.txt", "*.md", "*.tex" },
     callback = function()
-      vim.opt.spell = true
-      vim.opt.spelllang = "en,nl"
+      vim.opt_local.spell = true
+      vim.opt_local.spelllang = "en,nl"
+      vim.opt_local.textwidth = 80
     end,
   }
 )
@@ -80,3 +81,11 @@ vim.api.nvim_exec([[augroup jenk_ft
   autocmd BufNewFile,BufRead JenkinsFile   set filetype=groovy
 augroup END]], false)
 
+local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.rs",
+  callback = function()
+    vim.lsp.buf.format({ timeout_ms = 200 })
+  end,
+  group = format_sync_grp,
+})

@@ -13,206 +13,115 @@ return {
 
     config = function(_, opts)
       local wk = require("which-key")
-      wk.setup(opts)
-
-      local vopts = {
-        mode = "v",     -- Normal mode
-        prefix = "<leader>",
-        buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-        silent = true,  -- use 'silent' when creating keymaps
-        noremap = true, -- use 'noremap' when creating keymaps
-        nowait = true,  -- use 'nowait' when creating keymaps
-      }
-      local vnore = {
-        u = { [[<cmd>'<,'>g/^\(.*\)\n\_.*\(^\1$\)/d<CR>]], "Keep only unique lines" },
-        j = { [[<cmd>lua require("telescope.builtin").grep_string()<CR>]], "Grep visual selection" },
-        la = { [[<cmd>lua vim.lsp.buf.code_action()<CR>]], "LSP code actions over visual selection" },
-      }
-      wk.register(vnore, vopts)
-
-      local nopts_noleader = {
-        mode = "n",     -- Normal mode
-        prefix = "",
-        buffer = nil,   -- global mappings. specify a buffer number for buffer local mappings
-        silent = true,  -- use 'silent' when creating keymaps
-        noremap = true, -- use 'noremap' when creating keymaps
-        nowait = true,  -- use 'nowait' when creating keymaps
-      }
-      local nnore_noleader = {
-        g = {
-          d = { "<cmd>Telescope lsp_definitions<CR>", "Goto Definition" },
-          r = { "<cmd>Telescope lsp_references<CR>", "Symbol references" },
-          p = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Goto implementation" },
-          o = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Goto declaration" },
-          l = { "$", "to line end" },
-          h = { "^", "to line start" },
+      wk.add({
+        {
+          { "<A-Down>",  "<cmd resize -5<cr>",                                        desc = "resize -5",                   nowait = true, remap = false },
+          { "<A-Left>",  "<cmd>vertical resize -5<cr>",                               desc = "vertical resize -5",          nowait = true, remap = false },
+          { "<A-Right>", "<cmd>vertical resize +5<cr>",                               desc = "vertical resize +5",          nowait = true, remap = false },
+          { "<A-Up>",    "<cmd> resize +5<cr>",                                       desc = "resize +5",                   nowait = true, remap = false },
+          { "<A-h>",     "<cmd>vertical resize -5<cr>",                               desc = "vertical resize -5",          nowait = true, remap = false },
+          { "<A-j>",     "<cmd resize -5<cr>",                                        desc = "resize -5",                   nowait = true, remap = false },
+          { "<A-k>",     "<cmd> resize +5<cr>",                                       desc = "resize +5",                   nowait = true, remap = false },
+          { "<A-l>",     "<cmd>vertical resize +5<cr>",                               desc = "vertical resize +5",          nowait = true, remap = false },
+          { "<C-Down>",  "<cmd>g'}<cr>",                                              desc = "paragraph jump w/o jumplist", nowait = true, remap = false },
+          { "<C-Left>",  "<cmd>tabprev<CR>",                                          desc = "Prev Tab",                    nowait = true, remap = false },
+          { "<C-Right>", "<cmd>tabnext<CR>",                                          desc = "Next Tab",                    nowait = true, remap = false },
+          { "<C-Up>",    "<cmd>g'{<cr>",                                              desc = "paragraph jump w/o jumplist", nowait = true, remap = false },
+          { "<C-n>",     "<cmd>tabprev<CR>",                                          desc = "Prev Tab",                    nowait = true, remap = false },
+          { "<C-p>",     "<cmd>tabnext<CR>",                                          desc = "Next Tab",                    nowait = true, remap = false },
+          { "<C-w>-",    "<cmd>split<cr>",                                            desc = "open split",                  nowait = true, remap = false },
+          { "<C-w>s",    "<cmd>split<cr>",                                            desc = "open split",                  nowait = true, remap = false },
+          { "<C-w>v",    "<cmd>vsplit<cr>",                                           desc = "open vsplit",                 nowait = true, remap = false },
+          { "<C-w>|",    "<cmd>vsplit<cr>",                                           desc = "open vsplit",                 nowait = true, remap = false },
+          { "[e",        "<cmd>lua vim.diagnostic.goto_prev({severity = ERROR})<cr>", desc = "Prev Error",                  nowait = true, remap = false },
+          { "[h",        "<cmd>Gitsigns prev_hunk<CR>",                               desc = "Prev Hunk",                   nowait = true, remap = false },
+          { "[w",        "<cmd>lua vim.diagnostic.goto_prev({severity = WARN})<cr>",  desc = "Prev Warning",                nowait = true, remap = false },
+          { "]e",        "<cmd>lua vim.diagnostic.goto_next({severity = ERROR})<cr>", desc = "Next Error",                  nowait = true, remap = false },
+          { "]h",        "<cmd>Gitsigns next_hunk<CR>",                               desc = "Next Hunk",                   nowait = true, remap = false },
+          { "]w",        "<cmd>lua vim.diagnostic.goto_next({severity = WARN})<cr>",  desc = "Next Warning",                nowait = true, remap = false },
+          { "gd",        "<cmd>Telescope lsp_definitions<CR>",                        desc = "Goto Definition",             nowait = true, remap = false },
+          { "gh",        "^",                                                         desc = "to line start",               nowait = true, remap = false },
+          { "gl",        "$",                                                         desc = "to line end",                 nowait = true, remap = false },
+          { "go",        "<cmd>lua vim.lsp.buf.declaration()<CR>",                    desc = "Goto declaration",            nowait = true, remap = false },
+          { "gp",        "<cmd>lua vim.lsp.buf.implementation()<CR>",                 desc = "Goto implementation",         nowait = true, remap = false },
+          { "gr",        "<cmd>Telescope lsp_references<CR>",                         desc = "Symbol references",           nowait = true, remap = false },
         },
 
-        ["<C-n>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
-        ["<C-Left>"] = { "<cmd>tabprev<CR>", "Prev Tab" },
-        ["<C-p>"] = { "<cmd>tabnext<CR>", "Next Tab" },
-        ["<C-Right>"] = { "<cmd>tabnext<CR>", "Next Tab" },
-
-        ["<C-Down>"] = { [[<cmd>g'}<cr>]], "paragraph jump  w/o jumplist" },
-        ["<C-Up>"] = { [[<cmd>g'{<cr>]], "paragraph jump  w/o jumplist" },
-
-        ["]h"] = { "<cmd>Gitsigns next_hunk<CR>", "Next Hunk" },
-        ["[h"] = { "<cmd>Gitsigns prev_hunk<CR>", "Prev Hunk" },
-
-        ["]e"] = { [[<cmd>lua vim.diagnostic.goto_next({severity = ERROR})<cr>]], "Next Error" },
-        ["[e"] = { [[<cmd>lua vim.diagnostic.goto_prev({severity = ERROR})<cr>]], "Prev Error" },
-        ["]w"] = { [[<cmd>lua vim.diagnostic.goto_next({severity = WARN})<cr>]], "Next Warning" },
-        ["[w"] = { [[<cmd>lua vim.diagnostic.goto_prev({severity = WARN})<cr>]], "Prev Warning" },
-
-        ["<A-l>"] = { [[<cmd>vertical resize +5<cr>]], "vertical resize +5" },
-        ["<A-Right>"] = { [[<cmd>vertical resize +5<cr>]], "vertical resize +5" },
-        ["<A-h>"] = { [[<cmd>vertical resize -5<cr>]], "vertical resize -5" },
-        ["<A-Left>"] = { [[<cmd>vertical resize -5<cr>]], "vertical resize -5" },
-        ["<A-k>"] = { [[<cmd> resize +5<cr>]], "resize +5" },
-        ["<A-Up>"] = { [[<cmd> resize +5<cr>]], "resize +5" },
-        ["<A-j>"] = { [[<cmd resize -5<cr>]], "resize -5" },
-        ["<A-Down>"] = { [[<cmd resize -5<cr>]], "resize -5" },
-
-        ["<C-w>|"] = { [[<cmd>vsplit<cr>]], "open vsplit" },
-        ["<C-w>v"] = { [[<cmd>vsplit<cr>]], "open vsplit" },
-        ["<C-w>-"] = { [[<cmd>split<cr>]], "open split" },
-        ["<C-w>s"] = { [[<cmd>split<cr>]], "open split" },
-
-      }
-      wk.register(nnore_noleader, nopts_noleader)
-
-      local nopts = {
-        mode = "n",     -- Normal mode
-        prefix = "<leader>",
-        buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-        silent = true,  -- use 'silent' when creating keymaps
-        noremap = true, -- use 'noremap' when creating keymaps
-        nowait = true,  -- use 'nowait' when creating keymaps
-      }
-
-      local dotfiles_telescope_cmd = "<cmd>lua require'telescope.builtin'.find_files({cwd= vim.fn.expand('" .. require('functions').dotfiles_dir .. "'), follow=true, no_ignore=true, hidden=true})<CR>"
-
-      local nnore = {
-        [':'] = { "<cmd>lua require('telescope.builtin').commands()<CR>", "Commands" },
-
-        c = { dotfiles_telescope_cmd, "Browse dotfiles" },
-
-        g = {
-          name = "Git",
-          j = { "<cmd>lua require('telescope').extensions.advanced_git_search.diff_branch_file()<cr>",
-            "Search local branches" },
-          k = { "<cmd>lua require('telescope').extensions.advanced_git_search.search_log_content()<cr>", "Search git log" },
-          l = { "<cmd>Git log -p --follow %<cr>", "Git file log"},
-          -- l = { "<cmd>lua require('telescope').extensions.advanced_git_search.diff_commit_line()<cr>",
-          --   "Search line changes" },
-          f = { "<cmd>lua require('telescope').extensions.advanced_git_search.diff_commit_file()<cr>",
-            "Search file changes" },
-          [';'] = { "<cmd>lua require('telescope').extensions.advanced_git_search.search_log_content_file()<cr>",
-            "Search git file log" },
-          a = { "<cmd>lua require('telescope').extensions.advanced_git_search.checkout_reflog()<cr>", "Search git reflog" },
-          s = { "<cmd>Neogit<cr>", "Neogit" },
-          S = { "<cmd>Gitsigns stage_buffer<cr>", "Stage Buffer" },
-          r = { "<cmd>Gitsigns reset_buffer<cr>", "Reset Buffer" },
-          p = { "<cmd>Gitsigns preview_hunk<cr>", "Preview Hunk" },
-          b = { [[<cmd>lua require("gitsigns").blame_line()<cr>]], "Blame line" },
-          d = { "<cmd>DiffviewOpen<cr>", "Open Diffview" },
-          c = { "<cmd>DiffviewClose<cr>", "Close Diffview" },
-          D = { [[<cmd>lua require("gitsigns").diffthis()<cr>]], "Diff This" },
-          m = {
-            [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = "<<<<<<<"})<CR>]],
-            "Git markers in project" },
-          t = { "<cmd>Git checkout --theirs -- %<cr>", "Checkout theirs" },
-          o = { "<cmd>Git checkout --ours -- %<cr>", "Checkout ours" },
-        },
-
-        e = {
-          name = "Exec",
-          r = { "<cmd>silent !explorer.exe .<CR>", "File explorer project root" },
-          p = { "<cmd>silent !start %:p:h<CR>", "File explorer current file" },
-          t = { "<cmd>silent !start alacritty.exe<CR>", "Terminal project root" },
-          l = { "<cmd>lua dofile(vim.fn.expand('%:p'))<CR>", "current file luajit" },
-        },
-
-        p = { "<cmd>lua require('functions').copy_file_path() print('file path copied')<cr>", "copy file path" },
-        P = { "<cmd>lua require('functions').copy_file_name() print('file name copied')<cr>", "copy file name" },
-        ["<C-p>"] = { "<cmd>lua require('functions').copy_file_path_from_root() print('file root path copied')<cr>", "copy file path from root" },
-
-        ["\\"] = { "<cmd>lua require('functions').clipboard_switch_brackets() print('Switched clipboard brackets')<cr>", "Switch cliboard brackets" },
-
-        a = {
-          name = "Format",
-          w = { [[<cmd>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><CR>]], "Remove trailing whitespaces" },
-          e = { [[<cmd>:g/^\s*$/d<CR>]], "Remove empty lines" },
-        },
-
-        -- m = { "<cmd>Glow<CR>", "View Markdown" },
-
-        n = { "<cmd>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>", "Toggle relative line number" },
-
-        s = { "<cmd>lua require('functions').toggle_diff_splits()<CR>", "Toggle diffsplits" },
-
-        q = { "<cmd>lua require('functions').join_paragraphs()<CR>", "Join paragraphs in file" },
-
-        f = {
-          name = "Find",
-          u = { "<cmd>Telescope undo<CR>", "Undo list" },
-          j = {
-            [[<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>]],
-            "Find files" },
-          [";"] = {
-            [=[<cmd>lua require"telescope.builtin".find_files({find_command = { 'rg', '--files', '--iglob', '!.git', '--iglob', '!*.idx', '--hidden'}, hidden = true, no_ignore=true})<CR>]=],
-            "Hidden files" },
-          a = { "<cmd>Telescope find_files cwd=~/<CR>", "Home directory" },
-          l = { "<cmd>Telescope oldfiles<CR>", "Recently used files" },
-          r = { "<cmd>Telescope repo list<CR>", "Repos" },
-          B = { "<cmd>Telescope buffers<CR>", "Buffers" },
-          d = { "<cmd>Telescope help_tags<CR>", "Help tags" },
-          m = { "<cmd>Telescope marks<CR>", "Marks" },
-          p = { "<cmd>Telescope registers<CR>", "Registers" },
-          o = { "<cmd>Telescope jumplist<CR>", "Jumplist" },
-          k = { "<cmd>Telescope resume<CR>", "Resume previous state" },
-          t = { "<cmd>Telescope find_files cwd=~/.todo<CR>", "Todos" },
-          i = { "<cmd>Telescope find_files cwd=~/git/Information<CR>", "Notes" },
-        },
-
-        j = {
-          name = "Grep",
-          f = { [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>]], "Live grep" },
-          d = {
-            [[<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>]],
-            "Grep Word" },
-          s = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Current Buffer" },
-          a = { "<cmd>Telescope treesitter<CR>", "Treesitter Symbols" },
-          k = { "<cmd>Telescope resume<CR>", "Resume previous state" },
-        },
-
-        l = {
-          name = "LSP",
-          i = { "<cmd>Telescope lsp_incoming_calls<CR>", "List incoming calls" },
-          o = { "<cmd>Telescope lsp_outgoing_calls<CR>", "List outgoing calls" },
-          d = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", "Add Workspace Dir" },
-          x = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", "Remove Workspace Dir" },
-          l = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", "List Workspace Dirs" },
-          r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename Symbol" },
-          -- a = { "<cmd>lua require'telescope.builtin'.lsp_code_actions{}<CR>", "Code Actions" },
-          a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Actions" },
-          -- e = { "<cmd>Telescope lsp_document_diagnostics<CR>", "Show All Diagnostics"},
-          e = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Show All Diagnostics" },
-          s = { "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", "Workspace Symbols" },
-          f = { "<cmd>lua vim.lsp.buf.format({async = true })<CR>", "Format file" },
-          j = { "<cmd>LspInfo<CR>", "LSP Info" },
-          k = { "<cmd>LspLog<CR>", "LSP Log" },
-          -- fr = { "<cmd>lua vim.lsp.buf.range_formatting()<CR>", "Formate range" },
-          h = { "<cmd>ClangdSwitchSourceHeader<CR>", "Source/Header" }, -- clangd switch to Header...
-        },
-
-        o = {
-           "<cmd>lua require('oil').toggle_float()<CR>", "Toggle oil float"
-        },
-
-      }
-
-      wk.register(nnore, nopts)
+        {
+          { "<leader>:",     "<cmd>lua require('telescope.builtin').commands()<CR>",                                                                                                                          desc = "Commands",                    nowait = true, remap = false },
+          { "<leader><C-p>", "<cmd>lua require('functions').copy_file_path_from_root() print('file root path copied')<cr>",                                                                                   desc = "copy file path from root",    nowait = true, remap = false },
+          { "<leader>P",     "<cmd>lua require('functions').copy_file_name() print('file name copied')<cr>",                                                                                                  desc = "copy file name",              nowait = true, remap = false },
+          { "<leader>\\",    "<cmd>lua require('functions').clipboard_switch_brackets() print('Switched clipboard brackets')<cr>",                                                                            desc = "Switch cliboard brackets",    nowait = true, remap = false },
+          { "<leader>a",     group = "Format",                                                                                                                                                                nowait = true,                        remap = false },
+          { "<leader>ae",    "<cmd>:g/^\\s*$/d<CR>",                                                                                                                                                          desc = "Remove empty lines",          nowait = true, remap = false },
+          { "<leader>aw",    "<cmd>:let _s=@/<Bar>:%s/\\s\\+$//e<Bar>:let @/=_s<Bar><CR><CR>",                                                                                                                desc = "Remove trailing whitespaces", nowait = true, remap = false },
+          { "<leader>c",     "<cmd>lua require'telescope.builtin'.find_files({cwd= vim.fn.expand('/home/max/git/nix/dotfiles'), follow=true, no_ignore=true, hidden=true})<CR>",                              desc = "Browse dotfiles",             nowait = true, remap = false },
+          { "<leader>e",     group = "Exec",                                                                                                                                                                  nowait = true,                        remap = false },
+          { "<leader>el",    "<cmd>lua dofile(vim.fn.expand('%:p'))<CR>",                                                                                                                                     desc = "current file luajit",         nowait = true, remap = false },
+          { "<leader>ep",    "<cmd>silent !start %:p:h<CR>",                                                                                                                                                  desc = "File explorer current file",  nowait = true, remap = false },
+          { "<leader>er",    "<cmd>silent !explorer.exe .<CR>",                                                                                                                                               desc = "File explorer project root",  nowait = true, remap = false },
+          { "<leader>et",    "<cmd>silent !start alacritty.exe<CR>",                                                                                                                                          desc = "Terminal project root",       nowait = true, remap = false },
+          { "<leader>f",     group = "Find",                                                                                                                                                                  nowait = true,                        remap = false },
+          { "<leader>f;",    "<cmd>lua require\"telescope.builtin\".find_files({find_command = { 'rg', '--files', '--iglob', '!.git', '--iglob', '!*.idx', '--hidden'}, hidden = true, no_ignore=true})<CR>", desc = "Hidden files",                nowait = true, remap = false },
+          { "<leader>fB",    "<cmd>Telescope buffers<CR>",                                                                                                                                                    desc = "Buffers",                     nowait = true, remap = false },
+          { "<leader>fa",    "<cmd>Telescope find_files cwd=~/<CR>",                                                                                                                                          desc = "Home directory",              nowait = true, remap = false },
+          { "<leader>fd",    "<cmd>Telescope help_tags<CR>",                                                                                                                                                  desc = "Help tags",                   nowait = true, remap = false },
+          { "<leader>fi",    "<cmd>Telescope find_files cwd=~/git/Information<CR>",                                                                                                                           desc = "Notes",                       nowait = true, remap = false },
+          { "<leader>fj",    "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",                                                           desc = "Find files",                  nowait = true, remap = false },
+          { "<leader>fk",    "<cmd>Telescope resume<CR>",                                                                                                                                                     desc = "Resume previous state",       nowait = true, remap = false },
+          { "<leader>fl",    "<cmd>Telescope oldfiles<CR>",                                                                                                                                                   desc = "Recently used files",         nowait = true, remap = false },
+          { "<leader>fm",    "<cmd>Telescope marks<CR>",                                                                                                                                                      desc = "Marks",                       nowait = true, remap = false },
+          { "<leader>fo",    "<cmd>Telescope jumplist<CR>",                                                                                                                                                   desc = "Jumplist",                    nowait = true, remap = false },
+          { "<leader>fp",    "<cmd>Telescope registers<CR>",                                                                                                                                                  desc = "Registers",                   nowait = true, remap = false },
+          { "<leader>fr",    "<cmd>Telescope repo list<CR>",                                                                                                                                                  desc = "Repos",                       nowait = true, remap = false },
+          { "<leader>ft",    "<cmd>Telescope find_files cwd=~/.todo<CR>",                                                                                                                                     desc = "Todos",                       nowait = true, remap = false },
+          { "<leader>fu",    "<cmd>Telescope undo<CR>",                                                                                                                                                       desc = "Undo list",                   nowait = true, remap = false },
+          { "<leader>g",     group = "Git",                                                                                                                                                                   nowait = true,                        remap = false },
+          { "<leader>g;",    "<cmd>lua require('telescope').extensions.advanced_git_search.search_log_content_file()<cr>",                                                                                    desc = "Search git file log",         nowait = true, remap = false },
+          { "<leader>gD",    '<cmd>lua require("gitsigns").diffthis()<cr>',                                                                                                                                   desc = "Diff This",                   nowait = true, remap = false },
+          { "<leader>gS",    "<cmd>Gitsigns stage_buffer<cr>",                                                                                                                                                desc = "Stage Buffer",                nowait = true, remap = false },
+          { "<leader>ga",    "<cmd>lua require('telescope').extensions.advanced_git_search.checkout_reflog()<cr>",                                                                                            desc = "Search git reflog",           nowait = true, remap = false },
+          { "<leader>gb",    '<cmd>lua require("gitsigns").blame_line()<cr>',                                                                                                                                 desc = "Blame line",                  nowait = true, remap = false },
+          { "<leader>gc",    "<cmd>DiffviewClose<cr>",                                                                                                                                                        desc = "Close Diffview",              nowait = true, remap = false },
+          { "<leader>gd",    "<cmd>DiffviewOpen<cr>",                                                                                                                                                         desc = "Open Diffview",               nowait = true, remap = false },
+          { "<leader>gf",    "<cmd>lua require('telescope').extensions.advanced_git_search.diff_commit_file()<cr>",                                                                                           desc = "Search file changes",         nowait = true, remap = false },
+          { "<leader>gj",    "<cmd>lua require('telescope').extensions.advanced_git_search.diff_branch_file()<cr>",                                                                                           desc = "Search local branches",       nowait = true, remap = false },
+          { "<leader>gk",    "<cmd>lua require('telescope').extensions.advanced_git_search.search_log_content()<cr>",                                                                                         desc = "Search git log",              nowait = true, remap = false },
+          { "<leader>gl",    "<cmd>Git log -p --follow %<cr>",                                                                                                                                                desc = "Git file log",                nowait = true, remap = false },
+          { "<leader>gm",    '<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = "<<<<<<<"})<CR>',                                                                        desc = "Git markers in project",      nowait = true, remap = false },
+          { "<leader>go",    "<cmd>Git checkout --ours -- %<cr>",                                                                                                                                             desc = "Checkout ours",               nowait = true, remap = false },
+          { "<leader>gp",    "<cmd>Gitsigns preview_hunk<cr>",                                                                                                                                                desc = "Preview Hunk",                nowait = true, remap = false },
+          { "<leader>gr",    "<cmd>Gitsigns reset_buffer<cr>",                                                                                                                                                desc = "Reset Buffer",                nowait = true, remap = false },
+          { "<leader>gs",    "<cmd>Neogit<cr>",                                                                                                                                                               desc = "Neogit",                      nowait = true, remap = false },
+          { "<leader>gt",    "<cmd>Git checkout --theirs -- %<cr>",                                                                                                                                           desc = "Checkout theirs",             nowait = true, remap = false },
+          { "<leader>j",     group = "Grep",                                                                                                                                                                  nowait = true,                        remap = false },
+          { "<leader>ja",    "<cmd>Telescope treesitter<CR>",                                                                                                                                                 desc = "Treesitter Symbols",          nowait = true, remap = false },
+          { "<leader>jd",    '<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>',                                                         desc = "Grep Word",                   nowait = true, remap = false },
+          { "<leader>jf",    '<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>',                                                                                                  desc = "Live grep",                   nowait = true, remap = false },
+          { "<leader>jk",    "<cmd>Telescope resume<CR>",                                                                                                                                                     desc = "Resume previous state",       nowait = true, remap = false },
+          { "<leader>js",    "<cmd>Telescope current_buffer_fuzzy_find<CR>",                                                                                                                                  desc = "Current Buffer",              nowait = true, remap = false },
+          { "<leader>l",     group = "LSP",                                                                                                                                                                   nowait = true,                        remap = false },
+          { "<leader>la",    "<cmd>lua vim.lsp.buf.code_action()<CR>",                                                                                                                                        desc = "Code Actions",                nowait = true, remap = false },
+          { "<leader>ld",    "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>",                                                                                                                               desc = "Add Workspace Dir",           nowait = true, remap = false },
+          { "<leader>le",    "<cmd>lua vim.diagnostic.setloclist()<CR>",                                                                                                                                      desc = "Show All Diagnostics",        nowait = true, remap = false },
+          { "<leader>lf",    "<cmd>lua vim.lsp.buf.format({async = true })<CR>",                                                                                                                              desc = "Format file",                 nowait = true, remap = false },
+          { "<leader>lh",    "<cmd>ClangdSwitchSourceHeader<CR>",                                                                                                                                             desc = "Source/Header",               nowait = true, remap = false },
+          { "<leader>li",    "<cmd>Telescope lsp_incoming_calls<CR>",                                                                                                                                         desc = "List incoming calls",         nowait = true, remap = false },
+          { "<leader>lj",    "<cmd>LspInfo<CR>",                                                                                                                                                              desc = "LSP Info",                    nowait = true, remap = false },
+          { "<leader>lk",    "<cmd>LspLog<CR>",                                                                                                                                                               desc = "LSP Log",                     nowait = true, remap = false },
+          { "<leader>ll",    "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",                                                                                                         desc = "List Workspace Dirs",         nowait = true, remap = false },
+          { "<leader>lo",    "<cmd>Telescope lsp_outgoing_calls<CR>",                                                                                                                                         desc = "List outgoing calls",         nowait = true, remap = false },
+          { "<leader>lr",    "<cmd>lua vim.lsp.buf.rename()<CR>",                                                                                                                                             desc = "Rename Symbol",               nowait = true, remap = false },
+          { "<leader>ls",    "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>",                                                                                                                              desc = "Workspace Symbols",           nowait = true, remap = false },
+          { "<leader>lx",    "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>",                                                                                                                            desc = "Remove Workspace Dir",        nowait = true, remap = false },
+          { "<leader>n",     "<cmd>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>",                                                                                                                desc = "Toggle relative line number", nowait = true, remap = false },
+          { "<leader>o",     "<cmd>lua require('oil').toggle_float()<CR>",                                                                                                                                    desc = "Toggle oil float",            nowait = true, remap = false },
+          { "<leader>p",     "<cmd>lua require('functions').copy_file_path() print('file path copied')<cr>",                                                                                                  desc = "copy file path",              nowait = true, remap = false },
+          { "<leader>q",     "<cmd>lua require('functions').join_paragraphs()<CR>",                                                                                                                           desc = "Join paragraphs in file",     nowait = true, remap = false },
+          { "<leader>s",     "<cmd>lua require('functions').toggle_diff_splits()<CR>",                                                                                                                        desc = "Toggle diffsplits",           nowait = true, remap = false },
+          { "<leader>w",     "<cmd>w<cr>",                                                                                                                                                                    desc = "Save file",                   nowait = true, remap = false },
+        }
+      })
     end,
   },
 
