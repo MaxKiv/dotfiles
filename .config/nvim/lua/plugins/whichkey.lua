@@ -15,6 +15,7 @@ return {
       local wk = require("which-key")
       wk.add({
         {
+          { "<CR>",      "i<cr><C-c>",                                                desc = "Add newline",                 nowait = true, remap = false },
           { "<A-Down>",  "<cmd resize -5<cr>",                                        desc = "resize -5",                   nowait = true, remap = false },
           { "<A-Left>",  "<cmd>vertical resize -5<cr>",                               desc = "vertical resize -5",          nowait = true, remap = false },
           { "<A-Right>", "<cmd>vertical resize +5<cr>",                               desc = "vertical resize +5",          nowait = true, remap = false },
