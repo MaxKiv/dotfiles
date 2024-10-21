@@ -1,7 +1,7 @@
 local bufnr = vim.api.nvim_get_current_buf()
 
 vim.keymap.set(
-  "n",
+  {"v", "n" },
   "<leader>la",
   function()
     vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
@@ -11,11 +11,19 @@ vim.keymap.set(
 )
 
 vim.keymap.set(
-  "v",
-  "<leader>la",
+  {"v", "n" },
+  "<leader>da",
   function()
-    vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
-    -- or vim.lsp.buf.codeAction() if you don't want grouping.
+    vim.cmd.RustLsp('debuggables')
+  end,
+  { silent = true, buffer = bufnr }
+)
+
+vim.keymap.set(
+  {"v", "n" },
+  "<leader>da",
+  function()
+    vim.cmd.RustLsp('debuggables')
   end,
   { silent = true, buffer = bufnr }
 )
