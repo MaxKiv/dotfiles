@@ -27,3 +27,21 @@ vim.keymap.set(
   end,
   { silent = true, buffer = bufnr }
 )
+
+vim.keymap.set(
+  {"v", "n" },
+  "<leader>lc",
+  function()
+    vim.cmd.RustLsp('openCargo')
+  end,
+  { silent = true, buffer = bufnr }
+)
+
+vim.keymap.set(
+  {"v", "n" },
+  "<leader>lu",
+  function()
+    vim.cmd.RustLsp('parentModule')
+  end,
+  { silent = true, buffer = bufnr }
+)
