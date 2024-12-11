@@ -8,9 +8,5 @@ map("v", "p", '"_dP', { desc = "keep paste buffer" })
 map("n", "s", 'viwP', { desc = "Paste over word" })
 map("v", "s", 'P', { desc = "Paste over word" })
 
--- Move to next blank line without messing with jumplist
-map("n", "<A-j>", "g'}", { desc = "paragraph jump  w/o jumplist" })
-map("n", "<A-k>", "g'{", { desc = "paragraph jump  w/o jumplist" })
-
--- exit  terminal mode
+-- Sensibly exit terminal mode
 vim.cmd([[:tnoremap <Esc> <C-\><C-n>]])
