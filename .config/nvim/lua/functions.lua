@@ -3,6 +3,8 @@ local fn = vim.fn
 
 local M = {}
 
+local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+
 -- Join all paragraphs
 M.join_paragraphs = function()
   -- Get the current buffer
@@ -34,6 +36,31 @@ M.join_paragraphs = function()
   -- Replace buffer content with new_lines
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, new_lines)
 end
+
+M.open_current_file_in_file_explorer = function()
+  if is_windows then
+    vim.cmd([[silent !start %:p:h]])
+  else
+    vim.cmd([[silent !xdg-open %:p:h]])
+  end
+end
+
+M.open_project_root_in_file_explorer = function()
+  if is_windows then
+    vim.cmd([[silent !start .]])
+  else
+    vim.cmd([[silent !xdg-open .]])
+  end
+end
+
+M.open_project_root_in_terminal = function()
+  if is_windows then
+    vim.cmd([[silent !start alacritty --working-directory .]])
+  else
+    vim.cmd([[silent !alacritty --working-directory .]])
+  end
+end
+
 
 M.toggle_qf = function()
   local windows = fn.getwininfo()
