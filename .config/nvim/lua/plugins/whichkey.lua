@@ -122,7 +122,6 @@ return {
 
           -- Finding in files
           { "<leader>j",     group = "Grep",                                                                                                                                                                  nowait = true,                        remap = false },
-          { "<C-j>",    '<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>',                                                                                                  desc = "Live grep",                   nowait = true, remap = false },
           { "<leader>jd",    '<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>',                                                         desc = "Grep Word",                   nowait = true, remap = false },
           { "<leader>jf",    '<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>',                                                                                                  desc = "Live grep",                   nowait = true, remap = false },
           { "<leader>js",    "<cmd>Telescope current_buffer_fuzzy_find<CR>",                                                                                                                                  desc = "Current Buffer",              nowait = true, remap = false },
