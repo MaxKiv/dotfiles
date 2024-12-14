@@ -1,0 +1,29 @@
+layout {
+  cwd "/home/max/projects/vacation/mini_pensioen/polarsteps"
+  tab name="Polar" hide_floating_panes=true {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane edit="." cwd="/home/max/projects/vacation/mini_pensioen/polarsteps"
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+    floating_panes cwd="/home/max/projects/vacation/mini_pensioen/polarsteps"{
+      pane {
+        height 42
+        width 173
+        x 10
+        y 1
+      }
+    }
+  }
+  new_tab_template {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane
+    pane size=2 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+}
