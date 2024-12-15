@@ -64,6 +64,18 @@ chars = "\u001B[1;2S"
 key = "Key4"
 mods = "Control"
 
+# Allow <S-CR> binds in nvim
+[[keyboard.bindings]]
+chars = "\u001B[13;2u"
+key = "Return"
+mods = "Shift"
+
+# Allow <S-C> binds in nvim
+[[keyboard.bindings]]
+chars = "\u001B[13;5u"
+key = "Return"
+mods = "Control"
+
 [selection]
 save_to_clipboard = true
 
