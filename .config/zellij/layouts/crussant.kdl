@@ -1,15 +1,12 @@
 layout {
   cwd "/home/max/projects/embedded/esp-crussant"
   tab name="Crussant" hide_floating_panes=true {
-    pane size=1 borderless=true {
-      plugin location="zellij:tab-bar"
-    }
     pane command="bash" cwd="/home/max/projects/embedded/esp-crussant" {
       start_suspended false
       args "-c" "direnv exec . nvim"
     }
-    pane size=2 borderless=true {
-      plugin location="zellij:status-bar"
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
     }
     floating_panes {
       pane command="bash" cwd="/home/max/projects/embedded/esp-crussant" {
@@ -23,24 +20,18 @@ layout {
     }
   }
   tab name="Tab #2" hide_floating_panes=true {
-    pane size=1 borderless=true {
-      plugin location="zellij:tab-bar"
-    }
     pane command="bash" cwd="/home/max/projects/embedded/esp-crussant" {
       start_suspended false
       args "-c" "nix develop"
     }
     pane size=2 borderless=true {
-      plugin location="zellij:status-bar"
+      plugin location="zellij:compact-bar"
     }
   }
   new_tab_template {
-    pane size=1 borderless=true {
-      plugin location="zellij:tab-bar"
-    }
     pane
     pane size=2 borderless=true {
-      plugin location="zellij:status-bar"
+      plugin location="zellij:compact-bar"
     }
   }
 }

@@ -1,15 +1,12 @@
 layout {
   cwd "/home/max/git/nix"
   tab name="NixOS" hide_floating_panes=true {
-    pane size=1 borderless=true {
-      plugin location="zellij:tab-bar"
-    }
     pane command="bash" cwd="/home/max/git/nix" {
       start_suspended false
       args "-c" "direnv exec . nvim"
     }
-    pane size=2 borderless=true {
-      plugin location="zellij:status-bar"
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
     }
     floating_panes {
       pane command="bash" cwd="/home/max/git/nix" {
@@ -23,21 +20,15 @@ layout {
     }
   }
   tab name="dotfiles" focus=true hide_floating_panes=true {
-    pane size=1 borderless=true {
-      plugin location="zellij:tab-bar"
-    }
     pane cwd="/home/max/git/nix/dotfiles"
-    pane size=2 borderless=true {
-      plugin location="zellij:status-bar"
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
     }
   }
   new_tab_template {
-    pane size=1 borderless=true {
-      plugin location="zellij:tab-bar"
-    }
     pane
-    pane size=2 borderless=true {
-      plugin location="zellij:status-bar"
+    pane size=1 borderless=true {
+      plugin location="zellij:compact-bar"
     }
   }
 }
