@@ -1,0 +1,16 @@
+allow_images=true
+allow_markup=true
+
+key_up=Ctrl-p
+key_down=Ctrl-n
+key_right=Ctrl-l
+key_left=Ctrl-h
+key_expand=Tab
+
+halign=left
+
+dynamic_lines=true
+
+insensitive=true
+
+single_click=true

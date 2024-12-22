@@ -1,0 +1,264 @@
+# Modifier key (Mod1 = Alt, Mod4 = Meta)
+set $mod Mod4
+
+# Movement keys
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Terminal
+set $term env alacritty
+
+# Swaylock
+set $swaylock swaylock-fancy -p -f "Hasklug-Nerd-Font-Mono"
+
+# Menu
+set $run-menu wofi --show drun --prompt search
+set $emoji-menu wofi-emoji
+
+# Output names
+set $monitor eDP-1
+
+# Workspace names
+set $workspace1 1
+set $workspace2 2
+set $workspace3 3
+set $workspace4 4
+set $workspace5 5
+set $workspace6 6
+set $workspace7 7
+set $workspace8 8
+set $workspace9 9
+set $workspace10 10
+
+# Backgrounds
+output $monitor bg /home/max/git/nix/assets/backgrounds/porthole.jpg fill
+
+# Positioning
+output $monitor resolution 1536x864 position 0,0
+
+# Scaling
+# Setting this makes font fuzzy :(
+# output $monitor scale 1.25
+
+# to get App id:
+# swaymsg -t get_tree | grep app_id
+#for_window [app_id="termfloat"]                  floating enable
+#for_window [app_id="termfloat"]                  resize set height 540
+#for_window [app_id="termfloat"]                  resize set width 960
+for_window [app_id=".blueman-manager-wrapped"]   floating enable 
+for_window [app_id=".blueman-manager-wrapped"]   resize set height 540
+for_window [app_id=".blueman-manager-wrapped"]   resize set width 960
+
+# assign [app_id="firefox"]: workspace number 9
+# assign [class="Spotify"]: workspace number 7
+# assign [class="discord"]: workspace number 8
+# for_window [app_id="telegram"] move --no-auto-back-and-forth container to workspace TG
+# for_window [app_id="firefox"] focus
+# for_window [class="Spotify"] focus
+# for_window [class="discord"] focus
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym Alt+F4 kill
+bindsym $mod+q kill
+
+# Reload configuration
+bindsym $mod+Shift+r reload
+
+# Exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Lock
+bindsym $mod+Ctrl+l exec $swaylock
+
+# Open run menu
+bindsym $mod+d exec $run-menu
+
+# Open emoji menu
+bindsym $mod+period exec $emoji-menu
+
+# Drag floating windows while holding down modifier key
+floating_modifier $mod normal
+
+# Sticky windows
+# bindsym $mod+Shift+s sticky toggle
+
+# Toggle fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle floating
+bindsym $mod+Shift+space floating toggle
+
+# Toggle floating focus
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Focus the child container
+bindsym $mod+c focus child
+
+# Split horizontal
+bindsym $mod+minus splith
+
+# Split vertical
+bindsym $mod+backslash splitv
+
+# Move window into scratchpad
+#bindsym $mod+Shift+minus move scratchpad
+# Get window out of scratchpad
+#bindsym $mod+minus scratchpad show
+# use F1, F2, ... to hide / show window same window
+bindsym $mod+Shift+F1 mark --add "___temp1", move scratchpad
+bindsym $mod+F1 [con_mark="^___temp1$"] scratchpad show
+bindsym $mod+Shift+F2 mark --add "___temp2", move scratchpad
+bindsym $mod+F2 [con_mark="^___temp2$"] scratchpad show
+bindsym $mod+Shift+F3 mark --add "___temp3", move scratchpad
+bindsym $mod+F3 [con_mark="^___temp3$"] scratchpad show
+
+# Change layout style
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+v layout splitv
+bindsym $mod+Shift+b layout splith
+
+# Moving focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Moving windows
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Switching workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 exec sway-launch-or-focus $workspace7 discord discord
+bindsym $mod+8 exec sway-launch-or-focus $workspace8 Spotify spotify
+bindsym $mod+9 exec sway-launch-or-focus $workspace9 firefox firefox
+bindsym $mod+0 exec sway-launch-or-focus $workspace10 firefox firefox
+bindsym $mod+o workspace back_and_forth
+
+# Scrolling through workspaces
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
+# bindsym Alt+Tab workspace next_on_output
+# bindsym Alt+Shift+Tab workspace prev_on_output
+
+# Moving windows to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# Brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# Sound
+bindsym XF86AudioMute exec pulsemixer --toggle-mute
+bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +10
+bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -10
+bindsym XF86AudioMicMute exec pulsemixer --toggle-mute --id source-54
+
+# Media
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+
+# Take a screenshot of a screen region and copy to clipboard
+bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t image/png
+# Take a screenshot of the entire sc
+#bindsym Print exec grim | wl-copy -t image/png
+
+# Open clipboard manager
+bindsym $mod+v exec clipman pick -t wofi --histpath="~/.local/share/clipman.json"
+
+# Enter resize mode
+bindsym $mod+r mode "resize"
+
+# Resize mode
+mode "resize" {
+	# Shrink the width
+	bindsym $left resize shrink width 10px
+
+	# Grow the width
+	bindsym $right resize grow width 10px
+
+	# Shrink the height
+	bindsym $up resize shrink height 10px
+
+	# Grow the height
+	bindsym $down resize grow height 10px
+
+	# Return to default mode
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym Ctrl+c mode "default"
+}
+
+input type:keyboard {
+# xkb_options caps:swapescape
+  repeat_delay 250
+  repeat_rate 75
+}
+
+input type:touchpad {
+	natural_scroll enabled
+	tap enabled
+	tap_button_map lrm
+}
+
+bar {
+	# Run waybar
+	swaybar_command waybar
+}
+
+# Remove title bars
+default_border none
+default_floating_border none
+
+# Don't focus moused over windows
+focus_follows_mouse no
+
+# Hide mouse cursor after a period of inactivity.
+seat seat0 hide_cursor 5000
+
+# Gaps
+gaps outer 1
+gaps inner 2
+
+# Start notification manager
+# exec --no-startup-id  mako &
+
+# Start network manager applet
+exec_always --no-startup-id nm-applet --indicator &
+exec_always --no-startup-id blueman-applet &
+
+# Start clipboard manager
+# exec --no-startup-id wl-paste -t text --watch clipman store --max-items=1000 1>> ~/.local/share/clipman.json 2>&1 &
+
+# Fixes to make waybar work
+exec dbus-sway-environment
+
+# This is likely doing fairly similar things, but I'm keeping both to be sure
+include /etc/sway/config.d/*

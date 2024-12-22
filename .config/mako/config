@@ -1,0 +1,37 @@
+max-visible=5
+sort=-time
+
+layer=top
+anchor=top-right
+
+font=Roboto 13
+background-color=#1e1e2eFF
+text-color=#cdd6f4
+width=300
+height=100
+margin=10
+padding=5
+border-size=2
+border-color=#89b4fa
+border-radius=15
+progress-color=over #313244
+icons=true
+max-icon-size=64
+
+markup=true
+actions=true
+format=<b>%s</b>\n%b
+default-timeout=6000
+ignore-timeout=false
+
+
+[urgency=low]
+background-color=#1e1e2eFF
+border-color=#89b4fa
+text-color=#f9e2af
+
+[urgency=high]
+background-color=#1e1e2eFF
+border-color=#89b4fa
+text-color=#f38ba8
+
