@@ -112,6 +112,22 @@ M.clipboard_switch_brackets = function()
   end
 end
 
+-- Function to accept the first spelling suggestion for the hovered word
+M.accept_first_spelling_suggestion = function()
+    -- Get the word under the cursor
+    local word = vim.fn.expand('<cword>')
+
+    -- Get spelling suggestions for the word
+    local suggestions = vim.fn.spellsuggest(word)
+
+    if #suggestions > 0 then
+        -- Replace the current word with the first suggestion
+        vim.cmd('normal! ciw' .. suggestions[1])
+    else
+        print('No spelling suggestions available')
+    end
+end
+
 -- TODO this could be cleaner
 M.diff_is_toggled = false
 M.toggle_diff_splits = function()
