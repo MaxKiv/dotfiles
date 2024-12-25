@@ -226,6 +226,7 @@ input type:touchpad {
 	natural_scroll enabled
 	tap enabled
 	tap_button_map lrm
+  dwt disabled
 }
 
 bar {
@@ -250,9 +251,14 @@ gaps inner 2
 # Start notification manager
 # exec --no-startup-id  mako &
 
-# Start network manager applet
+# Start network manager tray applet
 exec_always --no-startup-id nm-applet --indicator &
+
+# Start bluetooth tray applet
 exec_always --no-startup-id blueman-applet &
+
+# Start window switch notification script
+exec_always --no-startup-id flashfocus &
 
 # Start clipboard manager
 # exec --no-startup-id wl-paste -t text --watch clipman store --max-items=1000 1>> ~/.local/share/clipman.json 2>&1 &
