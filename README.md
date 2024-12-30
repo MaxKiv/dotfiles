@@ -1,14 +1,13 @@
-Another dotfile repo...
+# My Dotfiles 🤓
 
-# 🔧 TODO
-Nvim:
-[ ] Try out fzf.lua
-[ ] Try out https://github.com/t-troebst/perfanno.nvim
-[ ] Refactor DAP
-[ ] Refactor LSP
+This repository contains all the configuration of stuff I actively used at one
+point. The most involved part is the `nvim` configuration, fully in `lua`.
 
-# 👨🏾‍🔧 Install options
-## 🐧 Unix/wsl
+### How to install?
+
+Don't, you should really look into using `nix` for this instead!
+
+#### 🐧 Unix/wsl
 
 `bash
 git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
@@ -16,7 +15,7 @@ alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dot checkout
 `
 
-## ⁉️ MinGW Windows
+#### ⁉️ WSL
 
 `bash
 git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles
@@ -24,7 +23,7 @@ alias dot='/mingw64/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dot checkout
 `
 
-## 🪟 Powershell Windows
+#### 🪟 Windows
 
 `ps1
 git clone --bare git@github.com:MaxKiv/dotfiles.git $HOME/.dotfiles

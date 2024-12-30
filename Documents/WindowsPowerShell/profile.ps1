@@ -1,8 +1,3 @@
-# corporate proxy settings
-[system.net.webrequest]::defaultwebproxy = new-object system.net.webproxy('rb-proxy-de.bosch.com:8080')
-[system.net.webrequest]::defaultwebproxy.credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
-[system.net.webrequest]::defaultwebproxy.BypassProxyOnLocal = $true
-
 # Fzf integration doesnt work ...
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r' -EnableAliasFuzzySetLocation
 Set-PSReadLineKeyHandler -Key Tab -ScriptBlock { Invoke-FzfTabCompletion }
