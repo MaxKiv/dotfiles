@@ -5,104 +5,104 @@
 @define-color base0C #94e2d5; @define-color base0D #89b4fa; @define-color base0E #cba6f7; @define-color base0F #f2cdcd;
 
 * {
-    font-family: "Roboto";
-    font-size: 13pt;
+  font-family: "Roboto";
+  font-size: 13pt;
 }
 
 window#waybar, tooltip {
-    background: alpha(@base00, 1.000000);
-    color: @base05;
+  background: alpha(@base00, 0.9);
+  color: @base05;
 }
 
 tooltip {
-    border-color: @base0D;
+  border-color: @base0D;
 }
 #wireplumber,
 #pulseaudio,
 #sndio {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #wireplumber.muted,
 #pulseaudio.muted,
 #sndio.muted {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #upower,
 #battery {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #upower.charging,
 #battery.Charging {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #network {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #network.disconnected {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #user {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #clock {
-    padding: 0 8px;
-    font-size: 16pt;
+  padding: 0 8px;
+  font-size: 16pt;
 }
 #backlight {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #cpu {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #disk {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #idle_inhibitor {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #power-profiles-daemon {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #temperature {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #mpd {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #language {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #keyboard-state {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #memory {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #custom.power {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 #window {
-    padding: 0 8px;
+  padding: 0 8px;
 }
 .modules-left #workspaces button {
-    border-bottom: 3px solid transparent;
-    color: @base05;
+  border-bottom: 3px solid transparent;
+  color: @base05;
 }
 .modules-left #workspaces button.focused,
 .modules-left #workspaces button.active {
-    border-bottom: 3px solid @base05;
+  border-bottom: 3px solid @base05;
 }
 .modules-center #workspaces button {
-    border-bottom: 3px solid transparent;
+  border-bottom: 3px solid transparent;
 }
 .modules-center #workspaces button.focused,
 .modules-center #workspaces button.active {
-    border-bottom: 3px solid @base05;
+  border-bottom: 3px solid @base05;
 }
 .modules-right #workspaces button {
-    border-bottom: 3px solid transparent;
+  border-bottom: 3px solid transparent;
 }
 .modules-right #workspaces button.focused,
 .modules-right #workspaces button.active {
-    border-bottom: 3px solid @base05;
+  border-bottom: 3px solid @base05;
 }

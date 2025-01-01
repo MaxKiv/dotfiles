@@ -41,20 +41,10 @@ return {
         harpoon = true,
         telescope = true,
         mason = true,
-        neotree = true,
-        neogit = true,
         noice = true,
         notify = true,
         which_key = true,
-        dap = true,
-        navic = true,
-        dap_ui = true,
         fidget = true,
-        nvim_surround = true,
-        overseer = true,
-        lsp_trouble = true,
-        diffview = true;
-        indent_blankline = true;
         native_lsp = {
           enabled = true,
           virtual_text = {
@@ -81,7 +71,7 @@ return {
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin-mocha")
+      vim.cmd.colorscheme("catppuccin-macchiato")
     end,
   }
 
