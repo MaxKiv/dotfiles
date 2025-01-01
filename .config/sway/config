@@ -177,8 +177,8 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Sound
 bindsym XF86AudioMute exec pulsemixer --toggle-mute
-bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +10
-bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -10
+bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +5
+bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -5
 bindsym XF86AudioMicMute exec pulsemixer --toggle-mute --id source-54
 
 # Media
