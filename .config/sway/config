@@ -17,6 +17,12 @@ set $swaylock swaylock-fancy -p -f "Hasklug-Nerd-Font-Mono"
 set $run-menu wofi --show drun --prompt search
 set $emoji-menu wofi-emoji
 
+# File explorer
+set $file-explorer thunar
+
+# Browser
+set $browser firefox
+
 # Output names
 set $monitor eDP-1
 
@@ -82,6 +88,12 @@ bindsym $mod+d exec $run-menu
 # Open emoji menu
 bindsym $mod+period exec $emoji-menu
 
+# Open file explorer
+bindsym $mod+e exec $file-explorer
+
+# Open browser
+bindsym $mod+b exec $browser
+
 # Drag floating windows while holding down modifier key
 floating_modifier $mod normal
 
@@ -123,12 +135,13 @@ bindsym $mod+F3 [con_mark="^___temp3$"] scratchpad show
 
 # Change layout style
 bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+t layout tabbed
+bindsym $mod+t layout toggle split
 bindsym $mod+Shift+v layout splitv
 bindsym $mod+Shift+b layout splith
 
 # Moving focus
+focus_wrapping no
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
@@ -147,10 +160,14 @@ bindsym $mod+3 workspace $workspace3
 bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace $workspace5
 bindsym $mod+6 workspace $workspace6
-bindsym $mod+7 exec sway-launch-or-focus $workspace7 discord discord
-bindsym $mod+8 exec sway-launch-or-focus $workspace8 Spotify spotify
-bindsym $mod+9 exec sway-launch-or-focus $workspace9 firefox firefox
-bindsym $mod+0 exec sway-launch-or-focus $workspace10 firefox firefox
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+#bindsym $mod+7 exec sway-launch-or-focus $workspace7 discord discord
+#bindsym $mod+8 exec sway-launch-or-focus $workspace8 Spotify spotify
+#bindsym $mod+9 exec sway-launch-or-focus $workspace9 firefox firefox
+#bindsym $mod+0 exec sway-launch-or-focus $workspace10 firefox firefox
 bindsym $mod+o workspace back_and_forth
 
 # Scrolling through workspaces

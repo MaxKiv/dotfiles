@@ -1,5 +1,5 @@
 # Opacity of window during flash.
-flash-opacity: 0.2
+flash-opacity: 0.5
 
 # Windows are restored to this opacity value at the end of a flash.
 default-opacity: 1
