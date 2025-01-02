@@ -161,8 +161,8 @@ keybinds clear-defaults=true {
         bind "Alt d" { Detach; }
         bind "Alt q" { Quit; }
         bind "Alt f" { ToggleFloatingPanes; }
-        bind "Alt n" { NewPane; }
-        bind "Alt a" { NewTab; }
+        bind "Alt a" { NewPane; }
+        bind "Alt n" { NewTab; }
         bind "Alt i" { MoveTab "Left"; }
         bind "Alt o" { MoveTab "Right"; }
         bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
