@@ -59,8 +59,8 @@
       }
     },
     "tray": {
-        "icon-size": 21,
-        "spacing": 10
+      "icon-size": 21,
+      "spacing": 10
     },
     "clock": {
         // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -95,14 +95,18 @@
       "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+      "format-icons": ["", "", "", "", ""],
+      "signal": 8,
+      "interval": 30
+      // "format-good": "", // An empty format will hide the module
+      // "format-full": "",
     },
     "power-profiles-daemon": {
       "format": "{icon}",
       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
       "tooltip": true,
+      "signal": 8, // note this seems to be broken on non-custom modules?
+      "interval": 30,
       "format-icons": {
         "default": "",
         "performance": "",
