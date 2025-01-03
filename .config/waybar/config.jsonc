@@ -17,6 +17,7 @@
     "modules-right": [
       "idle_inhibitor",
       "pulseaudio",
+      "mpd",
       "network",
       "power-profiles-daemon",
       "battery",
@@ -141,6 +142,18 @@
           "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "mpd": {
+      "tooltip": false,
+      "format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+      "format-disconnected": "X",
+      "format-stopped": "⏹",
+      "state-icons": {
+        "playing": "",
+        "paused": ""
+      },
+      "on-click": "rmpc togglepause",
+      "on-click-right": "rmpc next"
     },
     "custom/media": {
       "format": "{icon} {text}",
