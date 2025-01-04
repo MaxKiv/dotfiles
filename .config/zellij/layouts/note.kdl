@@ -1,7 +1,7 @@
 layout {
-  cwd "/home/max/projects/vacation/mini_pensioen/polarsteps"
-  tab name="Polarsteps" hide_floating_panes=true {
-    pane command="bash" cwd="/home/max/projects/vacation/mini_pensioen/polarsteps" {
+  cwd "/home/max/git/note"
+  tab name="Notes" hide_floating_panes=true {
+    pane command="bash" cwd="/home/max/git/note" {
       start_suspended false
       args "-c" "direnv exec . nvim"
     }
@@ -9,7 +9,7 @@ layout {
       plugin location="zellij:compact-bar"
     }
     floating_panes {
-      pane command="bash" cwd="/home/max/projects/vacation/mini_pensioen/polarsteps" {
+      pane command="bash" cwd="/home/max/git/note" {
         height 42
         width 173
         x 10
@@ -18,13 +18,13 @@ layout {
     }
   }
   tab focus=true hide_floating_panes=true {
-    pane cwd="/home/max/projects/vacation/mini_pensioen/polarsteps"
+    pane cwd="/home/max/git/note"
     pane size=1 borderless=true {
       plugin location="zellij:compact-bar"
     }
   }
   new_tab_template {
-    pane cwd="/home/max/projects/vacation/mini_pensioen/polarsteps"
+    pane cwd="/home/max/git/note"
     pane size=1 borderless=true {
       plugin location="zellij:compact-bar"
     }

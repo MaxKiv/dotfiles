@@ -18,7 +18,13 @@ set $run-menu wofi --show drun --prompt search
 set $emoji-menu wofi-emoji
 
 # File explorer
-set $file-explorer thunar
+set $file-explorer alacritty -e yazi
+
+# Process viewer 
+set $top alacritty -e zenith
+
+# Notes
+set $notes alacritty -e zellij attach note
 
 # Browser
 set $browser firefox
@@ -93,6 +99,12 @@ bindsym $mod+e exec $file-explorer
 
 # Open browser
 bindsym $mod+b exec $browser
+
+# Open top
+bindsym Control+Shift+Escape exec $top
+
+# Open notes
+bindsym $mod+n exec $notes
 
 # Drag floating windows while holding down modifier key
 floating_modifier $mod normal
@@ -173,6 +185,8 @@ bindsym $mod+o workspace back_and_forth
 # Scrolling through workspaces
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+Shift+Tab workspace prev_on_output
+bindsym $mod+Control+Right workspace next_on_output
+bindsym $mod+Control+Left workspace prev_on_output
 # bindsym Alt+Tab workspace next_on_output
 # bindsym Alt+Shift+Tab workspace prev_on_output
 

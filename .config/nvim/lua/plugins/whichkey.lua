@@ -18,6 +18,7 @@ return {
           -- General
           { "<leader>w",   "<cmd>w<cr>",                                                            desc = "Save file",            nowait = true, remap = false },
           { "<CR>",        "ciw",                                                                   desc = "bam!",                 nowait = true, remap = false },
+          { "<C-CR>",      "daw",                                                                   desc = "bam!",                 nowait = true, remap = false },
           { "<S-CR>",      [[f"ci"]],                                                               desc = "bam!!",                nowait = true, remap = false },
 
           -- window management
