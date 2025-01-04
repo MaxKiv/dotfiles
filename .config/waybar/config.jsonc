@@ -15,13 +15,13 @@
       "clock"
     ],
     "modules-right": [
-      "idle_inhibitor",
-      "pulseaudio",
       "mpd",
+      "pulseaudio",
       "network",
-      "power-profiles-daemon",
       "battery",
       "tray",
+      "power-profiles-daemon",
+      "idle_inhibitor",
       "custom/power"
     ],
     // Modules configuration
@@ -93,7 +93,7 @@
       },
       "format": "{capacity}% {icon}",
       "format-full": "{capacity}% {icon}",
-      "format-charging": "{capacity}% ",
+      "format-charging": "{capacity}% ",
       "format-plugged": "{capacity}% ",
       "format-alt": "{time} {icon}",
       "format-icons": ["", "", "", "", ""],
@@ -145,7 +145,7 @@
     },
     "mpd": {
       "tooltip": false,
-      "format": "{stateIcon} {artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+      "format": "{stateIcon} {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
       "format-disconnected": "X",
       "format-stopped": "⏹",
       "state-icons": {
