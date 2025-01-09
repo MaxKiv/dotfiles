@@ -23,6 +23,9 @@ set $file-explorer alacritty -e yazi
 # Process viewer 
 set $top alacritty -e zenith
 
+# System Config
+set $system-config alacritty -e zellij attach nix
+
 # Notes
 set $notes alacritty -e zellij attach note
 
@@ -102,6 +105,9 @@ bindsym $mod+b exec $browser
 
 # Open top
 bindsym Control+Shift+Escape exec $top
+
+# Open System Config
+bindsym $mod+i exec $system-config
 
 # Open notes
 bindsym $mod+n exec $notes
@@ -297,6 +303,5 @@ exec_always --no-startup-id flashfocus &
 
 # Fixes to make waybar work
 exec dbus-sway-environment
-
 # This is likely doing fairly similar things, but I'm keeping both to be sure
 include /etc/sway/config.d/*
