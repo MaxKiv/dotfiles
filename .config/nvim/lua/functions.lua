@@ -5,6 +5,16 @@ local M = {}
 
 local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 
+--- Merge extended options with a default table of options
+--- Stolen from astroNvim, thanks! 😘
+---@param default? table The default table that you want to merge into
+---@param opts? table The new options that should be merged with the default table
+---@return table # The merged table
+M.extend_tbl = function(default, opts)
+  opts = opts or {}
+  return default and vim.tbl_deep_extend("force", default, opts) or opts
+end
+
 -- Join all paragraphs
 M.join_paragraphs = function()
   -- Get the current buffer

@@ -5,7 +5,7 @@ local lspconfig_filename = "nvim_lspconfig.lua"
 -- by a file with the above name in the cwd
 ---@class lspconfig_t
 local lspconfig = {
-  -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+  -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
   -- NOTE: this is setup by rustaceanvim
   -- ["rust_analyzer"] = {
   --   -- NOTE: required Name of LSP binary
@@ -103,9 +103,6 @@ local lspconfig = {
   neocmakelsp = {
     binary = "neocmakelsp",
     setup_name = "neocmake",
-    -- cmd = {
-    --   [[C:\Users\KIM1DEV\git\neocmakelsp\target\release\neocmakelsp.exe]], "--stdio",
-    -- },
   },
   bashls = {
     binary = "bash-language-server",
