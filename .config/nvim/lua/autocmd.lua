@@ -57,7 +57,7 @@ api.nvim_create_autocmd(
       -- set current buffer formatexpr to nixpkgs-fmt
       -- api.nvim_buf_set_option(0, "formatexpr", "v:lua.vim.lsp.formatexpr()")
       -- TODO get the nixpkgs-fmt value from the nix lsp
-      api.nvim_buf_set_option(0, "formatprg", "nixpkgs-fmt")
+      api.nvim_buf_set_option(0, "formatprg", "alejandra --quiet")
     end,
   }
 )

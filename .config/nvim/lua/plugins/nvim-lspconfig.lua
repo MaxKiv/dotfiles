@@ -38,7 +38,7 @@ local lspconfig = {
     settings = {
       ['nil'] = {
         formatting = {
-          command = { "nixpkgs-fmt" },
+          command = { "alejandra", "--", },
         },
       },
     },
