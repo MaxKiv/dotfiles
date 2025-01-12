@@ -159,7 +159,7 @@ keybinds clear-defaults=true {
     shared_except "locked" {
         bind "Alt g" { SwitchToMode "Locked"; }
         bind "Alt d" { Detach; }
-        bind "Alt q" { Quit; }
+        bind "Alt q" { CloseFocus; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt a" { NewPane; }
         bind "Alt n" { NewTab; }

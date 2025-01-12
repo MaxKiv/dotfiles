@@ -27,7 +27,7 @@ set $top alacritty -e zenith
 set $system-config alacritty -e zellij attach nix
 
 # Notes
-set $notes alacritty -e zellij attach note
+set $notes alacritty -e zellij attach notes
 
 # Browser
 set $browser firefox

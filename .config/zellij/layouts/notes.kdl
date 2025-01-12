@@ -1,9 +1,9 @@
 layout {
   cwd "/home/max/git/notes"
-  tab name="Notes" hide_floating_panes=true {
+  tab focus=true name="Notes" hide_floating_panes=true {
     pane command="bash" cwd="/home/max/git/notes" {
       start_suspended false
-      args "-c" "direnv exec . nvim"
+      args "-c" "direnv exec . nvim ./entry.md"
     }
     pane size=1 borderless=true {
       plugin location="zellij:compact-bar"
@@ -17,7 +17,7 @@ layout {
       }
     }
   }
-  tab focus=true hide_floating_panes=true {
+  tab hide_floating_panes=true {
     pane cwd="/home/max/git/notes"
     pane size=1 borderless=true {
       plugin location="zellij:compact-bar"
