@@ -453,7 +453,7 @@ return {
       vim.fn.sign_define('DapBreakpointRejected',
         { text = '❌', texthl = 'blue', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
       vim.fn.sign_define('DapStopped',
-        { text = '🮅', texthl = 'green', linehl = 'DapStopped', numhl = 'DapStopped' })
+        { text = '↳', texthl = 'green', linehl = 'DapStopped', numhl = 'DapStopped' })
       vim.fn.sign_define('DapLogPoint',
         { text = '⭕', texthl = 'yellow', linehl = 'DapBreakpoint', numhl = 'DapBreakpoint' })
     end,
