@@ -74,14 +74,22 @@ local lspconfig = {
     binary = "rome",
     root_dir = { 'package.json', 'node_modules', '.git' },
   },
-  ["jedi_language_server"] = {
-    binary = "jedi-language-server",
+  basedpyright = {
+    binary = "basedpyright",
     root_dir = {
       "pyrightconfig.json",
       "pyproject.toml",
       ".git"
     },
   },
+  -- ["jedi_language_server"] = {
+  --   binary = "jedi-language-server",
+  --   root_dir = {
+  --     "pyrightconfig.json",
+  --     "pyproject.toml",
+  --     ".git"
+  --   },
+  -- },
   lua_ls = {
     binary = "lua-language-server",
     settings = {

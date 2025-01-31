@@ -63,11 +63,15 @@ output $monitor resolution 1920x1080@60Hz position 0,0
 #for_window [app_id="termfloat"]                  floating enable
 #for_window [app_id="termfloat"]                  resize set height 540
 #for_window [app_id="termfloat"]                  resize set width 960
-for_window [app_id=".blueman-manager-wrapped"]   floating enable 
-for_window [app_id=".blueman-manager-wrapped"]   resize set height 540
+for_window [app_id=".blueman-manager-wrapped"]   floating enable
 for_window [app_id=".blueman-manager-wrapped"]   resize set width 960
+for_window [app_id=".blueman-manager-wrapped"]   resize set height 540
+for_window [app_id="com.gabm.satty"]   floating enable
+for_window [app_id="com.gabm.satty"]   resize set width 1280
+for_window [app_id="com.gabm.satty"]   resize set height 1024
+for_window [app_id="com.gabm.satty"]   border pixel 10
 
-# assign [app_id="firefox"]: workspace number 9
+# assign [app_id=""]: workspace number 9
 # assign [class="Spotify"]: workspace number 7
 # assign [class="discord"]: workspace number 8
 # for_window [app_id="telegram"] move --no-auto-back-and-forth container to workspace TG
@@ -227,6 +231,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t image/png
 # Take a screenshot of the entire sc
 #bindsym Print exec grim | wl-copy -t image/png
+bindsym $mod+Ctrl+s exec grim -g "$(slurp -o)" -t ppm - | satty --filename -
 
 # Open clipboard manager
 bindsym $mod+v exec clipman pick -t wofi --histpath="~/.local/share/clipman.json"
@@ -253,6 +258,12 @@ mode "resize" {
 	bindsym Escape mode "default"
 	bindsym Ctrl+c mode "default"
 }
+
+# passthrough mode, useful for using a remote desktop
+mode passthrough {
+    bindsym $mod+Delete mode default
+}
+bindsym $mod+Delete mode passthrough
 
 input type:keyboard {
 # xkb_options caps:swapescape
@@ -299,7 +310,11 @@ exec_always --no-startup-id blueman-applet &
 exec_always --no-startup-id flashfocus &
 
 # Start clipboard manager
+# Now done through nix
 # exec --no-startup-id wl-paste -t text --watch clipman store --max-items=1000 1>> ~/.local/share/clipman.json 2>&1 &
+
+exec kanshi
+exec_always kanshictl reload
 
 # Fixes to make waybar work
 exec dbus-sway-environment
