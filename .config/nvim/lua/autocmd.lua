@@ -48,19 +48,18 @@ api.nvim_create_autocmd(
   }
 )
 
--- Enable spell checking for certain file types
-api.nvim_create_autocmd(
-  { "BufRead", "BufNewFile" },
-  {
-    pattern = { "*.nix" },
-    callback = function()
-      -- set current buffer formatexpr to nixpkgs-fmt
-      -- api.nvim_buf_set_option(0, "formatexpr", "v:lua.vim.lsp.formatexpr()")
-      -- TODO get the nixpkgs-fmt value from the nix lsp
-      api.nvim_buf_set_option(0, "formatprg", "alejandra --quiet")
-    end,
-  }
-)
+-- api.nvim_create_autocmd(
+--   { "BufRead", "BufNewFile" },
+--   {
+--     pattern = { "*.nix" },
+--     callback = function()
+--       -- set current buffer formatexpr to nixpkgs-fmt
+--       -- api.nvim_buf_set_option(0, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+--       -- TODO get the nixpkgs-fmt value from the nix lsp
+--       api.nvim_buf_set_option(0, "formatprg", "alejandra --quiet")
+--     end,
+--   }
+-- )
 
 -- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })

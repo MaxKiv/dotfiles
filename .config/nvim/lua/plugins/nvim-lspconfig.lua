@@ -81,6 +81,18 @@ local lspconfig = {
       "pyproject.toml",
       ".git"
     },
+    settings = {
+      basedpyright = {
+        analysis = {
+          autoSearchPaths = true,
+          diagnosticMode = "workspace",
+          useLibraryCodeForTypes = true,
+          inlayHints = {
+            genericTypes = true,
+          },
+        },
+      },
+    },
   },
   -- ["jedi_language_server"] = {
   --   binary = "jedi-language-server",
