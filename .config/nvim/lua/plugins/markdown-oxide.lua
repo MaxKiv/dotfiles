@@ -1,15 +1,17 @@
 return {
   {
-    "Feel-ix-343/markdown-oxide",
+    'Feel-ix-343/markdown-oxide',
     config = function(_, opts)
-      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require('cmp_nvim_lsp').default_capabilities(
+        vim.lsp.protocol.make_client_capabilities()
+      )
       local on_attach = function(client, bufnr)
         -- Enable completion triggered by <c-x><c-o>
         vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
         -- Enable statusline location if this lsp supports it
         if client.server_capabilities.documentSymbolProvider then
-          require("nvim-navic").attach(client, bufnr)
+          require('nvim-navic').attach(client, bufnr)
         end
         -- Enable inlay hints if this lsp supports it
         if client.server_capabilities.inlayHintProvider then
@@ -18,16 +20,15 @@ return {
         end
 
         -- setup Markdown Oxide daily note commands
-        if client.name == "markdown_oxide" then
-          vim.api.nvim_create_user_command(
-            "Daily",
-            function(args)
-              local input = args.args
+        if client.name == 'markdown_oxide' then
+          vim.api.nvim_create_user_command('Daily', function(args)
+            local input = args.args
 
-              vim.lsp.buf.execute_command({ command = "jump", arguments = { input } })
-            end,
-            { desc = 'Open daily note', nargs = "*" }
-          )
+            vim.lsp.buf.execute_command({
+              command = 'jump',
+              arguments = { input },
+            })
+          end, { desc = 'Open daily note', nargs = '*' })
         end
       end
 
@@ -40,9 +41,9 @@ return {
       }
 
       -- Register the markdown_oxide LSP with lspconfig
-      require("lspconfig").markdown_oxide.setup({
+      require('lspconfig').markdown_oxide.setup({
         capabilities = capabilities,
-        on_attach = on_attach
+        on_attach = on_attach,
       })
 
       local function check_codelens_support()
@@ -55,14 +56,17 @@ return {
         return false
       end
 
-      vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave', 'CursorHold', 'LspAttach', 'BufEnter' }, {
-        buffer = bufnr,
-        callback = function()
-          if check_codelens_support() then
-            vim.lsp.codelens.refresh({ bufnr = 0 })
-          end
-        end
-      })
+      vim.api.nvim_create_autocmd(
+        { 'TextChanged', 'InsertLeave', 'CursorHold', 'LspAttach', 'BufEnter' },
+        {
+          buffer = bufnr,
+          callback = function()
+            if check_codelens_support() then
+              vim.lsp.codelens.refresh({ bufnr = 0 })
+            end
+          end,
+        }
+      )
       -- trigger codelens refresh
       vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
     end,
@@ -70,11 +74,11 @@ return {
 
   {
     -- markdown-oxide requires some
-    "hrsh7th/nvim-cmp",
+    'hrsh7th/nvim-cmp',
     opts = function(_, opts)
       for _, source in ipairs(opts.sources or {}) do
-        if source.name == "nvim_lsp" then
-          source.option = require("functions").extend_tbl(
+        if source.name == 'nvim_lsp' then
+          source.option = require('functions').extend_tbl(
             source.option,
             { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } }
           )

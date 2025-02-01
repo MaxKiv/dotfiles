@@ -18,12 +18,14 @@ return {
           pickHistoryEntry = { n = '<enter>' },
           abort = { n = '<leader>b' },
         },
-      });
+      })
     end,
 
     keys = {
       {
-      "<leader>r", "<cmd>GrugFar<cr>", desc= "Search and Replace"
+        '<leader>r',
+        '<cmd>GrugFar<cr>',
+        desc = 'Search and Replace',
       },
     },
   },

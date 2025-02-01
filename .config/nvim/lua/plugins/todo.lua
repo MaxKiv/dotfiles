@@ -1,6 +1,4 @@
-return {
-
-}
+return {}
 
 -- TODO
 -- use mrcjkb/rustaceanvim instead of rust-tools

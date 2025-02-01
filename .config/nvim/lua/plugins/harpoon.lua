@@ -1,18 +1,59 @@
 -- Spearfishing
 return {
-  { "ThePrimeagen/harpoon",
-    requires = { "nvim-lua/plenary.nvim" },
+  {
+    'ThePrimeagen/harpoon',
+    requires = { 'nvim-lua/plenary.nvim' },
     keys = {
-      {"<C-e>",[[<cmd>lua require("harpoon.mark").add_file()<Cr>]], desc = "Mark Buffer" },
-      {"<S-H>",[[<cmd>lua require("harpoon.ui").toggle_quick_menu()<Cr>]], desc = "View Marks" },
-      {"<S-F1>",[[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]], desc = "Goto 1" },
-      {"<S-F2>",[[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]], desc = "Goto 2" },
-      {"<S-F3>",[[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]], desc = "Goto 3" },
-      {"<S-F4>",[[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]], desc = "Goto 4" },
-      {"<C-h>",[[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]], desc = "Goto 1" },
-      {"<C-j>",[[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]], desc = "Goto 2" },
-      {"<C-k>",[[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]], desc = "Goto 3" },
-      {"<C-l>",[[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]], desc = "Goto 4" },
+      {
+        '<C-e>',
+        [[<cmd>lua require("harpoon.mark").add_file()<Cr>]],
+        desc = 'Mark Buffer',
+      },
+      {
+        '<S-H>',
+        [[<cmd>lua require("harpoon.ui").toggle_quick_menu()<Cr>]],
+        desc = 'View Marks',
+      },
+      {
+        '<S-F1>',
+        [[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]],
+        desc = 'Goto 1',
+      },
+      {
+        '<S-F2>',
+        [[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]],
+        desc = 'Goto 2',
+      },
+      {
+        '<S-F3>',
+        [[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]],
+        desc = 'Goto 3',
+      },
+      {
+        '<S-F4>',
+        [[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]],
+        desc = 'Goto 4',
+      },
+      {
+        '<C-h>',
+        [[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]],
+        desc = 'Goto 1',
+      },
+      {
+        '<C-j>',
+        [[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]],
+        desc = 'Goto 2',
+      },
+      {
+        '<C-k>',
+        [[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]],
+        desc = 'Goto 3',
+      },
+      {
+        '<C-l>',
+        [[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]],
+        desc = 'Goto 4',
+      },
 
       -- {
       --   "hq",
@@ -30,6 +71,6 @@ return {
       --   desc = "Goto terminal"
       -- },
       --
-    }
+    },
   },
 }

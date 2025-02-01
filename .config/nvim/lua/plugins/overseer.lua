@@ -3,9 +3,9 @@ return {
   {
     'stevearc/overseer.nvim',
     opts = {
-        -- We patch dap later, when we setup dap
+      -- We patch dap later, when we setup dap
       dap = false,
-      templates = { "builtin", "user.c_build" },
+      templates = { 'builtin', 'user.c_build' },
     },
-  }
+  },
 }

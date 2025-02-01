@@ -7,6 +7,6 @@ return {
 
       vim.keymap.set('n', 'g;', before.jump_to_last_edit, {})
       vim.keymap.set('n', 'g,', before.jump_to_next_edit, {})
-    end
-  }
+    end,
+  },
 }

@@ -3,9 +3,9 @@ return {
   -- { "tpope/vim-commentary", }
 
   {
-    "echasnovski/mini.comment",
+    'echasnovski/mini.comment',
     config = function()
       require('mini.comment').setup()
     end,
-  }
+  },
 }

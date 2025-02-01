@@ -1,27 +1,26 @@
 return {
   {
-    "nvim-telescope/telescope.nvim",
+    'nvim-telescope/telescope.nvim',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "cljoly/telescope-repo.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
-      "nvim-telescope/telescope-live-grep-args.nvim",
-      "nvim-telescope/telescope-ui-select.nvim",
+      'nvim-lua/plenary.nvim',
+      'cljoly/telescope-repo.nvim',
+      'nvim-telescope/telescope-file-browser.nvim',
+      'nvim-telescope/telescope-live-grep-args.nvim',
+      'nvim-telescope/telescope-ui-select.nvim',
       -- "nvim-telescope/telescope-dap.nvim",
-      "debugloop/telescope-undo.nvim",
-      "ThePrimeagen/harpoon",
+      'debugloop/telescope-undo.nvim',
+      'ThePrimeagen/harpoon',
       {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build =
-        'rm -rf build && cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'rm -rf build && cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
       },
     },
     config = function()
-      local telescope = require("telescope")
-      local open_with_trouble = require("trouble.sources.telescope").open
+      local telescope = require('telescope')
+      local open_with_trouble = require('trouble.sources.telescope').open
 
       -- Use this to add more results without clearing the trouble list
-      local add_to_trouble = require("trouble.sources.telescope").add
+      local add_to_trouble = require('trouble.sources.telescope').add
 
       telescope.setup({
 
@@ -32,20 +31,19 @@ return {
             height = vim.o.lines,
             width = vim.o.columns,
             -- preview_height = 0.2,
-            prompt_position = "bottom",
+            prompt_position = 'bottom',
           },
-
         },
 
         extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown {}
+          ['ui-select'] = {
+            require('telescope.themes').get_dropdown({}),
           },
           fzf = {
             fuzzy = true,
             override_generic_sorter = true,
             override_file_sorter = true,
-            case_mode = "smart_case", --  "smart_case", "ignore_case" or "respect_case"
+            case_mode = 'smart_case', --  "smart_case", "ignore_case" or "respect_case"
           },
           live_grep_args = {
             auto_quoting = true, -- enable/disable auto-quoting
@@ -53,27 +51,30 @@ return {
             mappings = {
               -- extend mappings
               i = {
-                ["<C-h>"] = "which_key",
-                ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
-                ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
-                ["<C-e>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " -t" }),
-                ["<c-t>"] = open_with_trouble,
+                ['<C-h>'] = 'which_key',
+                ['<C-k>'] = require('telescope-live-grep-args.actions').quote_prompt(),
+                ['<C-i>'] = require('telescope-live-grep-args.actions').quote_prompt({
+                  postfix = ' --iglob ',
+                }),
+                ['<C-e>'] = require('telescope-live-grep-args.actions').quote_prompt({
+                  postfix = ' -t',
+                }),
+                ['<c-t>'] = open_with_trouble,
               },
               n = {
-                ["<c-t>"] = open_with_trouble
+                ['<c-t>'] = open_with_trouble,
               },
             },
           },
-        }
+        },
       })
 
-      telescope.load_extension("repo")
-      telescope.load_extension("ui-select")
-      telescope.load_extension("undo")
-      telescope.load_extension("fzf")
-      telescope.load_extension("harpoon")
+      telescope.load_extension('repo')
+      telescope.load_extension('ui-select')
+      telescope.load_extension('undo')
+      telescope.load_extension('fzf')
+      telescope.load_extension('harpoon')
       -- telescope.load_extension("dap")
-
     end,
-  }
+  },
 }

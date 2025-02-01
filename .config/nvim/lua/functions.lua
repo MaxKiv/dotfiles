@@ -3,7 +3,7 @@ local fn = vim.fn
 
 local M = {}
 
-local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+local is_windows = vim.loop.os_uname().sysname == 'Windows_NT'
 
 --- Merge extended options with a default table of options
 --- Stolen from astroNvim, thanks! 😘
@@ -12,7 +12,7 @@ local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
 ---@return table # The merged table
 M.extend_tbl = function(default, opts)
   opts = opts or {}
-  return default and vim.tbl_deep_extend("force", default, opts) or opts
+  return default and vim.tbl_deep_extend('force', default, opts) or opts
 end
 
 -- Join all paragraphs
@@ -28,19 +28,19 @@ M.join_paragraphs = function()
   local paragraph = {}
 
   for _, line in ipairs(lines) do
-    if line == "" then
+    if line == '' then
       if #paragraph > 0 then
-        table.insert(new_lines, table.concat(paragraph, " "))
+        table.insert(new_lines, table.concat(paragraph, ' '))
         paragraph = {}
       end
-      table.insert(new_lines, "")
+      table.insert(new_lines, '')
     else
       table.insert(paragraph, line)
     end
   end
 
   if #paragraph > 0 then
-    table.insert(new_lines, table.concat(paragraph, " "))
+    table.insert(new_lines, table.concat(paragraph, ' '))
   end
 
   -- Replace buffer content with new_lines
@@ -71,32 +71,31 @@ M.open_project_root_in_terminal = function()
   end
 end
 
-
 M.toggle_qf = function()
   local windows = fn.getwininfo()
   local qf_exists = false
   for _, win in pairs(windows) do
-    if win["quickfix"] == 1 then
+    if win['quickfix'] == 1 then
       qf_exists = true
     end
   end
   if qf_exists == true then
-    cmd("cclose")
+    cmd('cclose')
     return
   end
   if M.isNotEmpty(fn.getqflist()) then
-    cmd("copen")
+    cmd('copen')
   end
 end
 
 M.toggle_colorcolumn = function()
-  local value = vim.api.nvim_get_option_value("colorcolumn", {})
-  if value == "" then
-    M.notify("Enable colocolumn", 1, "functions.lua")
-    vim.api.nvim_set_option_value("colorcolumn", "79", {})
+  local value = vim.api.nvim_get_option_value('colorcolumn', {})
+  if value == '' then
+    M.notify('Enable colocolumn', 1, 'functions.lua')
+    vim.api.nvim_set_option_value('colorcolumn', '79', {})
   else
-    M.notify("Disable colocolumn", 1, "functions.lua")
-    vim.api.nvim_set_option_value("colorcolumn", "", {})
+    M.notify('Disable colocolumn', 1, 'functions.lua')
+    vim.api.nvim_set_option_value('colorcolumn', '', {})
   end
 end
 
@@ -114,7 +113,7 @@ end
 
 M.clipboard_switch_brackets = function()
   local sub, count = string.gsub(vim.fn.getreg('+'), [[\]], [[/]])
-  if(count > 0) then
+  if count > 0 then
     vim.fn.setreg('+', sub)
   else
     local sub, _ = string.gsub(vim.fn.getreg('+'), [[/]], [[\]])
@@ -124,18 +123,18 @@ end
 
 -- Function to accept the first spelling suggestion for the hovered word
 M.accept_first_spelling_suggestion = function()
-    -- Get the word under the cursor
-    local word = vim.fn.expand('<cword>')
+  -- Get the word under the cursor
+  local word = vim.fn.expand('<cword>')
 
-    -- Get spelling suggestions for the word
-    local suggestions = vim.fn.spellsuggest(word)
+  -- Get spelling suggestions for the word
+  local suggestions = vim.fn.spellsuggest(word)
 
-    if #suggestions > 0 then
-        -- Replace the current word with the first suggestion
-        vim.cmd('normal! ciw' .. suggestions[1])
-    else
-        print('No spelling suggestions available')
-    end
+  if #suggestions > 0 then
+    -- Replace the current word with the first suggestion
+    vim.cmd('normal! ciw' .. suggestions[1])
+  else
+    print('No spelling suggestions available')
+  end
 end
 
 -- TODO this could be cleaner
@@ -157,7 +156,7 @@ end
 -- into a Lua variable
 M.execute_command = function(command)
   local handle = io.popen(command)
-  local result = handle:read("*a")
+  local result = handle:read('*a')
   handle:close()
   return result
 end
@@ -172,11 +171,11 @@ end
 local output = M.execute_shell_command([[
   bash -i -c "dot rev-parse --show-toplevel"
 ]])
-M.dotfiles_dir = output[#output] or "$HOME/.config/nvim"
+M.dotfiles_dir = output[#output] or '$HOME/.config/nvim'
 
-M.running_nixos = function ()
+M.running_nixos = function()
   local uv = vim.loop
-  local nixos_file = "/etc/NIXOS"
+  local nixos_file = '/etc/NIXOS'
   local stat = uv.fs_stat(nixos_file)
   return stat and stat.type == 'file'
 end

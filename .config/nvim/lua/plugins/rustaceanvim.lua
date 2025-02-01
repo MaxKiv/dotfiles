@@ -11,32 +11,40 @@ return {
     local liblldb_path = nil
 
     -- On NixOS codelldb's path should be exposed in this ENV
-    if require("functions").running_nixos() then
-      extension_path = vim.fn.getenv("NVIM_CODELLDB_PATH")
-      if not extension_path or extension_path == vim.NIL or extension_path == "" then
+    if require('functions').running_nixos() then
+      extension_path = vim.fn.getenv('NVIM_CODELLDB_PATH')
+      if
+        not extension_path
+        or extension_path == vim.NIL
+        or extension_path == ''
+      then
         -- Provide a fallback or error if NVIM_CODELLDB_PATH is not set
-        vim.notify("Running NixOS but NVIM_CODELLDB_PATH is not set. Please configure the environment variable.", vim.log.levels.ERROR)
+        vim.notify(
+          'Running NixOS but NVIM_CODELLDB_PATH is not set. Please configure the environment variable.',
+          vim.log.levels.ERROR
+        )
         return
       end
-      codelldb_path = extension_path .. "/adapter/codelldb"
-      liblldb_path = extension_path .. "/lldb/lib/liblldb.so"
+      codelldb_path = extension_path .. '/adapter/codelldb'
+      liblldb_path = extension_path .. '/lldb/lib/liblldb.so'
     else -- Running some other OS, find codelldb through usual method
       -- Update this path
-      extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/'
+      extension_path = vim.env.HOME
+        .. '/.vscode/extensions/vadimcn.vscode-lldb-1.10.0/'
       codelldb_path = extension_path .. 'adapter/codelldb'
       liblldb_path = extension_path .. 'lldb/lib/liblldb'
 
       -- The path is different on Windows
-      local this_os = vim.uv.os_uname().sysname;
-      if this_os:find "Windows" then
-        codelldb_path = extension_path .. "adapter\\codelldb.exe"
-        liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+      local this_os = vim.uv.os_uname().sysname
+      if this_os:find('Windows') then
+        codelldb_path = extension_path .. 'adapter\\codelldb.exe'
+        liblldb_path = extension_path .. 'lldb\\bin\\liblldb.dll'
       else
         -- The liblldb extension is .so for Linux and .dylib for MacOS
-        liblldb_path = liblldb_path .. (this_os == "Linux" and ".so" or ".dylib")
+        liblldb_path = liblldb_path
+          .. (this_os == 'Linux' and '.so' or '.dylib')
       end
     end
-
 
     vim.g.rustaceanvim = {
       server = {
@@ -47,6 +55,5 @@ return {
 
       adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
     }
-
   end,
 }

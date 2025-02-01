@@ -1,8 +1,8 @@
 return {
 
   {
-    "eddyekofo94/gruvbox-flat.nvim",
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    'eddyekofo94/gruvbox-flat.nvim',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- -- load the colorscheme here
@@ -16,22 +16,22 @@ return {
 
   -- tokyonight
   {
-    "folke/tokyonight.nvim",
-    opts = { style = "moon" },
+    'folke/tokyonight.nvim',
+    opts = { style = 'moon' },
   },
 
   -- catppuccin
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     opts = {
       term_colors = true,
       transparent_background = true,
       dim_inactive = {
         enabled = false, -- dims the background color of inactive window
-        shade = "dark",
+        shade = 'dark',
         percentage = 0.1, -- percentage of the shade to apply to the inactive window
       },
       integrations = {
@@ -48,16 +48,16 @@ return {
         native_lsp = {
           enabled = true,
           virtual_text = {
-            errors = { "italic" },
-            hints = { "italic" },
-            warnings = { "italic" },
-            information = { "italic" },
+            errors = { 'italic' },
+            hints = { 'italic' },
+            warnings = { 'italic' },
+            information = { 'italic' },
           },
           underlines = {
-            errors = { "underline" },
-            hints = { "underline" },
-            warnings = { "underline" },
-            information = { "underline" },
+            errors = { 'underline' },
+            hints = { 'underline' },
+            warnings = { 'underline' },
+            information = { 'underline' },
           },
           inlay_hints = {
             background = true,
@@ -65,14 +65,13 @@ return {
         },
         mini = {
           enabled = true,
-          indentscope_color = "",
+          indentscope_color = '',
         },
       },
     },
     config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin-macchiato")
+      require('catppuccin').setup(opts)
+      vim.cmd.colorscheme('catppuccin-macchiato')
     end,
-  }
-
+  },
 }

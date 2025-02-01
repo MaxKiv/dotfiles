@@ -4,17 +4,16 @@
 table.unpack = table.unpack or unpack -- 5.1 compatibility
 
 -- "Global" Keymappings
-require("mappings")
+require('mappings')
 
 -- All non plugin related (vim) options
-require("options")
+require('options')
 
 -- Vim autocommands/autogroups
-require("autocmd")
+require('autocmd')
 
 -- Global functions
-require("functions")
+require('functions')
 
 -- Plugin management via lazy
-require("plugin_manager")
-
+require('plugin_manager')
