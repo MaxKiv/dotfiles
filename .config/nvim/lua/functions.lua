@@ -145,7 +145,7 @@ M.toggle_diff_splits = function()
     if neo_tree_loaded then
       vim.cmd([[NeoTreeClose]])
     end
-    vim.cmd([[windo diffthis]])
+    vim.cmd([[window diffthis]])
   else
     vim.cmd([[diffoff!]])
   end
@@ -156,9 +156,17 @@ end
 -- into a Lua variable
 M.execute_command = function(command)
   local handle = io.popen(command)
-  local result = handle:read('*a')
-  handle:close()
-  return result
+  if handle then
+    local result = handle:read('*a')
+    handle:close()
+    return result
+  else
+    vim.notify(
+      'unable to open file handle for command: ' .. command,
+      vim.log.levels.WARN,
+      nil
+    )
+  end
 end
 
 -- Execute a shell command and capture its output into a Lua variable
