@@ -1,10 +1,10 @@
 -- Plugin to toggle split/joining lists of items arguments, tables, etc
 return {
   {
-    'echasnovski/mini.splitjoin',
+    'echasnovski/mini.surround',
     version = '*',
     config = function()
-      require('mini.splitjoin').setup()
+      require('mini.surround').setup()
     end,
   },
 }
