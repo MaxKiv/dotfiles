@@ -1,0 +1,28 @@
+á - a egu
+é - e egu
+í - i egu
+ó - o egu
+ú - u egu
+ý - y egu
+à - a grave
+è - e grave
+ì - i grave
+ò - o grave
+ù - u grave
+â - a circumflex
+ê - e circumflex
+î - i circumflex
+ô - o circumflex
+û - u circumflex
+ä - a umlaut trema
+ë - e umlaut trema
+ï - i umlaut trema
+ö - o umlaut trema
+ü - u umlaut trema
+ÿ - y umlaut trema
+ã - a tilde
+ñ - n tilde
+õ - o tilde
+ç - c cedilla
+š - s caron
+ž - z caron

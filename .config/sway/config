@@ -17,6 +17,9 @@ set $swaylock swaylock-fancy -p -f "Hasklug-Nerd-Font-Mono"
 set $run-menu wofi --show drun --prompt search
 set $emoji-menu wofi-emoji
 
+# Diacritics picker
+set $diacritics-menu echo -n "$(wofi --dmenu -p "Pick a symbol" < /home/max/git/nix/dotfiles/.config/wofi/diacritics.txt | cut -d ' ' -f 1)" | wl-copy
+
 # File explorer
 set $file-explorer alacritty -e yazi
 
@@ -98,8 +101,11 @@ bindsym $mod+Ctrl+l exec $swaylock
 # Open run menu
 bindsym $mod+d exec $run-menu
 
-# Open emoji menu
+# Open emoji picker
 bindsym $mod+period exec $emoji-menu
+
+# Open diacritics picker
+bindsym $mod+comma exec $diacritics-menu
 
 # Open file explorer
 bindsym $mod+e exec $file-explorer

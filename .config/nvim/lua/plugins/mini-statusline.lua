@@ -1,10 +1,10 @@
 -- Plugin to toggle split/joining lists of items arguments, tables, etc
 return {
   {
-    'echasnovski/mini.splitjoin',
+    'echasnovski/mini.statusline',
     version = '*',
     config = function()
-      require('mini.splitjoin').setup()
+      require('mini.statusline').setup()
     end,
   },
 }
