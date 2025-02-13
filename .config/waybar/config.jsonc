@@ -65,7 +65,7 @@
     },
     "clock": {
         // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-        "timezone": "Pacific/Auckland",
+        "timezone": "Australia/Perth",
         "format": "{:%H:%M}",
         "format-alt": "{:%d/%m/%Y %A %H:%M %Z}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",

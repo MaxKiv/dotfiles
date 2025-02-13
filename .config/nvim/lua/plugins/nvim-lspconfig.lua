@@ -6,33 +6,7 @@ local lspconfig_filename = 'nvim_lspconfig.lua'
 ---@class lspconfig_t
 local lspconfig = {
   -- Key is the LSP name as listed in https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-  -- NOTE: this is setup by rustaceanvim
-  -- ["rust_analyzer"] = {
-  --   -- NOTE: required Name of LSP binary
-  --   binary = "rust-analyzer",
-  --   settings = {
-  --     imports = {
-  --       granularity = {
-  --         group = "crate",
-  --       },
-  --       prefix = "self",
-  --     },
-  --     cargo = {
-  --       buildScripts = {
-  --         enable = true,
-  --       },
-  --       -- ESP32 only :(
-  --       target = "xtensa-esp32-none-elf",
-  --       features = "esp32",
-  --     },
-  --     checkOnSave = {
-  --       allTargets = false,
-  --     },
-  --     procMacro = {
-  --       enable = true
-  --     },
-  --   },
-  -- },
+  -- NOTE: Rust is setup by rustaceanvim
   nil_ls = {
     binary = 'nil',
     settings = {
@@ -47,8 +21,6 @@ local lspconfig = {
     binary = 'clangd',
     cmd = {
       'clangd',
-      -- '/home/max/Downloads/esp-clang/bin/clangd', -- for ESP
-      -- '--query-driver=/home/max/.espressif/tools/xtensa-esp32-elf/esp-2022r1-11.2.0/xtensa-esp32-elf/bin/xtensa-esp32-elf-*',
       -- '--query-driver=*iccarm.exe',
       '--background-index',
       '--clang-tidy',
@@ -60,19 +32,6 @@ local lspconfig = {
     root_dir = {
       '.git',
     },
-  },
-  -- ["robotframework_ls"] = {
-  --   binary = "robotframework-lsp",
-  --   root_dir = {
-  --     ".git"
-  --   },
-  --   cmd = {
-  --     [[C:\Users\KIM1DEV\AppData\Local\nvim-data\mason\packages\robotframework-lsp\venv\Scripts\robotframework_ls.exe]],
-  --   },
-  -- },
-  rome = {
-    binary = 'rome',
-    root_dir = { 'package.json', 'node_modules', '.git' },
   },
   basedpyright = {
     binary = 'basedpyright',
@@ -94,14 +53,6 @@ local lspconfig = {
       },
     },
   },
-  -- ["jedi_language_server"] = {
-  --   binary = "jedi-language-server",
-  --   root_dir = {
-  --     "pyrightconfig.json",
-  --     "pyproject.toml",
-  --     ".git"
-  --   },
-  -- },
   lua_ls = {
     binary = 'lua-language-server',
     settings = {
@@ -142,10 +93,9 @@ local lspconfig = {
   gopls = {
     binary = 'gopls',
   },
-  -- hls = {
-  --   binary = "haskell-language-server",
-  --   cmd = { "haskell-language-server-wrapper", "--lsp" },
-  -- },
+  marksman = {
+    binary = 'marksman',
+  },
 }
 
 -- Build up a local lspconfig list from cwd -> home
@@ -201,7 +151,6 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
       'hrsh7th/cmp-nvim-lsp',
       {
         -- Automatically configures lua-language-server for your Neovim config,
@@ -297,6 +246,7 @@ return {
 
       -- Install LSP for all OS except Nixos
       if not require('functions').running_nixos() then
+        print('not on nixos')
         local mr = require('mason-registry')
         for _, options in pairs(lspconfig) do
           local p = mr.get_package(options.binary)

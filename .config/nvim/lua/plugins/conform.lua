@@ -28,9 +28,10 @@ return {
         markdown = { 'prettierd', 'prettier', stop_after_first = true },
         haskell = { 'ormolu' },
         nix = { 'alejandra' },
+        text = nil,
         -- Use the "*" filetype to run formatters on all filetypes.
         -- Spelling checker
-        ['*'] = { 'codespell' },
+        -- ['*'] = { 'codespell' },
         -- TODO make this work and delete autocmd below
         -- ["justfile"] = { "just" }
       },
@@ -54,8 +55,19 @@ return {
         lsp_format = 'fallback',
       },
     })
+
     -- Make gq use conform
-    vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    -- Set formatexpr for everything except .txt files
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = '*',
+      callback = function(args)
+        if vim.bo[args.buf].filetype ~= 'text' then
+          vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+        else
+          vim.o.formatexpr = ''
+        end
+      end,
+    })
 
     vim.api.nvim_create_user_command('FormatDisable', function(args)
       if args.bang then

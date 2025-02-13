@@ -63,9 +63,6 @@ output $monitor resolution 1920x1080@60Hz position 0,0
 
 # to get App id:
 # swaymsg -t get_tree | grep app_id
-#for_window [app_id="termfloat"]                  floating enable
-#for_window [app_id="termfloat"]                  resize set height 540
-#for_window [app_id="termfloat"]                  resize set width 960
 for_window [app_id=".blueman-manager-wrapped"]   floating enable
 for_window [app_id=".blueman-manager-wrapped"]   resize set width 960
 for_window [app_id=".blueman-manager-wrapped"]   resize set height 540
@@ -73,6 +70,10 @@ for_window [app_id="com.gabm.satty"]   floating enable
 for_window [app_id="com.gabm.satty"]   resize set width 1280
 for_window [app_id="com.gabm.satty"]   resize set height 1024
 for_window [app_id="com.gabm.satty"]   border pixel 10
+for_window [app_id="swappy"]   floating enable
+for_window [app_id="swappy"]   resize set width 1280
+for_window [app_id="swappy"]   resize set height 1024
+for_window [app_id="swappy"]   border pixel 10
 
 # assign [app_id=""]: workspace number 9
 # assign [class="Spotify"]: workspace number 7
@@ -237,7 +238,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t image/png
 # Take a screenshot of the entire sc
 #bindsym Print exec grim | wl-copy -t image/png
-bindsym $mod+Ctrl+s exec grim -g "$(slurp -o)" -t ppm - | satty --filename -
+bindsym $mod+Ctrl+s exec grim -g "$(slurp)" - | swappy -f -
 
 # Open clipboard manager
 bindsym $mod+v exec clipman pick -t wofi --histpath="~/.local/share/clipman.json"
@@ -297,7 +298,7 @@ default_floating_border none
 focus_follows_mouse no
 
 # Hide mouse cursor after a period of inactivity.
-seat seat0 hide_cursor 5000
+seat seat0 hide_cursor 50000
 
 # Gaps
 gaps outer 1

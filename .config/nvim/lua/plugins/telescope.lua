@@ -12,13 +12,15 @@ return {
       'ThePrimeagen/harpoon',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-        build = 'rm -rf build && cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release',
       },
     },
     config = function()
       local telescope = require('telescope')
-      local open_with_trouble = require('trouble.sources.telescope').open
+      local telescope_lga = require('telescope-live-grep-args.actions')
 
+      -- Use this to open results in folke's trouble
+      local open_with_trouble = require('trouble.sources.telescope').open
       -- Use this to add more results without clearing the trouble list
       local add_to_trouble = require('trouble.sources.telescope').add
 
@@ -51,15 +53,19 @@ return {
             mappings = {
               -- extend mappings
               i = {
-                ['<C-h>'] = 'which_key',
-                ['<C-k>'] = require('telescope-live-grep-args.actions').quote_prompt(),
-                ['<C-i>'] = require('telescope-live-grep-args.actions').quote_prompt({
-                  postfix = ' --iglob ',
+                ['<C-k>'] = telescope_lga.quote_prompt(),
+                ['<C-i>'] = telescope_lga.quote_prompt({
+                  postfix = ' --no-ignore ',
                 }),
-                ['<C-e>'] = require('telescope-live-grep-args.actions').quote_prompt({
-                  postfix = ' -t',
+                ['<C-e>'] = telescope_lga.quote_prompt({
+                  postfix = ' -t ',
+                }),
+                ['<C-h>'] = telescope_lga.quote_prompt({
+                  postfix = ' --hidden ',
                 }),
                 ['<c-t>'] = open_with_trouble,
+                -- freeze the current list and start a fuzzy search in the frozen list
+                ['<C-f>'] = 'to_fuzzy_refine',
               },
               n = {
                 ['<c-t>'] = open_with_trouble,

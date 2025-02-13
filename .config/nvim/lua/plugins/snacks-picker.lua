@@ -1,6 +1,8 @@
 -- lazy.nvim
 return {
   {
+    -- Seems to be slower and more unstable than telescope
+    enabled = false,
     'folke/snacks.nvim',
     ---@type snacks.Config
     opts = {
