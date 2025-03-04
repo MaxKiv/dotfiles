@@ -68,6 +68,7 @@ return {
         ['<C-c>'] = 'actions.close',
         ['<C-l>'] = 'actions.refresh',
         ['-'] = 'actions.parent',
+        ['<BS>'] = 'actions.parent',
         ['_'] = 'actions.open_cwd',
         ['`'] = 'actions.cd',
         ['~'] = 'actions.tcd',

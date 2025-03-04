@@ -95,7 +95,6 @@ return {
       pattern = { '*justfile', '*.just' },
       -- command = "!just --unstable --fmt --justfile '%'",
       callback = function()
-        -- Run black on the current file
         vim.cmd('silent !just --unstable --fmt')
         -- Refresh the file in Neovim after formatting
         vim.cmd('edit!')

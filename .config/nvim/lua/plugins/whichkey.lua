@@ -506,46 +506,13 @@ return {
             nowait = true,
             remap = false,
           },
-          -- {
-          --   '<C-f>',
-          --   "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",
-          --   desc = 'Find files',
-          --   nowait = true,
-          --   remap = false,
-          -- },
           {
             '<C-f>',
-            function()
-              require('snacks').picker.files({
-                finder = 'files',
-                format = 'file',
-                show_empty = true,
-                hidden = true,
-                ignored = false,
-                follow = false,
-                supports_live = true,
-              })
-            end,
+            "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",
             desc = 'Find files',
             nowait = true,
             remap = false,
           },
-          -- {
-          --   '<C-j>',
-          --   [[<cmd>lua require("fzf-lua").live_grep_native()<CR>]],
-          --   desc = 'Find files',
-          --   nowait = true,
-          --   remap = false,
-          -- },
-          -- {
-          --   '<C-j>',
-          --   function()
-          --     require('snacks').picker.grep()
-          --   end,
-          --   desc = 'Live grep',
-          --   nowait = true,
-          --   remap = false,
-          -- },
           {
             '<leader>fj',
             "<cmd>lua require'telescope.builtin'.find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",
@@ -635,13 +602,6 @@ return {
             '<leader>ft',
             '<cmd>Telescope find_files cwd=~/.todo<CR>',
             desc = 'Todos',
-            nowait = true,
-            remap = false,
-          },
-          {
-            '<leader>fu',
-            '<cmd>Telescope undo<CR>',
-            desc = 'Undo list',
             nowait = true,
             remap = false,
           },
