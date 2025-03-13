@@ -3,18 +3,11 @@
 # swaymsg -t get_outputs | jq '.[] | "\(.make) \(.model) \(.serial)"'
 
 # Kanshi config for display auto configuration
-#
-# aliases
-# "AU Optronics 0x323D Unknown" is the monitor on my Thinkpad14
-output "AU Optronics 0x323D Unknown" alias $Thinkpad14
+output "eDP-1" alias $Thinkpad14
+output "Philips Consumer Electronics Company 25M2N3200W UK02314010834" alias $Terra240
 
-#output "Dell Inc. DELL P2418D 6C3VD88R0V0T" alias $DellP2418D
-#output "Dell Inc. DELL P2423DE 9H33614" alias $DellP2423DE
-#output "IPA E272CU-ZS 000000000000" alias $IPAE272CU
-
-# When using internal monitor alone (2880x1800)
-profile tb {
-    output $Thinkpad14 enable mode 2880x1800 scale 1.6
+profile t14 {
+    output $Thinkpad14 enable mode 1920x1080@60 position 0,0 scale 1.0
 }
 
 # Mirror screen when external monitor is connected
@@ -27,58 +20,6 @@ profile mirror-hdmi {
     # exec wl-present mirror eDP-1 & sleep .5; wl-present fullscreen-output HDMI-A-1; wl-present fullscreen
 }
 
-# Dell monitor on right and slightly above.
-#profile tb_2dell {
-    #output $Thinkpad14 enable mode 2880x1800 scale 2.0 position 0,400
-    #output $DellP2423DE enable mode 2560x1440 scale 1.25 position 1440,0
-    #output $DellP2418D enable mode 2560x1440 scale 1.25 position 3488,0
-#}
-#
-## Dell monitor on right and slightly above.
-#profile tb_dell2 {
-    #output $Thinkpad14 enable mode 2880x1800 scale 1.8 position 0,400
-    #output $DellP2423DE enable mode 2560x1440 scale 1.0 position 1600,0
-#}
-#
-## Dell monitor on right and slightly above.
-#profile tb_dell {
-    #output $Thinkpad14 enable mode 2880x1800 scale 1.8 position 0,400
-    #output $DellP2418D enable mode 2560x1440 scale 1.0 position 1600,0
-#}
-#
-## IPA monitor on the right
-#profile tb_ipa {
-    #output $Thinkpad14 disable
-    #output $IPAE272CU enable mode 3840x2160 scale 1.3 position 0,0
-#}
-#
-#profile projector {
-    #output "*" enable mode 1920x1080 scale 1.0 position 3840,0
-    #output eDP-1 enable mode 1920x1080 scale 1.0 position 0,0
-    ## default to mirror the internal monitor
-    #exec wl-mirror -F --fullscreen-output HDMI-A-1 eDP-1
-#}
-#
-#profile dual {
-    #output "*" enable scale 1.0
-    #output eDP-1 enable mode 2880x1800 scale 1.6
-#}
-#
-#profile int {
-    #output eDP-1 enable scale 1.6
-#}
-#
-#profile ext {
-    #output "*" enable scale 1.0
-#}
-#
-#profile int_only {
-    #output "*" disable
-    #output eDP-1 enable scale 1.6
-#}
-#
-#profile ext_only {
-    #output "*" enable scale 1.3
-    #output eDP-1 disable
-#}
-#
+profile terra-solo {
+    output $Terra240 enable mode 1920x1080@240 scale 1.0 position 0,0
+}

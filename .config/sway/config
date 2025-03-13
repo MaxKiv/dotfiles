@@ -35,9 +35,6 @@ set $notes alacritty -e zellij attach notes
 # Browser
 set $browser firefox
 
-# Output names
-set $monitor eDP-1
-
 # Workspace names
 set $workspace1 1
 set $workspace2 2
@@ -51,7 +48,7 @@ set $workspace9 9
 set $workspace10 10
 
 # Backgrounds
-output $monitor bg /home/max/git/nix/assets/backgrounds/porthole.jpg fill
+output * bg /home/max/git/nix/assets/backgrounds/porthole.jpg fill
 
 # Positioning & Refresh Rate
 # output $monitor resolution 1536x864 position 0,0
@@ -248,46 +245,54 @@ bindsym $mod+r mode "resize"
 
 # Resize mode
 mode "resize" {
-	# Shrink the width
-	bindsym $left resize shrink width 10px
+  # Shrink the width
+  bindsym $left resize shrink width 10px
 
-	# Grow the width
-	bindsym $right resize grow width 10px
+  # Grow the width
+  bindsym $right resize grow width 10px
 
-	# Shrink the height
-	bindsym $up resize shrink height 10px
+  # Shrink the height
+  bindsym $up resize shrink height 10px
 
-	# Grow the height
-	bindsym $down resize grow height 10px
+  # Grow the height
+  bindsym $down resize grow height 10px
 
-	# Return to default mode
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-	bindsym Ctrl+c mode "default"
+  # Return to default mode
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym Ctrl+c mode "default"
 }
 
 # passthrough mode, useful for using a remote desktop
 mode passthrough {
-    bindsym $mod+Delete mode default
+  bindsym $mod+Delete mode default
 }
 bindsym $mod+Delete mode passthrough
 
 input type:keyboard {
-# xkb_options caps:swapescape
+  # xkb_options caps:swapescape
   repeat_delay 250
   repeat_rate 75
 }
 
+input type:pointer {
+  tap enabled
+  dwt disabled
+  natural_scroll disabled
+  accel_profile "flat" # disables mouse accel
+  pointer_accel 0 # sets sensitivity
+}
+
 input type:touchpad {
-	natural_scroll enabled
-	tap enabled
-	tap_button_map lrm
+  natural_scroll enabled
+  tap enabled
+  tap_button_map lrm
   dwt disabled
 }
 
 bar {
-	# Run waybar
-	swaybar_command waybar
+  # Run waybar
+  swaybar_command waybar
 }
 
 # Remove title bars
@@ -317,7 +322,7 @@ exec_always --no-startup-id blueman-applet &
 exec_always --no-startup-id flashfocus &
 
 # Start clipboard manager
-# Now done through nix
+# NOTE: Now done through nix
 # exec --no-startup-id wl-paste -t text --watch clipman store --max-items=1000 1>> ~/.local/share/clipman.json 2>&1 &
 
 exec kanshi
