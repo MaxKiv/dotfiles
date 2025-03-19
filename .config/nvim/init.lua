@@ -12,6 +12,9 @@ require('options')
 -- Vim autocommands/autogroups
 require('autocmd')
 
+-- User commands
+require('commands')
+
 -- Global functions
 require('functions')
 
