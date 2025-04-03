@@ -89,7 +89,7 @@ return {
 
     -- TODO: Remove this when justfile fmt is fixed in conform
     local augroup = vim.api.nvim_create_augroup('user', { clear = true })
-    vim.api.nvim_create_autocmd('BufWritePre', {
+    vim.api.nvim_create_autocmd('BufWritePost', {
       desc = 'Check justfile format on save',
       group = augroup,
       pattern = { '*justfile', '*.just' },
