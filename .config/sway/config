@@ -71,6 +71,7 @@ for_window [app_id="swappy"]   floating enable
 for_window [app_id="swappy"]   resize set width 1280
 for_window [app_id="swappy"]   resize set height 1024
 for_window [app_id="swappy"]   border pixel 10
+for_window [title = ".*Bitwarden.*"] floating enable
 
 # assign [app_id=""]: workspace number 9
 # assign [class="Spotify"]: workspace number 7
