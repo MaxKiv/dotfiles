@@ -223,14 +223,14 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # Sound
 bindsym XF86AudioMute exec pulsemixer --toggle-mute
-bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +5
-bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -5
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1
 bindsym XF86AudioMicMute exec amixer set Capture toggle
 
 # Media
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPlay exec playerctl --player playerctld play-pause
+bindsym XF86AudioNext exec playerctl --player playerctld next
+bindsym XF86AudioPrev exec playerctl --player playerctld previous
 
 # Take a screenshot of a screen region and copy to clipboard
 bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t image/png
@@ -328,6 +328,8 @@ exec_always --no-startup-id flashfocus &
 
 exec kanshi
 exec_always kanshictl reload
+
+# exec playerctld daemon
 
 # Fixes to make waybar work
 exec dbus-sway-environment
