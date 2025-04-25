@@ -1,229 +1,327 @@
-# i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
-#
-# This config file uses keycodes (bindsym) and was written for the QWERTY
-# layout.
-#
-# To get a config file with the same key positions, but for your current
-# layout, use the i3-config-wizard
-#
-set $mod mod4
+# Modifier key (Mod1 = Alt, Mod4 = Meta)
+set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font hasklug:monospace 8
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-# Brightnessctl to control brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +10% && $refresh_i3status
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 10%- && $refresh_i3status
-
-# use these keys for focus, movement, and resize directions when reaching for
-# the arrows is not convenient
-set $up k
-set $down j
+# Movement keys
 set $left h
+set $down j
+set $up k
 set $right l
 
-# use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Terminal
+set $term env alacritty
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# Swaylock
+set $lockscreen i3lock-fancy
 
-# kill focused window
-bindsym $mod+Shift+q kill
+# Menu
+set $run-menu rofi --show drun
+set $emoji-menu rofi-emoji
 
-# start dmenu (a program launcher)
-#bindsym $mod+d exec --no-startup-id dmenu_run
-# A more modern dmenu replacement is rofi:
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# Diacritics picker
+set $diacritics-menu rofi -dmenu -p "Pick a symbol" < ~/.config/rofi/diacritics.txt | cut -d ' ' -f 1 | xclip -selection clipboard
 
-# change focus
+# File explorer
+set $file-explorer alacritty -e yazi
+
+# Process viewer 
+set $top alacritty -e zenith
+
+# System Config
+set $system-config alacritty -e zellij attach nix
+
+# Notes
+set $notes alacritty -e zellij attach notes
+
+# Browser
+set $browser firefox
+
+# Workspace names
+set $workspace1 1
+set $workspace2 2
+set $workspace3 3
+set $workspace4 4
+set $workspace5 5
+set $workspace6 6
+set $workspace7 7
+set $workspace8 8
+set $workspace9 9
+set $workspace10 10
+
+# X11 background - replaced Sway's output command
+exec_always --no-startup-id feh --bg-fill /home/max/git/nix/assets/backgrounds/porthole.jpg
+
+# X11 display settings - use xrandr instead of Sway's output command
+# Get your monitor name with: xrandr --query
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --refresh 60 --pos 0x0
+
+# Scaling
+# Setting this makes font fuzzy :(
+# output $monitor scale 1.25
+
+# To get class/instance/title
+# xprop | grep -E "CLASS|NAME"
+ for_window [window_role="dialog"] floating enable 
+# for_window [app_id=".blueman-manager-wrapped"]   floating enable
+# for_window [app_id=".blueman-manager-wrapped"]   resize set width 960
+# for_window [app_id=".blueman-manager-wrapped"]   resize set height 540
+# for_window [app_id="com.gabm.satty"]   floating enable
+# for_window [app_id="com.gabm.satty"]   resize set width 1280
+# for_window [app_id="com.gabm.satty"]   resize set height 1024
+# for_window [app_id="com.gabm.satty"]   border pixel 10
+# for_window [app_id="swappy"]   floating enable
+# for_window [app_id="swappy"]   resize set width 1280
+# for_window [app_id="swappy"]   resize set height 1024
+# for_window [app_id="swappy"]   border pixel 10
+# for_window [title = ".*Bitwarden.*"] floating enable
+
+# assign [app_id=""]: workspace number 9
+# assign [class="Spotify"]: workspace number 7
+# assign [class="discord"]: workspace number 8
+# for_window [app_id="telegram"] move --no-auto-back-and-forth container to workspace TG
+# for_window [app_id="firefox"] focus
+# for_window [class="Spotify"] focus
+# for_window [class="discord"] focus
+
+# Start a terminal
+bindsym $mod+Return exec $term
+
+# Kill focused window
+bindsym Alt+F4 kill
+bindsym $mod+q kill
+
+# Reload configuration
+bindsym $mod+Shift+r reload
+
+# Exit sway
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# Lock
+bindsym $mod+Ctrl+l exec $lockscreen
+
+# Open run menu
+bindsym $mod+d exec $run-menu
+
+# Open emoji picker
+bindsym $mod+period exec $emoji-menu
+
+# Open diacritics picker
+bindsym $mod+comma exec $diacritics-menu
+
+# Open file explorer
+bindsym $mod+e exec $file-explorer
+
+# Open browser
+bindsym $mod+b exec $browser
+
+# Open top
+bindsym Control+Shift+Escape exec $top
+
+# Open System Config
+bindsym $mod+i exec $system-config
+
+# Open notes
+bindsym $mod+n exec $notes
+
+# Sticky windows
+# bindsym $mod+Shift+s sticky toggle
+
+# Toggle fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle floating
+bindsym $mod+Shift+space floating toggle
+
+# Toggle floating focus
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Focus the child container
+bindsym $mod+c focus child
+
+# Split horizontal
+bindsym $mod+minus splith
+
+# Split vertical
+bindsym $mod+backslash splitv
+
+# Move window into scratchpad
+#bindsym $mod+Shift+minus move scratchpad
+# Get window out of scratchpad
+#bindsym $mod+minus scratchpad show
+# use F1, F2, ... to hide / show window same window
+bindsym $mod+Shift+F1 mark --add "___temp1", move scratchpad
+bindsym $mod+F1 [con_mark="^___temp1$"] scratchpad show
+bindsym $mod+Shift+F2 mark --add "___temp2", move scratchpad
+bindsym $mod+F2 [con_mark="^___temp2$"] scratchpad show
+bindsym $mod+Shift+F3 mark --add "___temp3", move scratchpad
+bindsym $mod+F3 [con_mark="^___temp3$"] scratchpad show
+
+# Change layout style
+bindsym $mod+s layout stacking
+#bindsym $mod+t layout tabbed
+bindsym $mod+t layout toggle split
+bindsym $mod+Shift+v layout splitv
+bindsym $mod+Shift+b layout splith
+
+# Moving focus
+focus_wrapping no
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-# move focused window
+# Moving windows
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# Switching workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+#bindsym $mod+7 exec sway-launch-or-focus $workspace7 discord discord
+#bindsym $mod+8 exec sway-launch-or-focus $workspace8 Spotify spotify
+#bindsym $mod+9 exec sway-launch-or-focus $workspace9 firefox firefox
+#bindsym $mod+0 exec sway-launch-or-focus $workspace10 firefox firefox
+bindsym $mod+o workspace back_and_forth
 
-# split in horizontal orientation
-bindsym $mod+n split h
+# Scrolling through workspaces
+bindsym $mod+Tab workspace next_on_output
+bindsym $mod+Shift+Tab workspace prev_on_output
+bindsym $mod+Control+Right workspace next_on_output
+bindsym $mod+Control+Left workspace prev_on_output
+# bindsym Alt+Tab workspace next_on_output
+# bindsym Alt+Shift+Tab workspace prev_on_output
 
-# split in vertical orientation
-bindsym $mod+v split v
+# Moving windows to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
 
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# Brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# Sound
+bindsym XF86AudioMute exec pulsemixer --toggle-mute
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1
+bindsym XF86AudioMicMute exec amixer set Capture toggle
 
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# Media
+bindsym XF86AudioPlay exec playerctl --player playerctld play-pause
+bindsym XF86AudioNext exec playerctl --player playerctld next
+bindsym XF86AudioPrev exec playerctl --player playerctld previous
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# Take a screenshot of a screen region and copy to clipboard
+bindsym $mod+Shift+s exec maim -s | xclip -selection clipboard -t image/png
+# Take a screenshot of the entire sc
+#bindsym Print exec grim | wl-copy -t image/png
+# bindsym $mod+Ctrl+s exec grim -g "$(slurp)" - | swappy -f -
 
-# focus the parent container
-bindsym $mod+a focus parent
+# Open clipboard manager
+bindsym $mod+v exec rofi -modi "clipboard:greenclip print" -show clipboard
 
-# focus the child container
-#bindsym $mod+d focus child
-
-# move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
-
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-# switch to workspace
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-bindsym $mod+Shift+e exec "i3-msg exit"
-
-# printscreen utility
-bindsym Print exec "flameshot gui"
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        bindsym $left       resize shrink width 10 px or 10 ppt
-        bindsym $down       resize grow height 10 px or 10 ppt
-        bindsym $up         resize shrink height 10 px or 10 ppt
-        bindsym $right      resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left        resize shrink width 10 px or 10 ppt
-        bindsym Down        resize grow height 10 px or 10 ppt
-        bindsym Up          resize shrink height 10 px or 10 ppt
-        bindsym Right       resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
-}
-
+# Enter resize mode
 bindsym $mod+r mode "resize"
 
-# class                  border  backgr. text    indicator child_border
-client.focused           #ff6105 #285577 #ffffff #2e9ef4   #ff6105
-#client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-#client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-#client.urgent           #2f343a #900000 #ffffff #900000   #900000
-#client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+# Resize mode
+mode "resize" {
+  # Shrink the width
+  bindsym $left resize shrink width 10px
 
-# i3 gaps
-client.background       #ffffff
-for_window [class="^.*"] border pixel 2
-gaps inner 10
-gaps outer 0
+  # Grow the width
+  bindsym $right resize grow width 10px
 
-# resize gaps
-bindsym $mod+z gaps inner current plus 5
-bindsym $mod+shift+z gaps inner current minus 5
+  # Shrink the height
+  bindsym $up resize shrink height 10px
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-        colors {
-            background #000000
-            statusline #ffffff
-            separator #666666
+  # Grow the height
+  bindsym $down resize grow height 10px
 
-            focused_workspace  #ffffff #ff6105 #ffffff
-            active_workspace   #333333 #5f676a #ffffff
-            inactive_workspace #333333 #222222 #888888
-            urgent_workspace   #2f343a #900000 #ffffff
-            binding_mode       #2f343a #900000 #ffffff
-    }
+  # Return to default mode
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+  bindsym Ctrl+c mode "default"
 }
+
+# passthrough mode, useful for using a remote desktop
+mode passthrough {
+  bindsym $mod+Delete mode default
+}
+bindsym $mod+Delete mode passthrough
+
+# X11 keyboard settings
+exec_always --no-startup-id setxkbmap -option
+# exec_always --no-startup-id setxkbmap -option caps:swapescape
+exec_always --no-startup-id xset r rate 250 75
+
+input type:pointer {
+  tap enabled
+  dwt disabled
+  natural_scroll disabled
+  accel_profile "flat" # disables mouse accel
+  pointer_accel 0 # sets sensitivity
+}
+
+input type:touchpad {
+  natural_scroll enabled
+  tap enabled
+  tap_button_map lrm
+  dwt disabled
+}
+
+# bar {
+#   # Run waybar
+#   swaybar_command waybar
+# }
+
+# Remove title bars
+default_border none
+default_floating_border none
+
+# Don't focus moused over windows
+focus_follows_mouse no
+
+# Gaps
+gaps outer 1
+gaps inner 2
+
+# Start notification manager
+# exec --no-startup-id  mako &
+
+# Start network manager tray applet
+exec_always --no-startup-id nm-applet --indicator &
+
+# Start bluetooth tray applet
+exec_always --no-startup-id blueman-applet &
+
+# Start window switch notification script
+exec_always --no-startup-id flashfocus &
+
+# Start clipboard manager
+# NOTE: Now done through nix
+# exec --no-startup-id wl-paste -t text --watch clipman store --max-items=1000 1>> ~/.local/share/clipman.json 2>&1 &
+
+exec kanshi
+exec_always kanshictl reload
+
+# exec playerctld daemon
+
