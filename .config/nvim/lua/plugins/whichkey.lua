@@ -425,6 +425,13 @@ return {
             remap = false,
           },
           {
+            '<leader>m',
+            '<cmd>Markview<CR>',
+            desc = 'Toggle markdown preview',
+            nowait = true,
+            remap = false,
+          },
+          {
             '<leader>=',
             "<cmd>lua require('functions').accept_first_spelling_suggestion()<CR>",
             desc = 'Accept first spelling suggestion',
