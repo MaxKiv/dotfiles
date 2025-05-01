@@ -4,10 +4,15 @@
 
 # Kanshi config for display auto configuration
 output "eDP-1" alias $Thinkpad14
+output "California Institute of Technology 0x160B Unknown" alias $P16g2
 output "Philips Consumer Electronics Company 25M2N3200W UK02314010834" alias $Terra240
 
 profile t14 {
     output $Thinkpad14 enable mode 1920x1080@60 position 0,0 scale 1.0
+}
+
+profile p16g2 {
+    output $P16g2 enable mode 2560x1600@165.019 position 0,0 scale 1.5
 }
 
 # Mirror screen when external monitor is connected
