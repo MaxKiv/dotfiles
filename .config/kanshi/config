@@ -3,7 +3,7 @@
 # swaymsg -t get_outputs | jq '.[] | "\(.make) \(.model) \(.serial)"'
 
 # Kanshi config for display auto configuration
-output "eDP-1" alias $Thinkpad14
+output "Lenovo Group Limited 0x40A9 Unknown" alias $Thinkpad14
 output "California Institute of Technology 0x160B Unknown" alias $P16g2
 output "Philips Consumer Electronics Company 25M2N3200W UK02314010834" alias $Terra240
 
@@ -11,19 +11,29 @@ profile t14 {
     output $Thinkpad14 enable mode 1920x1080@60 position 0,0 scale 1.0
 }
 
+profile t14-hdmi {
+    output $Thinkpad14 enable mode 1920x1080@60 position 0,0 scale 1.0
+    output $Terra240 enable mode 1920x1080@240 scale 1.0 position 0,0
+}
+
 profile p16g2 {
     output $P16g2 enable mode 2560x1600@165.019 position 0,0 scale 1.5
 }
 
-# Mirror screen when external monitor is connected
-profile mirror-hdmi {
-    output eDP-1 enable mode 1920x1080 position 0,0
-    output HDMI-A-1 enable mode 1920x1080 position 1920,0
-    exec wl-present mirror eDP-1 --fullscreen-output HDMI-A-1 --fullscreen
-
-    # alternatively, for wl-mirror < 0.16.4
-    # exec wl-present mirror eDP-1 & sleep .5; wl-present fullscreen-output HDMI-A-1; wl-present fullscreen
+profile p16g2-hdmi {
+    output $P16g2 enable mode 2560x1600@165.019 position 0,0 scale 1.5
+    output $Terra240 enable mode 1920x1080@240 scale 1.0 position 0,0
 }
+
+
+# Note: Just position 2 monitors on the same coordinates works best
+# Mirror screen when external monitor is connected
+# profile mirror-hdmi {
+#     output eDP-1 enable mode 1920x1080 position 0,0
+#     output HDMI-A-1 enable mode 1920x1080 position 0,0
+#    # You could use wl-mirror too
+#    # exec wl-present mirror eDP-1 --fullscreen-output HDMI-A-1 --fullscreen
+# }
 
 profile terra-solo {
     output $Terra240 enable mode 1920x1080@240 scale 1.0 position 0,0

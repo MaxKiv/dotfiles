@@ -232,6 +232,9 @@ bindsym XF86AudioPlay exec playerctl --player playerctld play-pause
 bindsym XF86AudioNext exec playerctl --player playerctld next
 bindsym XF86AudioPrev exec playerctl --player playerctld previous
 
+# Order displays
+bindsym XF86Display exec wdisplays
+
 # Take a screenshot of a screen region and copy to clipboard
 bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t image/png
 # Take a screenshot of the entire sc
