@@ -6,6 +6,7 @@
 output "Lenovo Group Limited 0x40A9 Unknown" alias $Thinkpad14
 output "California Institute of Technology 0x160B Unknown" alias $P16g2
 output "Philips Consumer Electronics Company 25M2N3200W UK02314010834" alias $Terra240
+output "Dell Inc. DELL U2518D 3C4YP8BH245L" alias $office
 
 profile t14 {
     output $Thinkpad14 enable mode 1920x1080@60 position 0,0 scale 1.0
@@ -20,9 +21,14 @@ profile p16g2 {
     output $P16g2 enable mode 2560x1600@165.019 position 0,0 scale 1.5
 }
 
-profile p16g2-hdmi {
+profile p16g2-home {
     output $P16g2 enable mode 2560x1600@165.019 position 0,0 scale 1.5
     output $Terra240 enable mode 1920x1080@240 scale 1.0 position 0,0
+}
+
+profile p16g2-office {
+    output $P16g2 disable
+    output $office enable mode 2560x1440@59.951 position 0,0 scale 1.0
 }
 
 
