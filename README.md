@@ -36,10 +36,10 @@ dot checkout
 # Alacritty
 
 ## Symlink alacritty config
+
 On windows the alacritty config should be located in Appdata\Roaming, to make it
 so:
 `ps1
 mkdir C:\Users\max\AppData\Roaming\alacritty
 New-Item -ItemType SymbolicLink -Path "C:\Users\max\AppData\Roaming\alacritty\alacritty.yml" -Target "C:\Users\max\.config\alacritty\alacritty.yml"
 `
-

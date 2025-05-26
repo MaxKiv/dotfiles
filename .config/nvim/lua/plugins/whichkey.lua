@@ -166,28 +166,28 @@ return {
           -- Next/Previous pairs
           {
             ']e',
-            '<cmd>lua vim.diagnostic.goto_next({severity = ERROR})<cr>',
+            '<cmd>lua vim.diagnostic.goto_next( {severity=vim.diagnostic.severity.ERROR, wrap = true} )<cr>',
             desc = 'Next Error',
             nowait = true,
             remap = false,
           },
           {
             '[e',
-            '<cmd>lua vim.diagnostic.goto_prev({severity = ERROR})<cr>',
+            '<cmd>lua vim.diagnostic.goto_prev( {severity=vim.diagnostic.severity.ERROR, wrap = true} )<cr>',
             desc = 'Prev Error',
             nowait = true,
             remap = false,
           },
           {
             ']w',
-            '<cmd>lua vim.diagnostic.goto_next({severity = WARN})<cr>',
+            '<cmd>lua vim.diagnostic.goto_next( {severity=vim.diagnostic.severity.WARN, wrap = true} )<cr>',
             desc = 'Next Warning',
             nowait = true,
             remap = false,
           },
           {
             '[w',
-            '<cmd>lua vim.diagnostic.goto_prev({severity = WARN})<cr>',
+            '<cmd>lua vim.diagnostic.goto_prev( {severity=vim.diagnostic.severity.WARN, wrap = true} )<cr>',
             desc = 'Prev Warning',
             nowait = true,
             remap = false,
