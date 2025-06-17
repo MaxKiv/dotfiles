@@ -96,13 +96,13 @@ local lspconfig = {
   marksman = {
     binary = 'marksman',
   },
-  harper_ls = {
-    userDictPath = '~/dict.txt',
-    linters = {
-      SentenceCapitalization = false,
-      SpellCheck = false,
-    },
-  },
+  -- harper_ls = {
+  --   linters = {
+  --     LongSentences = false,
+  --     SentenceCapitalization = false,
+  --     SpellCheck = false,
+  --   },
+  -- },
 }
 
 -- Build up a local lspconfig list from cwd -> home

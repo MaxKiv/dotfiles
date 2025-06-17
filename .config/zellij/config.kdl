@@ -4,9 +4,6 @@ keybinds clear-defaults=true {
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
     }
-    locked {
-        bind "Alt g" { SwitchToMode "Normal"; }
-    }
     resize {
         bind "Alt r" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
@@ -157,7 +154,6 @@ keybinds clear-defaults=true {
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
     shared_except "locked" {
-        bind "Alt g" { SwitchToMode "Locked"; }
         bind "Alt d" { Detach; }
         bind "Alt q" { CloseFocus; }
         bind "Alt f" { ToggleFloatingPanes; }
