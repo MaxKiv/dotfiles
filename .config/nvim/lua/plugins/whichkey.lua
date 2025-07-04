@@ -18,8 +18,8 @@ return {
           -- General
           {
             '<leader>w',
-            '<cmd>w<cr>',
-            desc = 'Save file',
+            '<cmd>wa<cr>',
+            desc = 'Save all buffers',
             nowait = true,
             remap = false,
           },

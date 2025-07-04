@@ -47,6 +47,24 @@ return {
     end
 
     vim.g.rustaceanvim = {
+      tools = {
+        --- options same as lsp hover
+        ---@see vim.lsp.util.open_floating_preview
+        ---@see vim.api.nvim_open_win
+        ---@type table Options applied to floating windows.
+        float_win_config = {
+          --- whether the window gets automatically focused
+          --- default: false
+          ---@type boolean
+          auto_focus = true,
+
+          --- whether splits opened from floating preview are vertical
+          --- default: horizontal
+          ---@type 'horizontal' | 'vertical'
+          open_split = 'horizontal',
+        },
+      },
+
       server = {
         on_attach = function(client, bufnr)
           vim.lsp.inlay_hint.enable(true)
