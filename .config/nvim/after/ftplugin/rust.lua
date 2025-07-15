@@ -31,17 +31,9 @@ end, { silent = true, buffer = bufnr })
 
 vim.keymap.set(
   'n',
-  ']d', -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+  '<space>d', -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
   function()
-    vim.cmd.RustLsp({ 'renderDiagnostic', 'cycle' })
-  end,
-  { silent = true, buffer = bufnr }
-)
-vim.keymap.set(
-  'n',
-  '[d', -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
-  function()
-    vim.cmd.RustLsp({ 'renderDiagnostic', 'cycle', 'prev' })
+    vim.cmd.RustLsp({ 'renderDiagnostic', 'current' })
   end,
   { silent = true, buffer = bufnr }
 )

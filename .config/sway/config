@@ -240,6 +240,7 @@ bindsym $mod+Shift+s exec grim -g "$(slurp -d)" - | wl-copy -t image/png
 # Take a screenshot of the entire sc
 #bindsym Print exec grim | wl-copy -t image/png
 bindsym $mod+Ctrl+s exec grim -g "$(slurp)" - | swappy -f -
+bindsym $mod+Shift+t exec grim -g "$(slurp -d)" - | tee /tmp/ocr.png | tesseract stdin stdout | wl-copy
 
 # Open clipboard manager
 bindsym $mod+v exec clipman pick -t wofi --histpath="~/.local/share/clipman.json"
