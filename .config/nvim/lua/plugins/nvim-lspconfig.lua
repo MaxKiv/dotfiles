@@ -228,7 +228,7 @@ return {
       end
 
       -- full lsp logs
-      vim.lsp.set_log_level('WARN')
+      vim.lsp.log.set_level('WARN')
 
       -- Set lsp gutter symbols
       local signs = {
