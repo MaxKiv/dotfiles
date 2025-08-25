@@ -193,6 +193,20 @@ return {
             remap = false,
           },
           {
+            ']d',
+            '<cmd>lua vim.diagnostic.goto_next( {severity= {vim.diagnostic.severity.HINT, vim.diagnostic.severity.INFO}, wrap = true} )<cr>',
+            desc = 'Next Diagnostic',
+            nowait = true,
+            remap = false,
+          },
+          {
+            '[d',
+            '<cmd>lua vim.diagnostic.goto_prev( {severity= {vim.diagnostic.severity.HINT, vim.diagnostic.severity.INFO}, wrap = true} )<cr>',
+            desc = 'Prev Diagnostic',
+            nowait = true,
+            remap = false,
+          },
+          {
             '[h',
             '<cmd>Gitsigns prev_hunk<CR>',
             desc = 'Prev Hunk',

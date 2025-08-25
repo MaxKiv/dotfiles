@@ -47,6 +47,10 @@ profile P16G2-office {
     output $OFFICE enable 
 }
 
+profile P16G2 {
+    output $P16G2 enable
+}
+
 # Note: Just position 2 monitors on the same coordinates works best
 # Mirror screen when external monitor is connected
 # profile mirror-hdmi {

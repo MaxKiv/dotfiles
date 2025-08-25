@@ -29,14 +29,14 @@ vim.keymap.set({ 'v', 'n' }, '<leader>lu', function()
   vim.cmd.RustLsp('parentModule')
 end, { silent = true, buffer = bufnr })
 
-vim.keymap.set(
-  'n',
-  '<space>d', -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
-  function()
-    vim.cmd.RustLsp({ 'renderDiagnostic', 'current' })
-  end,
-  { silent = true, buffer = bufnr }
-)
+-- vim.keymap.set(
+--   'n',
+--   '<space>d', -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+--   function()
+--     vim.cmd.RustLsp({ 'renderDiagnostic', 'current' })
+--   end,
+--   { silent = true, buffer = bufnr }
+-- )
 
 -- vim.keymap.set(
 --   'n',
@@ -55,11 +55,11 @@ vim.keymap.set(
 --   { silent = true, buffer = bufnr }
 -- )
 
-vim.keymap.set(
-  'n',
-  ']r', -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
-  function()
-    vim.cmd.RustLsp('relatedDiagnostics')
-  end,
-  { silent = true, buffer = bufnr }
-)
+-- vim.keymap.set(
+--   'n',
+--   ']r', -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+--   function()
+--     vim.cmd.RustLsp('relatedDiagnostics')
+--   end,
+--   { silent = true, buffer = bufnr }
+-- )
