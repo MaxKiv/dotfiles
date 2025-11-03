@@ -786,6 +786,36 @@ return {
             nowait = true,
             remap = false,
           },
+
+          -- meow.yarn: Unravel codebase using fancy LSP hierarchy views
+          {
+            '<leader>yt',
+            '<cmd>lua require("meow.yarn").open_tree("type_hierarchy", "supertypes")<CR>',
+            desc = 'Yarn: Type Hierarchy (Super)',
+            nowait = true,
+            remap = false,
+          },
+          {
+            '<leader>ys',
+            '<cmd>lua require("meow.yarn").open_tree("type_hierarchy", "subtypes")<CR>',
+            desc = 'Yarn: Type Hierarchy (Sub)',
+            nowait = true,
+            remap = false,
+          },
+          {
+            '<leader>yd',
+            '<cmd>lua require("meow.yarn").open_tree("call_hierarchy", "callers")<CR>',
+            desc = 'Yarn: Call Hierarchy Down (Callers)',
+            nowait = true,
+            remap = false,
+          },
+          {
+            '<leader>yu',
+            '<cmd>lua require("meow.yarn").open_tree("call_hierarchy", "callees")<CR>',
+            desc = 'Yarn: Call Hierarchy Up (Callees)',
+            nowait = true,
+            remap = false,
+          },
         },
       })
     end,

@@ -22,6 +22,7 @@
   "lspkind-nvim": { "branch": "master", "commit": "d79a1c3299ad0ef94e255d045bed9fa26025dab6" },
   "markview.nvim": { "branch": "main", "commit": "e6b0f5aee8105adab6077509c46459812db4cffa" },
   "mason.nvim": { "branch": "main", "commit": "7dc4facca9702f95353d5a1f87daf23d78e31c2a" },
+  "meow.yarn.nvim": { "branch": "main", "commit": "5f9dbad4efcc8e988bb2485503eaec531568d089" },
   "mini.ai": { "branch": "main", "commit": "e139eb1101beb0250fea322f8c07a42f0f175688" },
   "mini.comment": { "branch": "main", "commit": "a9474da9175b27a5c32ee712433c23b9b0f7f139" },
   "mini.splitjoin": { "branch": "main", "commit": "70240d5d3881ff1b2b1d7902450f98a6fa303800" },
