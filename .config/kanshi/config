@@ -33,7 +33,7 @@ output "Dell Inc. DELL U2518D 3C4YP8BH245L" {
 }
 
 profile t14-hdmi {
-    output $THINKPAD14 enable 
+    output $THINKPAD14 disable 
     output $HOME enable
 }
 
