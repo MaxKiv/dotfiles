@@ -4,6 +4,7 @@ return {
     'echasnovski/mini.splitjoin',
     version = '*',
     config = function()
+      -- Default bind: gS
       require('mini.splitjoin').setup()
     end,
   },
