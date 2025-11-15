@@ -335,6 +335,20 @@ exec_always kanshictl reload
 
 # exec playerctld daemon
 
+# SwayFX-only options
+shadows enable
+blur disable
+corner_radius 10
+default_dim_inactive 0.20
+
+layer_effects "waybar" {
+    blur enable;
+    blur_xray enable;
+    blur_ignore_transparent enable;
+    shadows enable;
+    corner_radius 10;
+}
+
 # Fixes to make waybar work
 exec dbus-sway-environment
 # This is likely doing fairly similar things, but I'm keeping both to be sure
