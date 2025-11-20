@@ -356,7 +356,7 @@ return {
       dap.set_log_level('info')
 
       -- Let overseer patch dap if its in da house
-      require('overseer').patch_dap(true)
+      -- require('overseer').patch_dap(true)
       require('dap.ext.vscode').json_decode = require('overseer.json').decode
 
       require('mason').setup(opts)

@@ -1,5 +1,4 @@
 return {
-
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
@@ -813,6 +812,13 @@ return {
             '<leader>yu',
             '<cmd>lua require("meow.yarn").open_tree("call_hierarchy", "callees")<CR>',
             desc = 'Yarn: Call Hierarchy Up (Callees)',
+            nowait = true,
+            remap = false,
+          },
+          {
+            '<leader>z',
+            "<cmd>lua require('zen-mode').toggle({ window = { width = 0.5 } })<CR>",
+            desc = 'Toggle zen mode',
             nowait = true,
             remap = false,
           },
