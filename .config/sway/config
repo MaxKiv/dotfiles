@@ -48,7 +48,7 @@ set $workspace9 9
 set $workspace10 10
 
 # Backgrounds
-output * bg /home/max/git/nix/assets/backgrounds/porthole.jpg fill
+# output * bg /home/max/git/nix/assets/backgrounds/porthole.jpg fill
 
 # Positioning & Refresh Rate
 # output $monitor resolution 1536x864 position 0,0
@@ -351,5 +351,3 @@ layer_effects "waybar" {
 
 # Fixes to make waybar work
 exec dbus-sway-environment
-# This is likely doing fairly similar things, but I'm keeping both to be sure
-include /etc/sway/config.d/*

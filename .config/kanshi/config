@@ -19,7 +19,7 @@ output "California Institute of Technology 0x160B Unknown" {
 }
 
 output "Philips Consumer Electronics Company 25M2N3200W UK02314010834" {
-  mode 1920x1080@240
+  mode 1920x1080 @ 240.006
   scale 1.0
   position 0,0
   alias $HOME
@@ -49,6 +49,10 @@ profile P16G2-office {
 
 profile P16G2 {
     output $P16G2 enable
+}
+
+profile terra {
+    output $HOME enable
 }
 
 # Note: Just position 2 monitors on the same coordinates works best
