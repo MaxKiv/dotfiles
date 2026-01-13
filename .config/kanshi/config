@@ -4,6 +4,7 @@
 # get output name from `swaymsg -t get_outputs` 
 # swaymsg -t get_outputs | jq '.[] | "\(.make) \(.model) \(.serial)"'
 
+# T14
 output "Lenovo Group Limited 0x40A9 Unknown" {
   mode 1920x1080@60
   position 0,0
@@ -11,6 +12,7 @@ output "Lenovo Group Limited 0x40A9 Unknown" {
   alias $THINKPAD14
 }
 
+# P16G2
 output "California Institute of Technology 0x160B Unknown" {
   mode 2560x1600@165.019
   position 0,0
@@ -18,6 +20,7 @@ output "California Institute of Technology 0x160B Unknown" {
   alias $P16G2
 }
 
+# Home
 output "Philips Consumer Electronics Company 25M2N3200W UK02314010834" {
   mode 1920x1080 @ 240.006
   scale 1.0
@@ -25,6 +28,7 @@ output "Philips Consumer Electronics Company 25M2N3200W UK02314010834" {
   alias $HOME
 }
 
+# Work
 output "Dell Inc. DELL U2518D 3C4YP8BH245L" {
   mode 2560x1440@59.951
   position 0,0
