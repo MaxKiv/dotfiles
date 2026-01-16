@@ -628,7 +628,7 @@ return {
 
           -- Finding in files
           {
-            '<C-j>',
+            '<C-g>',
             '<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({default_text = vim.fn.expand("<cword>")})<CR>',
             desc = 'Grep Word',
             nowait = true,

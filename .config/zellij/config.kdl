@@ -2,7 +2,6 @@ show_startup_tips false
 show_release_notes false
 keybinds clear-defaults=true {
     normal {
-        bind "Ctrl l" { }
         bind "Alt e" { WriteChars "$EDITOR"; Write 13; SwitchToMode "normal"; }
     }
     pane {
