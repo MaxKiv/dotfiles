@@ -47,6 +47,35 @@ return {
     end
 
     vim.g.rustaceanvim = {
+      -- server settings
+      server = {
+        on_attach = function(client, bufnr)
+          vim.lsp.inlay_hint.enable(true)
+        end,
+        settings = {
+          ['rust-analyzer'] = {
+            cargo = {
+              buildScripts = {
+                enable = true, -- Useful for some embedded projects
+              },
+            },
+            procMacro = {
+              enable = true, -- Useful for embassy
+            },
+            workspace = {
+              symbol = {
+                search = {
+                  scope = 'workspace', -- avoid "all"
+                },
+              },
+            },
+            diagnostics = {
+              disabled = { 'unresolved-proc-macro' },
+            },
+          },
+        },
+      },
+
       tools = {
         --- options same as lsp hover
         ---@see vim.lsp.util.open_floating_preview
@@ -63,12 +92,6 @@ return {
           ---@type 'horizontal' | 'vertical'
           open_split = 'horizontal',
         },
-      },
-
-      server = {
-        on_attach = function(client, bufnr)
-          vim.lsp.inlay_hint.enable(true)
-        end,
       },
 
       adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
