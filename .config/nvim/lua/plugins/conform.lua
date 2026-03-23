@@ -85,9 +85,7 @@ return {
       vim.g.disable_autoformat = false
     end, {
       desc = 'Re-enable autoformat-on-save',
-    })
-
-    -- TODO: Remove this when justfile fmt is fixed in conform
+    }) -- TODO: Remove this when justfile fmt is fixed in conform
     local augroup = vim.api.nvim_create_augroup('user', { clear = true })
     vim.api.nvim_create_autocmd('BufWritePost', {
       desc = 'Check justfile format on save',

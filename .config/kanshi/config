@@ -36,6 +36,13 @@ output "Dell Inc. DELL U2518D 3C4YP8BH245L" {
   alias $OFFICE
 }
 
+output "HDMI-A-1" {
+  mode 2560x1440@59.951
+  position 0,0
+  scale 1.0
+  alias $EXTERNAL
+}
+
 profile t14-hdmi {
     output $THINKPAD14 disable 
     output $HOME enable
@@ -44,6 +51,11 @@ profile t14-hdmi {
 profile P16G2-home {
     output $P16G2 disable
     output $HOME enable
+}
+
+profile P16G2-external {
+    output $P16G2 disable
+    output $EXTERNAL enable
 }
 
 profile P16G2-office {
