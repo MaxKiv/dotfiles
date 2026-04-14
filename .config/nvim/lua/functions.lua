@@ -188,4 +188,23 @@ M.running_nixos = function()
   return stat and stat.type == 'file'
 end
 
+-- Helper function to handle jumping and auto-opening the float
+M.diag_jump = function(count, severity)
+  local opts = {
+    count = count,
+    on_jump = function(_, bufnr)
+      -- Open float focused on the cursor position in the current buffer
+      vim.diagnostic.open_float({
+        bufnr = bufnr,
+        scope = 'cursor',
+        focus = false,
+      })
+    end,
+  }
+  if severity then
+    opts.severity = severity
+  end
+  vim.diagnostic.jump(opts)
+end
+
 return M
