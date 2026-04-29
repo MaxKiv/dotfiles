@@ -186,7 +186,7 @@ keybinds clear-defaults=true {
     shared_except "locked" "resize" {
         bind "Alt r" { SwitchToMode "resize"; }
     }
-    shared_except "normal" "locked" "entersearch" "renametab" "renamepane" {
+    shared_except "normal" "locked" {
         bind "esc" { SwitchToMode "normal"; }
     }
     shared_except "normal" "locked" "scroll" "entersearch" {
@@ -212,7 +212,7 @@ keybinds clear-defaults=true {
     renametab {
         bind "esc" { UndoRenameTab; SwitchToMode "tab"; }
     }
-    shared_among "renametab" "renamepane" {
+    shared_among "renametab" "renamepane" "pane" {
         bind "Ctrl c" { SwitchToMode "normal"; }
     }
     renamepane {
