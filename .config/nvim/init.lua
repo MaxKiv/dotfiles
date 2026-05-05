@@ -4,7 +4,7 @@
 table.unpack = table.unpack or unpack -- 5.1 compatibility
 
 -- "Global" Keymappings
-require('mappings')
+require('keymaps')
 
 -- All non plugin related (vim) options
 require('options')

@@ -22,11 +22,23 @@ api.nvim_create_autocmd(
   { command = [[set formatoptions=tcrqnj]] }
 )
 
--- go to last loc when opening a buffer
-api.nvim_create_autocmd('BufReadPost', {
-  command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]],
-})
-
+-- places cursor at last location when opening a buffer
+vim.api.nvim_create_autocmd(
+  -- when starting to edit a buffer
+  'BufReadPost',
+  {
+    callback = function()
+      -- (row, col) of last known cursor position
+      local mark = vim.api.nvim_buf_get_mark(0, '"')
+      -- number of lines in buffer
+      local lcount = vim.api.nvim_buf_line_count(0)
+      -- if mark is valid, move to it
+      if mark[1] > 0 and mark[1] <= lcount then
+        pcall(vim.api.nvim_win_set_cursor, 0, mark)
+      end
+    end,
+  }
+)
 -- windows to close with "q"
 api.nvim_create_autocmd('FileType', {
   pattern = {
@@ -36,13 +48,23 @@ api.nvim_create_autocmd('FileType', {
     'fugitive',
     'null-ls-info',
     'dap-float',
+    'help',
+    'lspinfo',
+    'checkhealth',
+    'man',
   },
-  command = [[nnoremap <buffer><silent> q :close<CR>]],
+  callback = function(event)
+    vim.keymap.set('n', 'q', '<cmd>bd<cr>', {
+      buffer = event.buf,
+      -- non-recursive map
+      noremap = true,
+      -- do not echo to command line
+      silent = true,
+      -- execute as soon as match found, do not wait for other keys
+      nowait = true,
+    })
+  end,
 })
-api.nvim_create_autocmd(
-  'FileType',
-  { pattern = 'man', command = [[nnoremap <buffer><silent> q :quit<CR>]] }
-)
 
 -- Enable spell checking for certain file types
 api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
@@ -101,3 +123,15 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
   group = format_sync_grp,
 })
+
+-- resizes splits if window got resized
+vim.api.nvim_create_autocmd(
+  -- after Vim window was resized
+  'VimResized',
+  {
+    callback = function()
+      -- for each tab, make windows equal
+      vim.cmd('tabdo wincmd =')
+    end,
+  }
+)

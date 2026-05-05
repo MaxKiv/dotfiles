@@ -322,14 +322,16 @@ return {
           },
           {
             '<leader>lj',
-            '<cmd>LspInfo<CR>',
+            '<cmd>checkhealth vim.lsp<CR>',
             desc = 'LSP Info',
             nowait = true,
             remap = false,
           },
           {
             '<leader>lk',
-            '<cmd>LspLog<CR>',
+            function()
+              vim.cmd.edit(vim.lsp.log.get_filename())
+            end,
             desc = 'LSP Log',
             nowait = true,
             remap = false,
