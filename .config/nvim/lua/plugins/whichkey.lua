@@ -162,50 +162,6 @@ return {
             remap = false,
           },
 
-          -- Which-Key Mappings
-          {
-            ']e',
-            "<cmd>lua require('functions').diag_jump(1, vim.diagnostic.severity.ERROR)<cr>",
-            desc = 'Next Error',
-            nowait = true,
-            remap = false,
-          },
-          {
-            '[e',
-            "<cmd>lua require('functions').diag_jump(-1, vim.diagnostic.severity.ERROR)<cr>",
-            desc = 'Prev Error',
-            nowait = true,
-            remap = false,
-          },
-          {
-            ']w',
-            "<cmd>lua require('functions').diag_jump(1, vim.diagnostic.severity.WARN)<cr>",
-            desc = 'Next Warning',
-            nowait = true,
-            remap = false,
-          },
-          {
-            '[w',
-            "<cmd>lua require('functions').diag_jump(-1, vim.diagnostic.severity.WARN)<cr>",
-            desc = 'Prev Warning',
-            nowait = true,
-            remap = false,
-          },
-          {
-            ']d',
-            "<cmd>lua require('functions').diag_jump(1, {vim.diagnostic.severity.HINT, vim.diagnostic.severity.INFO})<cr>",
-            desc = 'Next Diagnostic',
-            nowait = true,
-            remap = false,
-          },
-          {
-            '[d',
-            "<cmd>lua require('functions').diag_jump(-1, {vim.diagnostic.severity.HINT, vim.diagnostic.severity.INFO})<cr>",
-            desc = 'Prev Diagnostic',
-            nowait = true,
-            remap = false,
-          },
-
           -- Helix like movement mappings
           {
             'gh',
@@ -371,6 +327,59 @@ return {
             nowait = true,
             remap = false,
           },
+
+          -- LSP Diagnostics
+          {
+            ']e',
+            "<cmd>lua require('functions').diag_jump(1, vim.diagnostic.severity.ERROR)<cr>",
+            desc = 'Next Error',
+            nowait = true,
+            remap = false,
+          },
+          {
+            '[e',
+            "<cmd>lua require('functions').diag_jump(-1, vim.diagnostic.severity.ERROR)<cr>",
+            desc = 'Prev Error',
+            nowait = true,
+            remap = false,
+          },
+          {
+            ']w',
+            "<cmd>lua require('functions').diag_jump(1, vim.diagnostic.severity.WARN)<cr>",
+            desc = 'Next Warning',
+            nowait = true,
+            remap = false,
+          },
+          {
+            '[w',
+            "<cmd>lua require('functions').diag_jump(-1, vim.diagnostic.severity.WARN)<cr>",
+            desc = 'Prev Warning',
+            nowait = true,
+            remap = false,
+          },
+          {
+            ']d',
+            "<cmd>lua require('functions').diag_jump(1, {vim.diagnostic.severity.HINT, vim.diagnostic.severity.INFO})<cr>",
+            desc = 'Next Diagnostic',
+            nowait = true,
+            remap = false,
+          },
+          {
+            '[d',
+            "<cmd>lua require('functions').diag_jump(-1, {vim.diagnostic.severity.HINT, vim.diagnostic.severity.INFO})<cr>",
+            desc = 'Prev Diagnostic',
+            nowait = true,
+            remap = false,
+          },
+
+          -- Note taking
+          {
+            '<leader>p',
+            '<cmd>PasteImage<cr>',
+            desc = 'Add Image from Clipboard to current Note',
+            nowait = true,
+            remap = false,
+          },
         },
 
         {
@@ -384,23 +393,30 @@ return {
 
           -- Custom functions
           {
-            '<leader>n',
+            '<leader>=',
             '<cmd>lua vim.wo.relativenumber = not vim.wo.relativenumber<CR>',
             desc = 'Toggle relative line number',
             nowait = true,
             remap = false,
           },
           {
-            '<leader><C-p>',
+            '<leader><C-y>',
             "<cmd>lua require('functions').copy_file_path_from_root() print('file root path copied')<cr>",
             desc = 'copy file path from root',
             nowait = true,
             remap = false,
           },
           {
-            '<leader>P',
+            '<leader>Y',
             "<cmd>lua require('functions').copy_file_name() print('file name copied')<cr>",
             desc = 'copy file name',
+            nowait = true,
+            remap = false,
+          },
+          {
+            '<leader>y',
+            "<cmd>lua require('functions').copy_file_path() print('file path copied')<cr>",
+            desc = 'copy file path',
             nowait = true,
             remap = false,
           },
@@ -408,13 +424,6 @@ return {
             '<leader>\\',
             "<cmd>lua require('functions').clipboard_switch_brackets() print('Switched clipboard brackets')<cr>",
             desc = 'Switch clipboard brackets',
-            nowait = true,
-            remap = false,
-          },
-          {
-            '<leader>p',
-            "<cmd>lua require('functions').copy_file_path() print('file path copied')<cr>",
-            desc = 'copy file path',
             nowait = true,
             remap = false,
           },
@@ -572,8 +581,8 @@ return {
             remap = false,
           },
           {
-            '<leader>fi',
-            '<cmd>Telescope find_files cwd=~/git/Information<CR>',
+            '<leader>fn',
+            '<cmd>Telescope find_files cwd=~/git/notes<CR>',
             desc = 'Notes',
             nowait = true,
             remap = false,
