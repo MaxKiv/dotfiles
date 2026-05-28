@@ -1,13 +1,13 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  branch = 'v2.x',
+  branch = 'v3.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
     'MunifTanjim/nui.nvim',
   },
   keys = {
-    { [[\]], '<cmd>NeoTreeRevealToggle<cr>', 'Reveal Neotree' },
+    { [[\]], '<cmd>Neotree<cr>', 'Reveal Neotree' },
   },
   config = function()
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -189,7 +189,9 @@ return {
             --".null-ls_*",
           },
         },
-        follow_current_file = false, -- This will find and focus the file in the active buffer every
+        follow_current_file = {
+          enabled = true, -- This will find and focus the file in the active buffer every
+        },
         -- time the current file is changed while the tree is open.
         group_empty_dirs = false, -- when true, empty folders will be grouped together
         hijack_netrw_behavior = 'open_default', -- netrw disabled, opening a directory opens neo-tree
@@ -226,7 +228,10 @@ return {
         commands = {}, -- Add a custom command or override a global one using the same function name
       },
       buffers = {
-        follow_current_file = true, -- This will find and focus the file in the active buffer every
+        follow_current_file = {
+          enabled = true, -- This will find and focus the file in the active buffer every
+        },
+
         -- time the current file is changed while the tree is open.
         group_empty_dirs = true, -- when true, empty folders will be grouped together
         show_unloaded = true,
