@@ -10,6 +10,11 @@ return {
         '<cmd>Trouble diagnostics toggle focus=true<cr>',
         desc = 'Diagnostics (Trouble)',
       },
+      {
+        '<leader>te',
+        '<cmd>Trouble diagnostics toggle focus=true filter.severity=vim.diagnostic.severity.ERROR<cr>',
+        desc = 'Errors (Trouble)',
+      },
       -- {
       --   "<leader>xX",
       --   "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
