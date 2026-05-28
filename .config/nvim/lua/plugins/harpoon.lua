@@ -2,75 +2,63 @@
 return {
   {
     'ThePrimeagen/harpoon',
-    requires = { 'nvim-lua/plenary.nvim' },
-    keys = {
-      {
-        '<C-e>',
-        [[<cmd>lua require("harpoon.mark").add_file()<Cr>]],
-        desc = 'Mark Buffer',
-      },
-      {
-        '<S-H>',
-        [[<cmd>lua require("harpoon.ui").toggle_quick_menu()<Cr>]],
-        desc = 'View Marks',
-      },
-      {
-        '<S-F1>',
-        [[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]],
-        desc = 'Goto 1',
-      },
-      {
-        '<S-F2>',
-        [[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]],
-        desc = 'Goto 2',
-      },
-      {
-        '<S-F3>',
-        [[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]],
-        desc = 'Goto 3',
-      },
-      {
-        '<S-F4>',
-        [[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]],
-        desc = 'Goto 4',
-      },
-      {
-        '<C-h>',
-        [[<cmd>lua require("harpoon.ui").nav_file(1)<Cr>]],
-        desc = 'Goto 1',
-      },
-      {
-        '<C-j>',
-        [[<cmd>lua require("harpoon.ui").nav_file(2)<Cr>]],
-        desc = 'Goto 2',
-      },
-      {
-        '<C-k>',
-        [[<cmd>lua require("harpoon.ui").nav_file(3)<Cr>]],
-        desc = 'Goto 3',
-      },
-      {
-        '<C-l>',
-        [[<cmd>lua require("harpoon.ui").nav_file(4)<Cr>]],
-        desc = 'Goto 4',
-      },
-
-      -- {
-      --   "hq",
-      --   [[<cmd>lua if jit.os == "Windows" then require("harpoon.term").gotoTerminal(1) else require("harpoon.tmux").gotoTerminal(1) end <CR>]],
-      --   desc = "Goto terminal"
-      -- },
-      -- {
-      --   "hw",
-      --   [[<cmd>lua if jit.os == "Windows" then require("harpoon.term").gotoTerminal(2) else require("harpoon.tmux").gotoTerminal(2) end <CR>]],
-      --   desc = "Goto terminal"
-      -- },
-      -- {
-      --   "he",
-      --   [[<cmd>lua if jit.os == "Windows" then require("harpoon.term").gotoTerminal(3) else require("harpoon.tmux").gotoTerminal(3) end <CR>]],
-      --   desc = "Goto terminal"
-      -- },
-      --
+    branch = 'harpoon2',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
     },
+
+    config = function()
+      local harpoon = require('harpoon')
+
+      harpoon:setup()
+
+      local list = function()
+        return harpoon:list()
+      end
+
+      -- Mark current file
+      vim.keymap.set('n', '<C-e>', function()
+        list():add()
+      end, { desc = 'Mark Buffer' })
+
+      -- Toggle quick menu
+      vim.keymap.set('n', '<S-H>', function()
+        harpoon.ui:toggle_quick_menu(list())
+      end, { desc = 'View Marks' })
+
+      -- Navigation (F-keys)
+      vim.keymap.set('n', '<S-F1>', function()
+        list():select(1)
+      end, { desc = 'Goto 1' })
+
+      vim.keymap.set('n', '<S-F2>', function()
+        list():select(2)
+      end, { desc = 'Goto 2' })
+
+      vim.keymap.set('n', '<S-F3>', function()
+        list():select(3)
+      end, { desc = 'Goto 3' })
+
+      vim.keymap.set('n', '<S-F4>', function()
+        list():select(4)
+      end, { desc = 'Goto 4' })
+
+      -- Ctrl navigation (your old mapping style preserved)
+      vim.keymap.set('n', '<C-h>', function()
+        list():select(1)
+      end, { desc = 'Goto 1' })
+
+      vim.keymap.set('n', '<C-j>', function()
+        list():select(2)
+      end, { desc = 'Goto 2' })
+
+      vim.keymap.set('n', '<C-k>', function()
+        list():select(3)
+      end, { desc = 'Goto 3' })
+
+      vim.keymap.set('n', '<C-l>', function()
+        list():select(4)
+      end, { desc = 'Goto 4' })
+    end,
   },
 }
