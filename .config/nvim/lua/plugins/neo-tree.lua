@@ -7,7 +7,7 @@ return {
     'MunifTanjim/nui.nvim',
   },
   keys = {
-    { [[\]], '<cmd>Neotree<cr>', 'Reveal Neotree' },
+    { [[\]], '<cmd>Neotree toggle<cr>', 'Reveal Neotree' },
   },
   config = function()
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
