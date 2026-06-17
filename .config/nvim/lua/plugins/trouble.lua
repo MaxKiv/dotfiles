@@ -7,19 +7,19 @@ return {
     keys = {
       {
         '<leader>tt',
-        '<cmd>Trouble diagnostics toggle focus=true<cr>',
+        '<cmd>Trouble diagnostics focus=true<cr>',
         desc = 'Diagnostics (Trouble)',
       },
       {
         '<leader>te',
-        '<cmd>Trouble diagnostics toggle focus=true filter.severity=vim.diagnostic.severity.ERROR<cr>',
-        desc = 'Errors (Trouble)',
+        '<cmd>Trouble diagnostics filter.severity = vim.diagnostic.severity.ERROR focus=true<cr>',
+        desc = 'Diagnostics (Trouble)',
       },
-      -- {
-      --   "<leader>xX",
-      --   "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-      --   desc = "Buffer Diagnostics (Trouble)",
-      -- },
+      {
+        '<leader>tb',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+        desc = 'Buffer Diagnostics (Trouble)',
+      },
       {
         '<leader>ts',
         '<cmd>Trouble symbols toggle focus=false win.positoin=right<cr>',
