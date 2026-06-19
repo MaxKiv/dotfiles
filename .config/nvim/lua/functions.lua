@@ -111,6 +111,16 @@ M.copy_file_path_from_root = function()
   vim.fn.setreg('+', vim.fn.fnamemodify(vim.fn.expand('%'), ':p:.'))
 end
 
+M.copy_file_path_and_line = function()
+  local fname = vim.api.nvim_buf_get_name(0)
+  if fname == '' then
+    return
+  end
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  local text = string.format('%s:%d', fname, line)
+  vim.fn.setreg('+', text)
+end
+
 M.clipboard_switch_brackets = function()
   local sub, count = string.gsub(vim.fn.getreg('+'), [[\]], [[/]])
   if count > 0 then
