@@ -169,6 +169,14 @@ local language_servers = {
     cmd = { 'vscode-html-language-server', '--stdio' },
     filetypes = { 'html' },
     root_markers = { 'package.json', '.git' },
+    settings = {
+      configurationSection = { 'html', 'css', 'javascript' },
+      embeddedLanguages = {
+        css = true,
+        javascript = true,
+      },
+      provideFormatter = true,
+    },
   },
   ['cssls'] = {
     mason = 'css-lsp',
