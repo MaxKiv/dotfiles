@@ -23,7 +23,7 @@
       "battery",
       "tray",
       "power-profiles-daemon",
-      "idle_inhibitor",
+      "custom/bluelightfilter",
       "custom/power"
     ],
     // Modules configuration
@@ -168,6 +168,12 @@
       "escape": true,
       "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "custom/bluelightfilter": {
+      "max-length": 40,
+      "format" : " 🌙 ",
+      "tooltip": false,
+      "on-click": "hyprshade toggle blue-light-filter",
     },
     "custom/power": {
       "format" : " ⏻ ",

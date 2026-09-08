@@ -57,9 +57,6 @@ tooltip {
 #disk {
   padding: 0 8px;
 }
-#idle_inhibitor {
-  padding: 0 8px;
-}
 #power-profiles-daemon {
   padding: 0 8px;
 }
@@ -76,6 +73,9 @@ tooltip {
   padding: 0 8px;
 }
 #memory {
+  padding: 0 8px;
+}
+#custom.bluelightfilter {
   padding: 0 8px;
 }
 #custom.power {
